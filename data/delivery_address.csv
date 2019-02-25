@@ -1,0 +1,21 @@
+address_id,house_num,street_name,city,state,country_code,zip_code,cust_email
+1,123,Jefferson Road,Syracuse,Idaho,US,15643,frederic@yahoo.com
+2,9,West Boulevard,Buffalo,New York,US,48935,stinson@aol.com
+3,90,Boardwalk Terrace,Henrietta,Wyoming,US,48931,cgcra@verizon.net
+4,765,Park Avenue,Buffalo,New Jersey,US,98765,meinkej@att.net
+5,90,West Boulevard,Buffalo,Wyoming,US,12935,jmorris@outlook.com
+6,89,John Street,Syracuse,New Jersey,US,12935,nachbaur@live.com
+7,65,Park Avenue,Auburn,New York,US,48931,zeitlin@aol.com
+8,432,Jefferson Road,Rochester,Georgia,US,65423,wildfire@gmail.com
+9,123,West Boulevard,Henrietta,New Jersey,US,48931,jpflip@icloud.com
+10,23,Jefferson Road,Auburn,New York,US,48935,trygstad@outlook.com
+11,64,Boardwalk Terrace,Syracuse,Idaho,US,32476,monopole@hotmail.com
+12,345,John Street,Greece,Georgia,US,48935,arnold@comcast.net
+13,64,Jefferson Road,Greece,New York,US,15643,nogin@yahoo.ca
+14,7,Jefferson Road,Rochester,Georgia,US,68791,paulv@me.com
+15,7,Jefferson Road,Buffalo,New Jersey,US,48931,duchamp@live.com
+16,7,Boardwalk Terrace,Auburn,New York,US,48935,novanet@icloud.com
+17,345,John Street,Rochester,Idaho,US,32476,skaufman@optonline.net
+18,65,Park Avenue,Henrietta,Texas,US,12935,multiplx@me.com
+19,345,Jefferson Road,Henrietta,Texas,US,32164,birddog@att.net
+20,65,Park Avenue,Greece,Texas,US,32476,aukjan@outlook.com
