@@ -2,27 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f1fbff6-1f34-4917-9887-2381910d856d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../.idea/libraries/h2_1_4_196.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/libraries/h2_1_4_1961.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/libraries/wrapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/libraries/wrapper1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../package_database/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/Check.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/CreditCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/GiftCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/Package.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/PackageMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/PaymentMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/Views/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/Views/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/Views/CustomerServiceEmployee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../src/Views/ShippingDepartmentEmployee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../src/PackageDatabase/Check.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/Check.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../src/PackageDatabase/CreditCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/CreditCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../src/PackageDatabase/GiftCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/GiftCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../src/PackageDatabase/PaymentMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../src/PackageDatabase/PaymentMethod.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -124,7 +109,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553227057515" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553231761129" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/review_oo" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
