@@ -16,6 +16,22 @@ public class Date {
       /* to do */
    }
 
+   /**
+    * GETTERS
+    */
+
+   public int getDay(){
+      return day;
+   }
+
+   public int getMonth(){
+      return month;
+   }
+
+   public int getYear(){
+      return year;
+   }
+
 
    /**
     * SETTERS
