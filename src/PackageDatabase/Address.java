@@ -2,15 +2,15 @@ package PackageDatabase;
 
 public class Address {
 
-   int address_id;
-   String customer_email;
+   private int address_id;
+   private String customer_email;
 
-   String house_num;
-   String street;
-   String city;
-   String state;
-   int zip_code;
-   int country_code;
+   private String house_num;
+   private String street;
+   private String city;
+   private String state;
+   private String zip_code;
+   private String country_code;
 
 
    /**
@@ -24,7 +24,7 @@ public class Address {
     * @param zip_code
     */
    public Address(int address_id, String customer_email,
-                  String house_num, String street, String city, String state, int zip_code){
+                  String house_num, String street, String city, String state, String zip_code){
       this.address_id = address_id;
       this.customer_email = customer_email;
       this.house_num = house_num;
@@ -32,7 +32,7 @@ public class Address {
       this.city = city;
       this.state = state;
       this.zip_code = zip_code;
-      this.country_code = 1; // the US's country code (+1)
+      this.country_code = "USA"; // the US's alpha3 code USA
 
    }
 
@@ -48,7 +48,7 @@ public class Address {
     * @param country_code the number identifying what country the address is from
     */
    public Address(int address_id, String customer_email,
-                  String house_num, String street, String city, String state, int zip_code, int country_code){
+                  String house_num, String street, String city, String state, String zip_code, String country_code){
       this.address_id = address_id;
       this.customer_email = customer_email;
       this.house_num = house_num;
