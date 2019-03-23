@@ -8,11 +8,11 @@ public class Customer {
     private String display_name;
     private int home_address_id;
     private String password;
-    private int phone_number;
+    private String phone_number;
     private Date date_created;
 
     public Customer(String email, String display_name, int home_address_id,
-                    String password, int phone_number, Date date_created){
+                    String password, String phone_number, Date date_created){
 
         this.email = email;
         this.display_name = display_name;
@@ -42,7 +42,7 @@ public class Customer {
         return password;
     }
 
-    public int getPhone_number(){
+    public String getPhone_number(){
         return phone_number;
     }
 
@@ -70,7 +70,7 @@ public class Customer {
         this.password = password;
     }
 
-    public void setPhone_number(int phone_number){
+    public void setPhone_number(String phone_number){
         this.phone_number = phone_number;
     }
 
