@@ -5,7 +5,7 @@ package Views;
  *
  */
 
-public class Customer {
+public class CustomerView {
 
 
 

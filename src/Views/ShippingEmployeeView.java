@@ -1,4 +1,4 @@
 package Views;
 
-public class ShippingDepartmentEmployee {
+public class ShippingEmployeeView {
 }

@@ -1,4 +1,4 @@
 package Views;
 
-public class Admin {
+public class AdminView {
 }
