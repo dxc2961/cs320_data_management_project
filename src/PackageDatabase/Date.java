@@ -32,8 +32,11 @@ public class Date {
       }
       int diffMonths = (future.getMonth() - this.getMonth() + diffYears*12) % 12 ;
       int diffDays = future.getDay() - this.getDay();
+      if(diffDays < 0){
+         diffDays = 0;
+      }
 
-      return new Date(0, diffMonths, diffYears);
+      return new Date(diffDays, diffMonths, diffYears);
 
    }
 
