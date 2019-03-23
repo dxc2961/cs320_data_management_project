@@ -24,7 +24,31 @@ public class Order {
    /////////
    //GETTERS
 
-   public Date getDeliveryLength(){
+   public Date getOrder_date(){
       return order_date;
+   }
+
+   public Date getDelivery_date() {
+      return delivery_date;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public int getDelivery_address_id() {
+      return delivery_address_id;
+   }
+
+   public int getOrder_id() {
+      return order_id;
+   }
+
+   public int getPayment_id() {
+      return payment_id;
+   }
+
+   public int getReturn_address_id() {
+      return return_address_id;
    }
 }

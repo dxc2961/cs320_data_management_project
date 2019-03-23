@@ -20,15 +20,35 @@ public class Date {
     * GETTERS
     */
 
-   public int getDay(){
+   /**
+    * Finds the time until the future date
+    * @param future the date in the future to get the time to from this date
+    * @return
+    */
+   public Date timeTil(Date future){
+      int diffYears = future.getYear() - this.getYear();
+      if(diffYears < 0){
+         return new Date(0,0,0);
+      }
+      int diffMonths = (future.getMonth() - this.getMonth() + diffYears*12) % 12 ;
+      int diffDays = future.getDay() - this.getDay();
+      if(diffDays < 0){
+         diffDays = 0;
+      }
+
+      return new Date(diffDays, diffMonths, diffYears);
+
+   }
+
+   public int getDay() {
       return day;
    }
 
-   public int getMonth(){
+   public int getMonth() {
       return month;
    }
 
-   public int getYear(){
+   public int getYear() {
       return year;
    }
 
