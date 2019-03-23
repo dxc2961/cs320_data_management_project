@@ -3,11 +3,11 @@ package PackageDatabase;
 public class GiftCard extends PaymentMethod {
 
    private int giftcard_number;
-   private String expiration_date;
+   private Date expiration_date;
    private int balance;
 
    public GiftCard(int payment_ID, String email,
-                   int giftcard_number, String expiration_date, int balance) {
+                   int giftcard_number, Date expiration_date, int balance) {
       super(payment_ID, email);
       this.expiration_date = expiration_date;
       this.giftcard_number = giftcard_number;
@@ -18,7 +18,7 @@ public class GiftCard extends PaymentMethod {
     * GETTERS
     */
 
-   public String getExpiration_date() {
+   public Date getExpiration_date() {
       return expiration_date;
    }
 
