@@ -5,10 +5,10 @@ public class CreditCard extends PaymentMethod {
    private int card_number;
    private int security_code;
    private String owner_name;
-   private int[] expiration_date;
+   private Date expiration_date;
 
    public CreditCard(int payment_ID, String email,
-                     int card_number, String owner_name, int[] expiration_date, int security_code) {
+                     int card_number, String owner_name, Date expiration_date, int security_code) {
       super(payment_ID, email);
       this.card_number = card_number;
       this.owner_name = owner_name;
@@ -28,7 +28,7 @@ public class CreditCard extends PaymentMethod {
       return owner_name;
    }
 
-   public int[] getExpiration_date() {
+   public Date getExpiration_date() {
       return expiration_date;
    }
 }
