@@ -16,6 +16,38 @@ public class Date {
       /* to do */
    }
 
+   /**
+    * GETTERS
+    */
+
+   /**
+    * Finds the time until the future date
+    * @param future the date in the future to get the time to from this date
+    * @return
+    */
+   public Date timeTil(Date future){
+      int diffYears = future.getYear() - this.getYear();
+      if(diffYears < 0){
+         return new Date(0,0,0);
+      }
+      int diffMonths = (future.getMonth() - this.getMonth() + diffYears*12) % 12 ;
+      int diffDays = future.getDay() - this.getDay();
+
+      return new Date(0, diffMonths, diffYears);
+
+   }
+
+   public int getDay() {
+      return day;
+   }
+
+   public int getMonth() {
+      return month;
+   }
+
+   public int getYear() {
+      return year;
+   }
 
    /**
     * SETTERS
