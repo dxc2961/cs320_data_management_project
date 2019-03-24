@@ -79,6 +79,17 @@ public class PackageMain {
       //Create the database connections, basically makes the database
       packageMain.createConnection(location, user, password);
 
+      try{
+         //create tables
+         AddressTable.createAddressTable(packageMain.getConnection());
+
+         //populate tables
+         AddressTable.populateAddressTableCSV(packageMain.getConnection(), "address.csv");
+
+      }catch(SQLException e){
+         e.printStackTrace();
+      }
+
    }
 }
 

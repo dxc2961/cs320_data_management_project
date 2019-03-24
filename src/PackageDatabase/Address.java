@@ -58,4 +58,36 @@ public class Address {
       this.zip_code = zip_code;
       this.country_code = country_code;
    }
+
+   public int getAddress_id(){
+      return address_id;
+   }
+
+   public String getCustomer_email(){
+      return customer_email;
+   }
+
+   public String getHouse_num(){
+      return house_num;
+   }
+
+   public String getStreet(){
+      return street;
+   }
+
+   public String getCity(){
+      return city;
+   }
+
+   public String getState(){
+      return state;
+   }
+
+   public String getZip_code(){
+      return zip_code;
+   }
+
+   public String getCountry_code(){
+      return country_code;
+   }
 }
