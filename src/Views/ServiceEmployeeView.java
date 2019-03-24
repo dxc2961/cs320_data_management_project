@@ -1,5 +1,13 @@
 package Views;
 
+/**
+ * This View would be the view used by someone who provides customer service for our company.
+ *
+ * They have the ability to select a customer account to investigate, then from there they can get
+ * information about that customer, including their profile details, order details, address information,
+ * and (to a limited extent) their payment method information.
+ */
+
 public class ServiceEmployeeView extends View {
 
     public String custUsername;
@@ -29,7 +37,7 @@ public class ServiceEmployeeView extends View {
     public void findAddresses(){
         //TODO query other relevant profile information for this user
 
-        System.out.println("querying order data for " + this.custUsername + "!");
+        System.out.println("querying address data for " + this.custUsername + "!");
 
     }
 
@@ -37,7 +45,7 @@ public class ServiceEmployeeView extends View {
     public void findPayments(){
         //TODO query other relevant profile information for this user
 
-        System.out.println("querying order data for " + this.custUsername + "!");
+        System.out.println("querying payment method data for " + this.custUsername + "!");
 
     }
 
@@ -56,6 +64,7 @@ public class ServiceEmployeeView extends View {
             System.out.println("Press o to view a user's orders");
             System.out.println("Press a to view a user's addresses");
             System.out.println("Press y to view a user's payment methods");
+            System.out.println("Press n to select a new customer");
             System.out.println("Press q to quit");
             char action = in.next().charAt(0);
 
@@ -71,6 +80,11 @@ public class ServiceEmployeeView extends View {
                     break;
                 case 'y':
                     this.findPayments();
+                    break;
+                case 'n':
+                    System.out.println("What is the new customer name?");
+                    this.custUsername = this.in.nextLine();
+                    //if in database continue
                     break;
                 case 'q':
                     this.quit();

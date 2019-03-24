@@ -40,11 +40,7 @@ public abstract class View {
 
 
         System.out.println("");
-
         System.out.println("Have a nice day!");
-
-
-
         System.out.println("");
 
 
@@ -57,7 +53,6 @@ public abstract class View {
 
     /**
      * Process the user depending on the application being used
-     * @return
      */
     public abstract void assist();
 

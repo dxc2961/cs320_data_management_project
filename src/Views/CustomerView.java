@@ -1,8 +1,8 @@
 package Views;
 
 /**
- * View for a customer accessing the application to view things such as order history, account information, etc.
- *
+ * View for a customer accessing the application to view things such as order history,
+ * account information, payment method information, and address information.
  */
 
 public class CustomerView extends View{

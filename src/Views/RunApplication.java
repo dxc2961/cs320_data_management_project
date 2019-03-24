@@ -1,5 +1,12 @@
 package Views;
 
+/**
+ * This class is just used to allow someone to access the application they choose. In a business scenario we
+ * would deploy each application only where appropriate, so this class would be unnecessary.
+ *
+ * For now we can use this to test the different applications' functionality
+ */
+
 import java.util.Scanner;
 
 public class RunApplication {
