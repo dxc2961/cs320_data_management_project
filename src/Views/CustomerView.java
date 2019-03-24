@@ -13,12 +13,14 @@ public class CustomerView extends View{
         super();
     }
 
+
     public void viewProfile(){
         //TODO query other relevant profile information for this user
 
         System.out.println("querying profile data!");
 
     }
+
 
     public void viewOrders(){
         //TODO query other relevant order information for this user
@@ -27,6 +29,7 @@ public class CustomerView extends View{
 
     }
 
+
     public void viewAddresses(){
         //TODO query other relevant address information for this user
 
@@ -34,13 +37,13 @@ public class CustomerView extends View{
 
     }
 
+
     public void viewPayments(){
         //TODO query other relevant payment method information for this user
 
         System.out.println("querying payment method data!");
 
     }
-
 
     @Override
     public void assist() {

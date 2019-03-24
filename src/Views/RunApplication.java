@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class RunApplication {
 
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -35,8 +36,6 @@ public class RunApplication {
         }
 
         view.run();
-
-
 
     }
 }
