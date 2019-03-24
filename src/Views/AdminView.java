@@ -9,13 +9,17 @@ public class AdminView extends View{
 
 
     public void sqlEditor(){
+        //TODO allow user to write sql queries
 
+        System.out.println("opening sql editor!");
 
     }
 
 
     public void newInstance(){
+        //TODO allow user to create a new View object
 
+        System.out.println("creating new view!");
 
     }
 

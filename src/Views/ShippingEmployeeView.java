@@ -9,19 +9,25 @@ public class ShippingEmployeeView extends View {
 
 
     public void searchOrder(){
+        //TODO query for the provided order number
 
+        System.out.println("querying for order!");
 
     }
 
 
     public void searchPackage(){
+        //TODO query for the provided package number
 
+        System.out.println("querying for package!");
 
     }
 
 
     public void searchAddress(){
+        //TODO query for the provided address deliveries
 
+        System.out.println("querying for delivery address!");
 
     }
 
