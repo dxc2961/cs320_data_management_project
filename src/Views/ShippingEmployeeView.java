@@ -7,6 +7,9 @@ package Views;
  * in order to find out more about that entity.
  */
 
+import java.sql.*;
+
+
 public class ShippingEmployeeView extends View {
 
 

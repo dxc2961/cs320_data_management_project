@@ -8,6 +8,9 @@ package Views;
  * service employee, or shipping employee. This would allow us to troubleshoot problems with the application.
  */
 
+import java.sql.*;
+
+
 public class AdminView extends View{
 
 
@@ -17,7 +20,7 @@ public class AdminView extends View{
 
 
     public void sqlEditor(){
-        //TODO allow user to write sql queries
+        //TODO allow user to write their own custom sql queries
 
         System.out.println("opening sql editor!");
 
