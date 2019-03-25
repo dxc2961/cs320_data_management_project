@@ -25,3 +25,279 @@ INSERT INTO address VALUES [42001-196]
 2019-03-24 16:17:22 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
 INSERT INTO address VALUES [42001-196]
+2019-03-24 22:51:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 22:52:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 22:54:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 22:58:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 22:59:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 23:01:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 23:01:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 23:03:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 23:04:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 23:06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 23:08:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 23:08:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ADDRESS VALUES [*]"; expected "("; SQL statement:
+INSERT INTO address VALUES [42001-196]
+2019-03-24 23:10:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'23','John Street','Syracuse','New Jersey','US','68791','frederic@yahoo.com'),(2,'64','John Street','Greece','Wyoming','US','32164','stinson@aol.com'),(3,'9','Park Avenue','Auburn','New Jersey','US','98765','cgcra@verizon.net'),(4,'345','Park Avenue','Henrietta','Georgia','US','32164','meinkej@att.net'),(5,'9','Boardwalk Terrace','Greece','New York','US','32476','jmorris@outlook.com'),(6,'9','Boardwalk Terrace','Greece','Idaho','US','65423','nachbaur@live.com'),(7,'23','West Boulevard','Auburn','New York','US','48935','zeitlin@aol.com'),(8,'765','John Street','Auburn','Georgia','US','32476','wildfire@gmail.com'),(9,'9','John Street','Greece','Idaho','US','32476','jpflip@icloud.com'),(10,'7','Boardwalk Terrace','Henrietta','Texas','US','65423','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','68791','monopole@hotmail.com'),(12,'64','Boardwalk Terrace','Greece','New Jersey','US','98765','arnold@comcast.net'),(13,'9','Park Avenue','Henrietta','Wyoming','US','48931','nogin@yahoo.ca'),(14,'42','Jefferson Road','Greece','New York','US','48931','paulv@me.com'),(15,'123','Boardwalk Terrace','Rochester','New York','US','68791','duchamp@live.com'),(16,'765','West Boulevard','Auburn','Wyoming','US','15643','novanet@icloud.com'),(17,'42','Jefferson Road','Greece','New Jersey','US','48931','skaufman@optonline.net'),(18,'65','John Street','Syracuse','Georgia','US','98765','multiplx@me.com'),(19,'64','West Boulevard','Greece','New Jersey','US','15643','birddog@att.net'),(20,'64','Boardwalk Terrace','Syracuse','New York','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:62)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:13:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','US','15643','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','US','32164','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','US','48931','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','US','32164','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','US','32164','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','US','98765','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','US','48935','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','US','48935','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','US','32164','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','US','32164','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','48935','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','US','65423','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','US','68791','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','US','12935','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','US','48931','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','US','32164','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','US','15643','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','US','48931','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','US','65423','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:62)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:13:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','US','15643','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','US','32164','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','US','48931','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','US','32164','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','US','32164','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','US','98765','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','US','48935','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','US','48935','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','US','32164','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','US','32164','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','48935','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','US','65423','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','US','68791','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','US','12935','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','US','48931','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','US','32164','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','US','15643','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','US','48931','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','US','65423','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:61)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:18:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','US','15643','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','US','32164','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','US','48931','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','US','32164','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','US','32164','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','US','98765','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','US','48935','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','US','48935','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','US','32164','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','US','32164','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','48935','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','US','65423','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','US','68791','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','US','12935','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','US','48931','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','US','32164','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','US','15643','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','US','48931','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','US','65423','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:59)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:18:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','US','15643','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','US','32164','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','US','48931','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','US','32164','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','US','32164','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','US','98765','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','US','48935','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','US','48935','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','US','32164','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','US','32164','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','48935','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','US','65423','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','US','68791','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','US','12935','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','US','48931','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','US','32164','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','US','15643','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','US','48931','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','US','65423','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:59)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:18:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','US','15643','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','US','32164','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','US','48931','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','US','32164','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','US','32164','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','US','98765','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','US','48935','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','US','48935','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','US','32164','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','US','32164','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','48935','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','US','65423','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','US','68791','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','US','12935','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','US','48931','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','US','32164','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','US','15643','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','US','48931','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','US','65423','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:59)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:20:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'Jefferson Road','Buffalo','New Jersey','US','frederic@yahoo.com','15643','7'),(2,'John Street','Greece','New Jersey','US','stinson@aol.com','32164','64'),(3,'Park Avenue','Greece','New York','US','cgcra@verizon.net','48931','7'),(4,'West Boulevard','Buffalo','Idaho','US','meinkej@att.net','32164','765'),(5,'Boardwalk Terrace','Henrietta','Idaho','US','jmorris@outlook.com','32164','64'),(6,'Park Avenue','Rochester','Texas','US','nachbaur@live.com','98765','9'),(7,'Park Avenue','Auburn','Wyoming','US','zeitlin@aol.com','48935','345'),(8,'Boardwalk Terrace','Rochester','Texas','US','wildfire@gmail.com','48935','123'),(9,'John Street','Henrietta','New Jersey','US','jpflip@icloud.com','32164','765'),(10,'Boardwalk Terrace','Henrietta','Texas','US','trygstad@outlook.com','32164','89'),(11,'Jefferson Road','Rochester','Wyoming','US','monopole@hotmail.com','48935','65'),(12,'Boardwalk Terrace','Greece','Idaho','US','arnold@comcast.net','65423','65'),(13,'John Street','Greece','Texas','US','nogin@yahoo.ca','68791','65'),(14,'Jefferson Road','Buffalo','Texas','US','paulv@me.com','12935','89'),(15,'West Boulevard','Rochester','Wyoming','US','duchamp@live.com','48931','42'),(16,'Boardwalk Terrace','Syracuse','Georgia','US','novanet@icloud.com','32164','9'),(17,'Park Avenue','Auburn','Wyoming','US','skaufman@optonline.net','15643','89'),(18,'Park Avenue','Syracuse','Georgia','US','multiplx@me.com','48931','7'),(19,'Boardwalk Terrace','Syracuse','Texas','US','birddog@att.net','65423','9'),(20,'Park Avenue','Syracuse','Wyoming','US','aukjan@outlook.com','48931','7'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:59)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:20:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'Jefferson Road','Buffalo','New Jersey','US','frederic@yahoo.com','15643','7'),(2,'John Street','Greece','New Jersey','US','stinson@aol.com','32164','64'),(3,'Park Avenue','Greece','New York','US','cgcra@verizon.net','48931','7'),(4,'West Boulevard','Buffalo','Idaho','US','meinkej@att.net','32164','765'),(5,'Boardwalk Terrace','Henrietta','Idaho','US','jmorris@outlook.com','32164','64'),(6,'Park Avenue','Rochester','Texas','US','nachbaur@live.com','98765','9'),(7,'Park Avenue','Auburn','Wyoming','US','zeitlin@aol.com','48935','345'),(8,'Boardwalk Terrace','Rochester','Texas','US','wildfire@gmail.com','48935','123'),(9,'John Street','Henrietta','New Jersey','US','jpflip@icloud.com','32164','765'),(10,'Boardwalk Terrace','Henrietta','Texas','US','trygstad@outlook.com','32164','89'),(11,'Jefferson Road','Rochester','Wyoming','US','monopole@hotmail.com','48935','65'),(12,'Boardwalk Terrace','Greece','Idaho','US','arnold@comcast.net','65423','65'),(13,'John Street','Greece','Texas','US','nogin@yahoo.ca','68791','65'),(14,'Jefferson Road','Buffalo','Texas','US','paulv@me.com','12935','89'),(15,'West Boulevard','Rochester','Wyoming','US','duchamp@live.com','48931','42'),(16,'Boardwalk Terrace','Syracuse','Georgia','US','novanet@icloud.com','32164','9'),(17,'Park Avenue','Auburn','Wyoming','US','skaufman@optonline.net','15643','89'),(18,'Park Avenue','Syracuse','Georgia','US','multiplx@me.com','48931','7'),(19,'Boardwalk Terrace','Syracuse','Texas','US','birddog@att.net','65423','9'),(20,'Park Avenue','Syracuse','Wyoming','US','aukjan@outlook.com','48931','7'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:59)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:23:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','15643','US','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','32164','US','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','48931','US','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','32164','US','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','32164','US','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','98765','US','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','48935','US','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','48935','US','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','32164','US','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','32164','US','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','48935','US','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','65423','US','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','68791','US','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','12935','US','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','48931','US','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','32164','US','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','15643','US','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','48931','US','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','65423','US','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','48931','US','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:60)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:25:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','15643','US','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','32164','US','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','48931','US','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','32164','US','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','32164','US','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','98765','US','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','48935','US','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','48935','US','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','32164','US','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','32164','US','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','48935','US','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','65423','US','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','68791','US','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','12935','US','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','48931','US','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','32164','US','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','15643','US','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','48931','US','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','65423','US','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','48931','US','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:60)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:26:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','15643','US','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','32164','US','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','48931','US','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','32164','US','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','32164','US','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','98765','US','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','48935','US','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','48935','US','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','32164','US','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','32164','US','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','48935','US','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','65423','US','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','68791','US','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','12935','US','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','48931','US','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','32164','US','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','15643','US','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','48931','US','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','65423','US','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','48931','US','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:60)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:27:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','15643','US','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','32164','US','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','48931','US','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','32164','US','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','32164','US','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','98765','US','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','48935','US','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','48935','US','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','32164','US','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','32164','US','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','48935','US','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','65423','US','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','68791','US','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','12935','US','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','48931','US','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','32164','US','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','15643','US','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','48931','US','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','65423','US','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','48931','US','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:61)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:28:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','US','15643','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','US','32164','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','US','48931','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','US','32164','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','US','32164','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','US','98765','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','US','48935','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','US','48935','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','US','32164','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','US','32164','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','48935','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','US','65423','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','US','68791','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','US','12935','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','US','48931','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','US','32164','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','US','15643','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','US','48931','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','US','65423','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:60)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:28:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','US','15643','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','US','32164','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','US','48931','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','US','32164','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','US','32164','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','US','98765','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','US','48935','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','US','48935','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','US','32164','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','US','32164','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','48935','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','US','65423','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','US','68791','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','US','12935','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','US','48931','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','US','32164','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','US','15643','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','US','48931','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','US','65423','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:60)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)
+2019-03-24 23:29:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+INSERT INTO address VALUES(1,'7','Jefferson Road','Buffalo','New Jersey','US','15643','frederic@yahoo.com'),(2,'64','John Street','Greece','New Jersey','US','32164','stinson@aol.com'),(3,'7','Park Avenue','Greece','New York','US','48931','cgcra@verizon.net'),(4,'765','West Boulevard','Buffalo','Idaho','US','32164','meinkej@att.net'),(5,'64','Boardwalk Terrace','Henrietta','Idaho','US','32164','jmorris@outlook.com'),(6,'9','Park Avenue','Rochester','Texas','US','98765','nachbaur@live.com'),(7,'345','Park Avenue','Auburn','Wyoming','US','48935','zeitlin@aol.com'),(8,'123','Boardwalk Terrace','Rochester','Texas','US','48935','wildfire@gmail.com'),(9,'765','John Street','Henrietta','New Jersey','US','32164','jpflip@icloud.com'),(10,'89','Boardwalk Terrace','Henrietta','Texas','US','32164','trygstad@outlook.com'),(11,'65','Jefferson Road','Rochester','Wyoming','US','48935','monopole@hotmail.com'),(12,'65','Boardwalk Terrace','Greece','Idaho','US','65423','arnold@comcast.net'),(13,'65','John Street','Greece','Texas','US','68791','nogin@yahoo.ca'),(14,'89','Jefferson Road','Buffalo','Texas','US','12935','paulv@me.com'),(15,'42','West Boulevard','Rochester','Wyoming','US','48931','duchamp@live.com'),(16,'9','Boardwalk Terrace','Syracuse','Georgia','US','32164','novanet@icloud.com'),(17,'89','Park Avenue','Auburn','Wyoming','US','15643','skaufman@optonline.net'),(18,'7','Park Avenue','Syracuse','Georgia','US','48931','multiplx@me.com'),(19,'9','Boardwalk Terrace','Syracuse','Texas','US','65423','birddog@att.net'),(20,'7','Park Avenue','Syracuse','Wyoming','US','48931','aukjan@outlook.com'); [21002-196]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.command.dml.Insert.prepare(Insert.java:265)
+	at org.h2.command.Parser.prepareCommand(Parser.java:263)
+	at org.h2.engine.Session.prepareLocal(Session.java:578)
+	at org.h2.engine.Session.prepareCommand(Session.java:519)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1204)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:176)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:164)
+	at PackageDatabase.AddressTable.populateAddressTableCSV(AddressTable.java:60)
+	at PackageDatabase.PackageMain.main(PackageMain.java:88)

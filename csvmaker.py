@@ -297,6 +297,18 @@ def main():
         f.write(pick_rand(zip_code) + ",")
         f.write(email[i] + "\n")
 
+    f = open("address.csv", "w")
+    f.write("address_id,house_num,street_name,city,state,country_code,zip_code,cust_email\n")
+    for i in range(0, 20):
+        f.write(str(i+1) + ",")
+        f.write(pick_rand(house_num) + ",")
+        f.write(pick_rand(street_name) + ",")
+        f.write(pick_rand(city) + ",")
+        f.write(pick_rand(state) + ",")
+        f.write("US" + ",")
+        f.write(pick_rand(zip_code) + ",")
+        f.write(email[i] + "\n")
+
     f = open("customer.csv", "w")
     f.write("email,display_name,password,home_address_id,phone_number,day,month,year\n")
     for i in range(0, 20):

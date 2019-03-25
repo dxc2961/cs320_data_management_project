@@ -22,7 +22,7 @@ public class AddressTable {
         try {
             String str = "CREATE TABLE IF NOT EXISTS address(ADDRESS_ID INT PRIMARY KEY," +
                     "HOUSE_NUM VARCHAR(10),STREET_NAME VARCHAR(30),CITY VARCHAR(20)," +
-                    "STATE CHAR(2),COUNTRY_CODE CHAR(3),ZIP_CODE CHAR(5), CUSTOMER_EMAIL VARCHAR(50));";
+                    "STATE CHAR(30),COUNTRY_CODE CHAR(10),ZIP_CODE CHAR(10), CUSTOMER_EMAIL VARCHAR(50));";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {
@@ -45,9 +45,9 @@ public class AddressTable {
             String line;
             reader.readLine(); //read first line of csv file with column names, don't need to do anything with this
             while((line = reader.readLine()) != null) {
-                System.out.println(line);
                 String[] split = line.split(",");
-                addressList.add(new Address(Integer.parseInt(split[0]),split[1],split[2],split[3],split[4],split[5],split[6],split[7]));
+                addressList.add(new Address(Integer.parseInt(split[0]),split[7],split[1],split[2],split[3],split[4],
+                split[6],split[5]));
             }
 
             reader.close();
@@ -66,10 +66,10 @@ public class AddressTable {
 
         for(int i = 0; i < list.size(); ++i) {
             Address address = (Address)list.get(i);
+            System.out.println(address.getZip_code());
             builder.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
-                address.getAddress_id(), address.getCustomer_email(), address.getHouse_num(),
-                address.getStreet(), address.getCity(),
-                address.getState(), address.getZip_code(), address.getCountry_code()));
+                address.getAddress_id(), address.getHouse_num(), address.getStreet(), address.getCity(),
+                address.getState(), address.getCountry_code(), address.getZip_code(), address.getCustomer_email()));
 
             if(i != list.size() - 1) {
                 builder.append(",");

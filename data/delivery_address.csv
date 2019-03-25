@@ -1,21 +1,21 @@
 address_id,house_num,street_name,city,state,country_code,zip_code,cust_email
-1,23,John Street,Syracuse,New Jersey,US,68791,frederic@yahoo.com
-2,64,John Street,Greece,Wyoming,US,32164,stinson@aol.com
-3,9,Park Avenue,Auburn,New Jersey,US,98765,cgcra@verizon.net
-4,345,Park Avenue,Henrietta,Georgia,US,32164,meinkej@att.net
-5,9,Boardwalk Terrace,Greece,New York,US,32476,jmorris@outlook.com
-6,9,Boardwalk Terrace,Greece,Idaho,US,65423,nachbaur@live.com
-7,23,West Boulevard,Auburn,New York,US,48935,zeitlin@aol.com
-8,765,John Street,Auburn,Georgia,US,32476,wildfire@gmail.com
-9,9,John Street,Greece,Idaho,US,32476,jpflip@icloud.com
-10,7,Boardwalk Terrace,Henrietta,Texas,US,65423,trygstad@outlook.com
-11,65,Jefferson Road,Rochester,Wyoming,US,68791,monopole@hotmail.com
-12,64,Boardwalk Terrace,Greece,New Jersey,US,98765,arnold@comcast.net
-13,9,Park Avenue,Henrietta,Wyoming,US,48931,nogin@yahoo.ca
-14,42,Jefferson Road,Greece,New York,US,48931,paulv@me.com
-15,123,Boardwalk Terrace,Rochester,New York,US,68791,duchamp@live.com
-16,765,West Boulevard,Auburn,Wyoming,US,15643,novanet@icloud.com
-17,42,Jefferson Road,Greece,New Jersey,US,48931,skaufman@optonline.net
-18,65,John Street,Syracuse,Georgia,US,98765,multiplx@me.com
-19,64,West Boulevard,Greece,New Jersey,US,15643,birddog@att.net
-20,64,Boardwalk Terrace,Syracuse,New York,US,48931,aukjan@outlook.com
+1,123,Park Avenue,Syracuse,Idaho,US,98765,frederic@yahoo.com
+2,9,Park Avenue,Syracuse,New York,US,68791,stinson@aol.com
+3,9,West Boulevard,Buffalo,Texas,US,12935,cgcra@verizon.net
+4,123,Jefferson Road,Syracuse,Idaho,US,32476,meinkej@att.net
+5,89,John Street,Buffalo,Wyoming,US,32476,jmorris@outlook.com
+6,90,John Street,Greece,Georgia,US,98765,nachbaur@live.com
+7,9,Park Avenue,Greece,Georgia,US,12935,zeitlin@aol.com
+8,90,Park Avenue,Buffalo,Georgia,US,48935,wildfire@gmail.com
+9,64,West Boulevard,Syracuse,Wyoming,US,65423,jpflip@icloud.com
+10,65,Boardwalk Terrace,Henrietta,Texas,US,48931,trygstad@outlook.com
+11,345,West Boulevard,Auburn,Idaho,US,48935,monopole@hotmail.com
+12,765,Jefferson Road,Henrietta,Georgia,US,68791,arnold@comcast.net
+13,42,Boardwalk Terrace,Buffalo,Idaho,US,48931,nogin@yahoo.ca
+14,65,Park Avenue,Buffalo,Georgia,US,65423,paulv@me.com
+15,89,West Boulevard,Rochester,Texas,US,32476,duchamp@live.com
+16,64,Park Avenue,Buffalo,Georgia,US,12935,novanet@icloud.com
+17,432,Park Avenue,Syracuse,Georgia,US,12935,skaufman@optonline.net
+18,345,Jefferson Road,Rochester,Idaho,US,32164,multiplx@me.com
+19,90,Park Avenue,Greece,Texas,US,32476,birddog@att.net
+20,65,John Street,Rochester,Georgia,US,32476,aukjan@outlook.com
