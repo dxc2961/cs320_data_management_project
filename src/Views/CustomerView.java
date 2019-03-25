@@ -20,6 +20,8 @@ public class CustomerView extends View{
     private void viewProfile(){
         //TODO query other relevant profile information for this user
 
+        ResultSet results = this.runQuery("SELECT * FROM customer WHERE username=\'" + this.username + "\';");
+        this.printProfile(results);
         System.out.println("querying profile data!");
 
     }
@@ -36,7 +38,7 @@ public class CustomerView extends View{
     private void viewAddresses(){
         //TODO query other relevant address information for this user
 
-        ResultSet results = this.runQuery("SELECT * FROM address");
+        ResultSet results = this.runQuery("SELECT * FROM address WHERE email=\'" + this.email + "\';");
         this.printAddresses(results);
         System.out.println();
         System.out.println("querying address data!");
@@ -55,7 +57,14 @@ public class CustomerView extends View{
     private void printProfile(ResultSet results){
         try {
             while (results.next()) {
-                System.out.println("profile details:");
+                System.out.printf("\tProfile %s: %s %s %s %s %s %s\n",
+                        results.getString(1),
+                        results.getString(2),
+                        results.getString(3),
+                        results.getString(4),
+                        results.getString(5),
+                        results.getString(6),
+                        results.getString(7));
             }
         } catch (SQLException e) {
             e.printStackTrace();
