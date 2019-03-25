@@ -37,7 +37,7 @@ public class CustomerView extends View{
         //TODO query other relevant address information for this user
 
         ResultSet results = this.runQuery("SELECT * FROM address");
-        this.printResults(results);
+        this.printAddresses(results);
         System.out.println();
         System.out.println("querying address data!");
 
