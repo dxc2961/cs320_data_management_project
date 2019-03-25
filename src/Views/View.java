@@ -76,9 +76,17 @@ public abstract class View {
 
         System.out.println("Hello! Thank you for using this application. Please log in using your username.");
 
-        this.email = in.nextLine();
-        //if email is in database
-        this.username = email;
+
+        this.username = in.nextLine();
+        ResultSet result;
+        try {
+            result = this.runQuery("SELECT email FROM customer WHERE username=\'" + username + "\'");
+            result.first();
+            this.email = result.getString(1);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        System.out.println("Your email is " + this.email);
 
         this.assist();
 
