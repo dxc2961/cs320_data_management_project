@@ -17,7 +17,7 @@ public class CustomerView extends View{
     }
 
 
-    public void viewProfile(){
+    private void viewProfile(){
         //TODO query other relevant profile information for this user
 
         System.out.println("querying profile data!");
@@ -25,7 +25,7 @@ public class CustomerView extends View{
     }
 
 
-    public void viewOrders(){
+    private void viewOrders(){
         //TODO query other relevant order information for this user
 
         System.out.println("querying order data!");
@@ -33,7 +33,7 @@ public class CustomerView extends View{
     }
 
 
-    public void viewAddresses(){
+    private void viewAddresses(){
         //TODO query other relevant address information for this user
 
         ResultSet results = this.runQuery("SELECT * FROM address");
@@ -44,14 +44,39 @@ public class CustomerView extends View{
     }
 
 
-    public void viewPayments(){
+    private void viewPayments(){
         //TODO query other relevant payment method information for this user
 
         System.out.println("querying payment method data!");
 
     }
 
-    public void printAddresses(ResultSet results){
+
+    private void printProfile(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("profile details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void printOrders(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("order details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void printAddresses(ResultSet results){
         try {
             while (results.next()) {
                 System.out.printf("\tAddress %d: %s %s %s %s %s %s\n",
@@ -69,12 +94,24 @@ public class CustomerView extends View{
 
     }
 
+
+    private void printPayments(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("payment details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public void assist() {
 
         System.out.println("Hello " + this.username + "! What would you like to do today?");
 
-        while(this.isActive) {
+        while(this.isActive()) {
             System.out.println("Press p to view your profile");
             System.out.println("Press o to view your orders");
             System.out.println("Press a to view your addresses");
