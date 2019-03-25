@@ -93,6 +93,8 @@ public class PackageMain {
          e.printStackTrace();
       }
 
+      packageMain.closeConnection();
+
    }
 }
 
