@@ -51,7 +51,7 @@ public class CheckTable {
 
     private static String createCheckInsertSQL(ArrayList<Check> list){
         StringBuilder builder = new StringBuilder();
-        builder.append("INSERT INTO check VALUES");
+        builder.append("INSERT INTO checks VALUES");
 
         for(int i = 0; i < list.size(); ++i) {
             Check check = (Check)list.get(i);

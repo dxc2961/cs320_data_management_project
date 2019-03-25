@@ -22,7 +22,7 @@ public class AddressTable {
         try {
             String str = "CREATE TABLE IF NOT EXISTS address(ADDRESS_ID INT PRIMARY KEY," +
                     "HOUSE_NUM VARCHAR(10),STREET_NAME VARCHAR(30),CITY VARCHAR(20)," +
-                    "STATE CHAR(30),COUNTRY_CODE CHAR(10),ZIP_CODE CHAR(10), CUSTOMER_EMAIL VARCHAR(50));";
+                    "STATE VARCHAR(30),COUNTRY_CODE CHAR(3),ZIP_CODE CHAR(5),CUSTOMER_EMAIL VARCHAR(50));";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {
@@ -60,13 +60,14 @@ public class AddressTable {
         stmt.execute(insertSQL);
     }
 
+    //(address_id, house_num, street_name, city, state, country_code, zip_code, customer_email)
+
     public static String createAddressInsertSQL(ArrayList<Address> list){
         StringBuilder builder = new StringBuilder();
-        builder.append("INSERT INTO address VALUES");
+        builder.append("INSERT INTO address VALUES ");
 
         for(int i = 0; i < list.size(); ++i) {
             Address address = (Address)list.get(i);
-            System.out.println(address.getZip_code());
             builder.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
                 address.getAddress_id(), address.getHouse_num(), address.getStreet(), address.getCity(),
                 address.getState(), address.getCountry_code(), address.getZip_code(), address.getCustomer_email()));

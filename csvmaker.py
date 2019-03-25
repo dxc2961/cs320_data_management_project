@@ -293,7 +293,7 @@ def main():
         f.write(pick_rand(street_name) + ",")
         f.write(pick_rand(city) + ",")
         f.write(pick_rand(state) + ",")
-        f.write("US" + ",")
+        f.write("USA" + ",")
         f.write(pick_rand(zip_code) + ",")
         f.write(email[i] + "\n")
 
