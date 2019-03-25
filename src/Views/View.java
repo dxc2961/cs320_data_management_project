@@ -25,7 +25,7 @@ public abstract class View {
     }
 
 
-    public void createConnection(String location, String user, String password) {
+    private void createConnection(String location, String user, String password) {
         try {
 
             //This needs to be on the front of your location
@@ -43,7 +43,7 @@ public abstract class View {
     }
 
 
-    public void closeConnection() {
+    private void closeConnection() {
         try {
             conn.close();
         } catch (SQLException e) {
@@ -60,24 +60,6 @@ public abstract class View {
             e.printStackTrace();
         }
         return null;
-    }
-
-
-    public void printResults(ResultSet results){
-        try {
-            while (results.next()) {
-                System.out.printf("\tAddress %d: %s %s %s %s %s %s\n",
-                        results.getInt(1),
-                        results.getString(2),
-                        results.getString(3),
-                        results.getString(4),
-                        results.getString(5),
-                        results.getString(6),
-                        results.getString(7));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -102,8 +84,6 @@ public abstract class View {
         System.out.println("");
         System.out.println("Have a nice day!");
         System.out.println("");
-
-
     }
 
     public void quit() {
