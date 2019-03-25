@@ -16,8 +16,8 @@ public class CheckTable {
 
     public static void createCheckTable(Connection conn){
         try {
-            String str = "CREATE TABLE IF NOT EXISTS check(ROUTING_NUM CHAR(9) PRIMARY KEY," +
-                    "ACCOUNT_NUM VARCHAR(15) PRIMARY KEY,CHECK_NUM VARCHAR(8) PRIMARY KEY,PAYMENT_ID INT);";
+            String str = "CREATE TABLE IF NOT EXISTS checks(ROUTING_NUM CHAR(9)," +
+                    "ACCOUNT_NUM VARCHAR(15),CHECK_NUM VARCHAR(8),PAYMENT_ID INT, PRIMARY KEY(ROUTING_NUM, ACCOUNT_NUM, CHECK_NUM));";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {
