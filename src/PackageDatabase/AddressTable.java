@@ -1,5 +1,6 @@
 package PackageDatabase;
 
+import javax.swing.plaf.nimbus.State;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -60,7 +61,17 @@ public class AddressTable {
         stmt.execute(insertSQL);
     }
 
-    //(address_id, house_num, street_name, city, state, country_code, zip_code, customer_email)
+    /**
+     * Drop any instance of the address table, if it is in the database
+     * @param conn Connection to run the statement on
+     * @throws SQLException
+     */
+    public static void removeAddressTable(Connection conn) throws SQLException{
+        String removeSQL = "DROP TABLE IF EXISTS address";
+        Statement stmt = conn.createStatement();
+        stmt.execute(removeSQL);
+    }
+
 
     public static String createAddressInsertSQL(ArrayList<Address> list){
         StringBuilder builder = new StringBuilder();

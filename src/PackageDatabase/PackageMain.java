@@ -81,6 +81,11 @@ public class PackageMain {
       packageMain.createConnection(location, user, password);
 
       try{
+
+         //remove existing tables
+         AddressTable.removeAddressTable(packageMain.getConnection());
+         CheckTable.removeCheckTable(packageMain.getConnection());
+
          //create tables
          AddressTable.createAddressTable(packageMain.getConnection());
          CheckTable.createCheckTable(packageMain.getConnection());

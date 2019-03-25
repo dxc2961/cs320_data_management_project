@@ -67,4 +67,15 @@ public class CheckTable {
 
         return builder.toString();
     }
+
+    /**
+     * Drop any instance of the checks table, if it is in the database
+     * @param conn Connection to run the statement on
+     * @throws SQLException
+     */
+    public static void removeCheckTable(Connection conn) throws SQLException{
+        String removeSQL = "DROP TABLE IF EXISTS checks";
+        Statement stmt = conn.createStatement();
+        stmt.execute(removeSQL);
+    }
 }
