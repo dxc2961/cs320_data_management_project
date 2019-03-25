@@ -37,6 +37,8 @@ public class AddressTable {
      * @throws SQLException
      */
     public static void populateAddressTableCSV(Connection conn, String filename)throws SQLException{
+        ArrayList<Address> addressList = new ArrayList<Address>();
+
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -65,6 +67,10 @@ public class AddressTable {
         for(int i = 0; i < list.size(); ++i) {
             Address address = (Address)list.get(i);
             builder.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
+                address.getAddress_id(), address.getCustomer_email(), address.getHouse_num(),
+                address.getStreet(), address.getCity(),
+                address.getState(), address.getZip_code(), address.getCountry_code()));
+
             if(i != list.size() - 1) {
                 builder.append(",");
             } else {
