@@ -22,7 +22,7 @@ public class AddressTable {
         try {
             String str = "CREATE TABLE IF NOT EXISTS address(ADDRESS_ID INT PRIMARY KEY," +
                     "HOUSE_NUM VARCHAR(10),STREET_NAME VARCHAR(30),CITY VARCHAR(20)," +
-                    "STATE CHAR(2),COUNTRY_CODE CHAR(3),ZIP_CODE CHAR(5));";
+                    "STATE CHAR(2),COUNTRY_CODE CHAR(3),ZIP_CODE CHAR(5), CUST_EMAIL VARCHAR(50));";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {
