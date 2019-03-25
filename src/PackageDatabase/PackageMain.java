@@ -86,8 +86,13 @@ public class PackageMain {
          CheckTable.createCheckTable(packageMain.getConnection());
 
          //populate tables
+<<<<<<< HEAD
+         System.out.println(System.getProperty("user.dir"));
+         AddressTable.populateAddressTableCSV(packageMain.getConnection(), "data/address.csv");
+=======
          AddressTable.populateAddressTableCSV(packageMain.getConnection(), "delivery_address.csv");
          CheckTable.populateCheckTableCSV(packageMain.getConnection(), "check.csv");
+>>>>>>> a18671d28a5c05a8ec9a0ab34a2838bdebb7c69a
 
       }catch(SQLException e){
          e.printStackTrace();

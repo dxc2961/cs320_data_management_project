@@ -32,12 +32,13 @@ public class AddressTable {
 
     /**
      * Method to populate the Address table with data from a CSV file
-     * @param conn
+     * @param conn the H2 database connection object
      * @param filename CSV filename
      * @throws SQLException
      */
     public static void populateAddressTableCSV(Connection conn, String filename)throws SQLException{
         ArrayList<Address> addressList = new ArrayList<Address>();
+
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -66,8 +67,10 @@ public class AddressTable {
         for(int i = 0; i < list.size(); ++i) {
             Address address = (Address)list.get(i);
             builder.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
-                    new Object[]{Integer.valueOf(address.getAddress_id()), address.getHouse_num(), address.getStreet(),
-                            address.getCity(), address.getState(), address.getCountry_code(), address.getZip_code(), address.getCustomer_email()}));
+                address.getAddress_id(), address.getCustomer_email(), address.getHouse_num(),
+                address.getStreet(), address.getCity(),
+                address.getState(), address.getZip_code(), address.getCountry_code()));
+
             if(i != list.size() - 1) {
                 builder.append(",");
             } else {

@@ -2,10 +2,29 @@ package PackageDatabase;
 
 public class GiftCard extends PaymentMethod {
 
+   private final int DEFAULT_BAL = 50;
+
    private int giftcard_number;
    private Date expiration_date;
    private int balance;
 
+
+   public GiftCard(int payment_ID, String email,
+                   int giftcard_number, Date expiration_date) {
+      super(payment_ID, email);
+      this.expiration_date = expiration_date;
+      this.giftcard_number = giftcard_number;
+      this.balance = DEFAULT_BAL;
+   }
+
+   /**
+    *
+    * @param payment_ID
+    * @param email
+    * @param giftcard_number
+    * @param expiration_date
+    * @param balance
+    */
    public GiftCard(int payment_ID, String email,
                    int giftcard_number, Date expiration_date, int balance) {
       super(payment_ID, email);
