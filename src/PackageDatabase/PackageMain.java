@@ -1,5 +1,6 @@
 package PackageDatabase;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -82,9 +83,11 @@ public class PackageMain {
       try{
          //create tables
          AddressTable.createAddressTable(packageMain.getConnection());
+         CheckTable.createCheckTable(packageMain.getConnection());
 
          //populate tables
-         AddressTable.populateAddressTableCSV(packageMain.getConnection(), "address.csv");
+         AddressTable.populateAddressTableCSV(packageMain.getConnection(), "delivery_address.csv");
+         CheckTable.populateCheckTableCSV(packageMain.getConnection(), "check.csv");
 
       }catch(SQLException e){
          e.printStackTrace();

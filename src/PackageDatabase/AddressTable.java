@@ -37,12 +37,13 @@ public class AddressTable {
      * @throws SQLException
      */
     public static void populateAddressTableCSV(Connection conn, String filename)throws SQLException{
-        ArrayList addressList = new ArrayList();
+        ArrayList<Address> addressList = new ArrayList<Address>();
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
 
             String line;
+            reader.readLine(); //read first line of csv file with column names, don't need to do anything with this
             while((line = reader.readLine()) != null) {
                 String[] split = line.split(",");
                 addressList.add(new Address(Integer.parseInt(split[0]),split[1],split[2],split[3],split[4],split[5],split[6],split[7]));
@@ -65,8 +66,8 @@ public class AddressTable {
         for(int i = 0; i < list.size(); ++i) {
             Address address = (Address)list.get(i);
             builder.append(String.format("(%d,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",
-                    new Object[]{Integer.valueOf(address.getAddress_id()), address.getCustomer_email(), address.getHouse_num(),
-                            address.getStreet(), address.getCity(), address.getState(), address.getZip_code(), address.getCountry_code()}));
+                    new Object[]{Integer.valueOf(address.getAddress_id()), address.getHouse_num(), address.getStreet(),
+                            address.getCity(), address.getState(), address.getCountry_code(), address.getZip_code(), address.getCustomer_email()}));
             if(i != list.size() - 1) {
                 builder.append(",");
             } else {
