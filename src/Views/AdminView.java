@@ -19,7 +19,7 @@ public class AdminView extends View{
     }
 
 
-    public void sqlEditor(){
+    private void sqlEditor(){
         //TODO allow user to write their own custom sql queries
 
         System.out.println("opening sql editor!");
@@ -27,7 +27,7 @@ public class AdminView extends View{
     }
 
 
-    public void newInstance(){
+    private void newInstance(){
 
         System.out.println("creating new view!");
 
@@ -63,7 +63,7 @@ public class AdminView extends View{
 
         System.out.println("Hello " + this.username + "! What would you like to do?");
 
-        while(this.isActive) {
+        while(this.isActive()) {
             System.out.println("Press s to craft SQL scripts");
             System.out.println("Press n to start a new application instance");
             System.out.println("Press q to quit");

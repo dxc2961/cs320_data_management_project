@@ -1,5 +1,7 @@
 package Views;
 
+import java.sql.*;
+
 /**
  * This View would be the view used by someone who provides customer service for our company.
  *
@@ -10,7 +12,7 @@ package Views;
 
 public class ServiceEmployeeView extends View {
 
-    public String custUsername;
+    private String custUsername;
 
 
     public ServiceEmployeeView(){
@@ -18,7 +20,7 @@ public class ServiceEmployeeView extends View {
     }
 
 
-    public void findProfile(){
+    private void findProfile(){
         //TODO query other relevant profile information for the customer
 
         System.out.println("querying profile data for " + this.custUsername + "!");
@@ -26,7 +28,7 @@ public class ServiceEmployeeView extends View {
     }
 
 
-    public void findOrders(){
+    private void findOrders(){
         //TODO query other relevant order information for this user
 
         System.out.println("querying order data for " + this.custUsername + "!");
@@ -34,7 +36,7 @@ public class ServiceEmployeeView extends View {
     }
 
 
-    public void findAddresses(){
+    private void findAddresses(){
         //TODO query other relevant profile information for this user
 
         System.out.println("querying address data for " + this.custUsername + "!");
@@ -42,10 +44,65 @@ public class ServiceEmployeeView extends View {
     }
 
 
-    public void findPayments(){
+    private void findPayments(){
         //TODO query other relevant profile information for this user
 
         System.out.println("querying payment method data for " + this.custUsername + "!");
+
+    }
+
+
+    private void printProfile(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("profile details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void printOrders(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("order details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void printAddresses(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.printf("\tAddress %d: %s %s %s %s %s %s\n",
+                        results.getInt(1),
+                        results.getString(2),
+                        results.getString(3),
+                        results.getString(4),
+                        results.getString(5),
+                        results.getString(6),
+                        results.getString(7));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void printPayments(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("payment details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -59,7 +116,7 @@ public class ServiceEmployeeView extends View {
 
         System.out.println("What would you like to do?");
 
-        while(this.isActive) {
+        while(this.isActive()) {
             System.out.println("Press p to view a user's profile");
             System.out.println("Press o to view a user's orders");
             System.out.println("Press a to view a user's addresses");

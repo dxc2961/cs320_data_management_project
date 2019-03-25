@@ -15,7 +15,7 @@ public abstract class View {
 
     public Scanner in;
 
-    public boolean isActive;
+    private boolean isActive;
 
     private Connection conn;
 
@@ -24,8 +24,11 @@ public abstract class View {
         isActive = true;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
 
-    public void createConnection(String location, String user, String password) {
+    private void createConnection(String location, String user, String password) {
         try {
 
             //This needs to be on the front of your location
@@ -43,7 +46,7 @@ public abstract class View {
     }
 
 
-    public void closeConnection() {
+    private void closeConnection() {
         try {
             conn.close();
         } catch (SQLException e) {
@@ -63,24 +66,6 @@ public abstract class View {
     }
 
 
-    public void printResults(ResultSet results){
-        try {
-            while (results.next()) {
-                System.out.printf("\tAddress %d: %s %s %s %s %s %s\n",
-                        results.getInt(1),
-                        results.getString(2),
-                        results.getString(3),
-                        results.getString(4),
-                        results.getString(5),
-                        results.getString(6),
-                        results.getString(7));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public void run(){
 
         this.createConnection("./packageMain/packageMain", "me", "password");
@@ -89,11 +74,11 @@ public abstract class View {
         in = new Scanner(System.in);
 
 
-        System.out.println("Hello! Thank you for using this application. Please log in using your email.");
+        System.out.println("Hello! Thank you for using this application. Please log in using your username.");
 
         this.email = in.nextLine();
         //if email is in database
-        this.username = "get username!";
+        this.username = email;
 
         this.assist();
 
@@ -102,8 +87,6 @@ public abstract class View {
         System.out.println("");
         System.out.println("Have a nice day!");
         System.out.println("");
-
-
     }
 
     public void quit() {

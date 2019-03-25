@@ -46,8 +46,8 @@ public class Address {
     * @param zip_code the zip code of the address
     * @param country_code the number identifying what country the address is from
     */
-   public Address(int address_id, String customer_email,
-                  String house_num, String street, String city, String state, String zip_code, String country_code){
+   public Address(int address_id, String house_num, String street, String city, String state, String country_code,
+                  String zip_code, String customer_email){
       this.address_id = address_id;
       this.customer_email = customer_email;
       this.house_num = house_num;
