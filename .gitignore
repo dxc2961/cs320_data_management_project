@@ -1,2 +1,5 @@
 # files to ignore
-.idea/*
+.idea/workspace.xml
+out/
+packageMain/packageMain.mv.db
+packageMain/packageMain.trace.db
