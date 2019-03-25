@@ -15,7 +15,7 @@ public abstract class View {
 
     public Scanner in;
 
-    public boolean isActive;
+    private boolean isActive;
 
     private Connection conn;
 
@@ -24,6 +24,9 @@ public abstract class View {
         isActive = true;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
 
     private void createConnection(String location, String user, String password) {
         try {

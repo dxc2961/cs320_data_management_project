@@ -18,7 +18,7 @@ public class ShippingEmployeeView extends View {
     }
 
 
-    public void searchOrder(){
+    private void searchOrder(){
         //TODO query for the provided order number
 
         System.out.println("querying for order!");
@@ -26,7 +26,7 @@ public class ShippingEmployeeView extends View {
     }
 
 
-    public void searchPackage(){
+    private void searchPackage(){
         //TODO query for the provided package number
 
         System.out.println("querying for package!");
@@ -34,10 +34,46 @@ public class ShippingEmployeeView extends View {
     }
 
 
-    public void searchAddress(){
+    private void searchAddress(){
         //TODO query for the provided address deliveries
 
         System.out.println("querying for delivery address!");
+
+    }
+
+
+    private void printOrder(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("order details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void printPackage(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("package details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void printAddress(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("delivery address details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -46,7 +82,7 @@ public class ShippingEmployeeView extends View {
         System.out.println("Hello " + this.username + "! What are you searching for?");
 
 
-        while(this.isActive) {
+        while(this.isActive()) {
 
             System.out.println("Press o to search for an order");
             System.out.println("Press p to search for a package");
