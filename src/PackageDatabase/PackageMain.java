@@ -84,7 +84,8 @@ public class PackageMain {
          AddressTable.createAddressTable(packageMain.getConnection());
 
          //populate tables
-         AddressTable.populateAddressTableCSV(packageMain.getConnection(), "address.csv");
+         System.out.println(System.getProperty("user.dir"));
+         AddressTable.populateAddressTableCSV(packageMain.getConnection(), "data/address.csv");
 
       }catch(SQLException e){
          e.printStackTrace();

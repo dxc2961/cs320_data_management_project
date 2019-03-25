@@ -4,7 +4,6 @@ public class Address {
 
    private int address_id;
    private String customer_email;
-
    private String house_num;
    private String street;
    private String city;

@@ -12,8 +12,42 @@ public class Date {
       this.year = year;
    }
 
-   public Date(String day, String month, String year){
-      /* to do */
+   /**
+    *
+    * @param day
+    * @param monthName
+    */
+   public Date(String day, String monthName, String year){
+      this.day = Integer.parseInt(day);
+      this.year = Integer.parseInt(year);
+
+      switch (monthName){
+         case "January":
+            this.month = 1;
+         case "February":
+            this.month = 2;
+         case "March":
+            this.month = 3;
+         case "April":
+            this.month = 4;
+         case "May":
+            this.month = 5;
+         case "June":
+            this.month = 6;
+         case "July":
+            this.month = 7;
+         case "August":
+            this.month = 8;
+         case "September":
+            this.month = 9;
+         case "October":
+            this.month = 10;
+         case "November":
+            this.month = 11;
+         case "December":
+            this.month = 12;
+      }
+
    }
 
    /**

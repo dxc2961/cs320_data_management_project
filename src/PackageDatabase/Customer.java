@@ -11,8 +11,8 @@ public class Customer {
     private String phone_number;
     private Date date_created;
 
-    public Customer(String email, String display_name, int home_address_id,
-                    String password, String phone_number, Date date_created){
+    public Customer(String email, String display_name, String password,
+                    int home_address_id, String phone_number, Date date_created){
 
         this.email = email;
         this.display_name = display_name;
