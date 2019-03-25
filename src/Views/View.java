@@ -89,11 +89,11 @@ public abstract class View {
         in = new Scanner(System.in);
 
 
-        System.out.println("Hello! Thank you for using this application. Please log in using your email.");
+        System.out.println("Hello! Thank you for using this application. Please log in using your username.");
 
         this.email = in.nextLine();
         //if email is in database
-        this.username = "get username!";
+        this.username = email;
 
         this.assist();
 
