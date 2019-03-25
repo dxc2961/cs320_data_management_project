@@ -42,10 +42,10 @@ public class AddressTable {
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
-
             String line;
             reader.readLine(); //read first line of csv file with column names, don't need to do anything with this
             while((line = reader.readLine()) != null) {
+                System.out.println(line);
                 String[] split = line.split(",");
                 addressList.add(new Address(Integer.parseInt(split[0]),split[1],split[2],split[3],split[4],split[5],split[6],split[7]));
             }
@@ -77,7 +77,6 @@ public class AddressTable {
                 builder.append(";");
             }
         }
-
         return builder.toString();
     }
 
