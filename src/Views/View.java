@@ -80,7 +80,7 @@ public abstract class View {
         this.username = in.nextLine();
         ResultSet result;
         try {
-            result = this.runQuery("SELECT email FROM customer WHERE username=\'" + username + "\'");
+            result = this.runQuery("SELECT email FROM customer WHERE display_name=\'" + username + "\'");
             result.first();
             this.email = result.getString(1);
         } catch (SQLException e){

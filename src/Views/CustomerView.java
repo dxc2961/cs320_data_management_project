@@ -20,7 +20,7 @@ public class CustomerView extends View{
     private void viewProfile(){
         //TODO query other relevant profile information for this user
 
-        ResultSet results = this.runQuery("SELECT * FROM customer WHERE username=\'" + this.username + "\';");
+        ResultSet results = this.runQuery("SELECT * FROM customer WHERE email=\'" + this.email + "\';");
         this.printProfile(results);
         System.out.println("querying profile data!");
 
@@ -38,9 +38,8 @@ public class CustomerView extends View{
     private void viewAddresses(){
         //TODO query other relevant address information for this user
 
-        ResultSet results = this.runQuery("SELECT * FROM address WHERE email=\'" + this.email + "\';");
+        ResultSet results = this.runQuery("SELECT * FROM address WHERE customer_email=\'" + this.email + "\';");
         this.printAddresses(results);
-        System.out.println();
         System.out.println("querying address data!");
 
     }
@@ -57,14 +56,11 @@ public class CustomerView extends View{
     private void printProfile(ResultSet results){
         try {
             while (results.next()) {
-                System.out.printf("\tProfile %s: %s %s %s %s %s %s\n",
+                System.out.printf("\tProfile %s: %s %s %s\n",
                         results.getString(1),
                         results.getString(2),
                         results.getString(3),
-                        results.getString(4),
-                        results.getString(5),
-                        results.getString(6),
-                        results.getString(7));
+                        results.getString(4));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,15 +83,17 @@ public class CustomerView extends View{
 
     private void printAddresses(ResultSet results){
         try {
+            int address = 1;
             while (results.next()) {
                 System.out.printf("\tAddress %d: %s %s %s %s %s %s\n",
-                        results.getInt(1),
+                        address,
                         results.getString(2),
                         results.getString(3),
                         results.getString(4),
                         results.getString(5),
                         results.getString(6),
                         results.getString(7));
+                address++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -121,6 +119,7 @@ public class CustomerView extends View{
         System.out.println("Hello " + this.username + "! What would you like to do today?");
 
         while(this.isActive()) {
+            System.out.println();
             System.out.println("Press p to view your profile");
             System.out.println("Press o to view your orders");
             System.out.println("Press a to view your addresses");
