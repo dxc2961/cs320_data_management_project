@@ -16,8 +16,7 @@ public class CustomerTable {
    public static void createCustomerTable(Connection conn){
       try {
          String str = "CREATE TABLE IF NOT EXISTS customer(EMAIL VARCHAR(50) PRIMARY KEY," +
-         "DISPLAY_NAME VARCHAR(20),PASSWORD VARCHAR(30),HOME_ADDRESS_ID INT," +
-         "PHONE_NUM CHAR(10));";
+         "DISPLAY_NAME VARCHAR(20),PASSWORD VARCHAR(30),PHONE_NUM CHAR(10));";
          Statement stmt = conn.createStatement();
          stmt.execute(str);
       } catch (SQLException e) {
@@ -39,11 +38,12 @@ public class CustomerTable {
          BufferedReader reader = new BufferedReader(new FileReader(filename));
 
          String line;
+         reader.readLine(); //read first line of csv file with column names, don't need to do anything with this
          while((line = reader.readLine()) != null) {
             String[] split = line.split(",");
             customerList.add(
-               new Customer(split[0],split[1],split[3],Integer.parseInt(split[2]),split[4],
-                  new Date(split[5], split[6], split[7])));
+               new Customer(split[0],split[1],split[2],split[3],
+                  new Date(split[4], split[5], split[6])));
          }
 
          reader.close();
@@ -62,8 +62,8 @@ public class CustomerTable {
 
       for(int i = 0; i < list.size(); ++i) {
          Customer c = (Customer)list.get(i);
-         builder.append(String.format("(%s,\'%s\',\'%s\',\'%d\',\'%s\')",
-         new Object[]{c.getEmail(), c.getDisplay_name(), c.getPassword(), c.getHome_address_id(),
+         builder.append(String.format("(\'%s\',\'%s\',\'%s\',\'%s\')",
+         new Object[]{c.getEmail(), c.getDisplay_name(), c.getPassword(),
          c.getPhone_number()}));
          if(i != list.size() - 1) {
             builder.append(",");
@@ -73,6 +73,17 @@ public class CustomerTable {
       }
 
       return builder.toString();
+   }
+
+   /**
+    * Drop any instance of the checks table, if it is in the database
+    * @param conn Connection to run the statement on
+    * @throws SQLException
+    */
+   public static void removeCustomerTable(Connection conn) throws SQLException{
+      String removeSQL = "DROP TABLE IF EXISTS customer";
+      Statement stmt = conn.createStatement();
+      stmt.execute(removeSQL);
    }
 
 }

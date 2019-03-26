@@ -6,17 +6,14 @@ public class Customer {
 
     private String email;
     private String display_name;
-    private int home_address_id;
     private String password;
     private String phone_number;
     private Date date_created;
 
-    public Customer(String email, String display_name, String password,
-                    int home_address_id, String phone_number, Date date_created){
+    public Customer(String email, String display_name, String password, String phone_number, Date date_created){
 
         this.email = email;
         this.display_name = display_name;
-        this.home_address_id = home_address_id;
         this.password = password;
         this.phone_number = phone_number;
         this.date_created = date_created;
@@ -32,10 +29,6 @@ public class Customer {
 
     public String getDisplay_name(){
         return display_name;
-    }
-
-    public int getHome_address_id(){
-        return home_address_id;
     }
 
     public String getPassword(){
@@ -60,10 +53,6 @@ public class Customer {
 
     public void setDisplay_name(String display_name){
         this.display_name = display_name;
-    }
-
-    public void setHome_address_id(int home_address_id){
-        this.home_address_id = home_address_id;
     }
 
     public void setPassword(String password){
