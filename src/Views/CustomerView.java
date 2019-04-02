@@ -55,13 +55,19 @@ public class CustomerView extends View{
 
     private void printProfile(ResultSet results){
         try {
-            while (results.next()) {
-                System.out.printf("\tProfile %s: %s %s %s\n",
+            results.next();
+            System.out.println(results.getString(2) + "'s Profile:");
+            //while (results.next()) {
+                /*System.out.printf("\tProfile %s: %s %s %s\n",
                         results.getString(1),
                         results.getString(2),
                         results.getString(3),
-                        results.getString(4));
-            }
+                        results.getString(4));*/
+                System.out.println("Email: " + results.getString(1));
+                //System.out.println(results.getString(3));
+                System.out.println("Phone Number: " + printPhoneNumber(results.getString(4)));
+            //}
+            System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
         }

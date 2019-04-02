@@ -102,6 +102,11 @@ public abstract class View {
     }
 
 
+    public static String printPhoneNumber(String pnum){
+        return pnum.substring(0,3) + "-" + pnum.substring(3,6) + "-" + pnum.substring(6);
+    }
+
+
     /**
      * Process the user depending on the application being used
      */
