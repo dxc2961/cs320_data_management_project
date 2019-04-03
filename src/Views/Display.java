@@ -19,8 +19,17 @@ public class Display extends Application {
     private final static Font header  = new Font("Arial", 30);
     private final static Font text = new Font("Arial",12);
     private boolean isSignedIn = false;
+    private char applicationType;
     private Label welcome;
     private Button signInButton;
+
+    private static View view;
+
+
+    /*public void init() {
+        applicationType = this.getParameters().getRaw().get(0).charAt(0);
+    }*/
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -75,6 +84,7 @@ public class Display extends Application {
         VBox controlPanel = new VBox(signInButton, homeButton, quitButton, helpButton);
         controlPanel.setPrefHeight(2000);
         controlPanel.setMaxHeight(Double.MAX_VALUE);
+        controlPanel.setAlignment(Pos.CENTER);
         //configure buttons
         for(Node b : controlPanel.getChildren()){
             ((Button) b).setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -110,7 +120,8 @@ public class Display extends Application {
     }
 
 
-    public static void main( String[] args ) {
-        Application.launch(args);
+    public static void run( String[] app, View thisView) {
+        view = thisView;
+        Application.launch(app[0]);
     }
 }

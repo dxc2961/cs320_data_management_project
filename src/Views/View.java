@@ -66,6 +66,21 @@ public abstract class View {
     }
 
 
+    private boolean signIn(String username){
+        this.username = username;
+        ResultSet result;
+        try {
+            result = this.runQuery("SELECT email FROM customer WHERE display_name=\'" + username + "\'");
+            result.first();
+            this.email = result.getString(1);
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
     public void run(){
 
         this.createConnection("./packageMain/packageMain", "me", "password");
@@ -77,15 +92,8 @@ public abstract class View {
         System.out.println("Hello! Thank you for using this application. Please log in using your username.");
 
 
-        this.username = in.nextLine();
-        ResultSet result;
-        try {
-            result = this.runQuery("SELECT email FROM customer WHERE display_name=\'" + username + "\'");
-            result.first();
-            this.email = result.getString(1);
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
+        while(!this.signIn(in.nextLine()))
+            System.out.println("Invalid username. Please try again.");
         System.out.println("Your email is " + this.email);
 
         this.assist();
