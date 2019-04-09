@@ -86,16 +86,20 @@ public class PackageMain {
          AddressTable.removeAddressTable(packageMain.getConnection());
          CheckTable.removeCheckTable(packageMain.getConnection());
          CustomerTable.removeCustomerTable(packageMain.getConnection());
+         CreditCardTable.removeCreditCardTable(packageMain.getConnection());
 
          //create tables
          AddressTable.createAddressTable(packageMain.getConnection());
          CheckTable.createCheckTable(packageMain.getConnection());
          CustomerTable.createCustomerTable(packageMain.getConnection());
+         CreditCardTable.createCreditCardTable(packageMain.getConnection());
 
          //populate tables
          AddressTable.populateAddressTableCSV(packageMain.getConnection(), "data/delivery_address.csv");
          CheckTable.populateCheckTableCSV(packageMain.getConnection(), "data/check.csv");
          CustomerTable.populateCustomerTableCSV(packageMain.getConnection(), "data/customer.csv");
+         CreditCardTable.populateCreditCardTableCSV(packageMain.getConnection(), "data/creditcard.csv");
+
 
       }catch(SQLException e){
          e.printStackTrace();
