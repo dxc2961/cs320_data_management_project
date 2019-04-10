@@ -87,18 +87,21 @@ public class PackageMain {
          CheckTable.removeCheckTable(packageMain.getConnection());
          CustomerTable.removeCustomerTable(packageMain.getConnection());
          CreditCardTable.removeCreditCardTable(packageMain.getConnection());
+         OrderTable.removeOrderTable(packageMain.getConnection());
 
          //create tables
          AddressTable.createAddressTable(packageMain.getConnection());
          CheckTable.createCheckTable(packageMain.getConnection());
          CustomerTable.createCustomerTable(packageMain.getConnection());
          CreditCardTable.createCreditCardTable(packageMain.getConnection());
+         OrderTable.createOrderTable(packageMain.getConnection());
 
          //populate tables
          AddressTable.populateAddressTableCSV(packageMain.getConnection(), "data/delivery_address.csv");
          CheckTable.populateCheckTableCSV(packageMain.getConnection(), "data/check.csv");
          CustomerTable.populateCustomerTableCSV(packageMain.getConnection(), "data/customer.csv");
          CreditCardTable.populateCreditCardTableCSV(packageMain.getConnection(), "data/creditcard.csv");
+         OrderTable.populateOrderTableCSV(packageMain.getConnection(), "data/order.csv");
 
 
       }catch(SQLException e){

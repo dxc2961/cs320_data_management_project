@@ -5,12 +5,12 @@ public class Order {
    private int order_id;
    private int payment_id;
    private String email;
-   private Date order_date; // the date the order was placed
-   private Date delivery_date; // estimated date of delivery
+   private String order_date; // the date the order was placed
+   private String delivery_date; // estimated date of delivery
    private int delivery_address_id;
    private int return_address_id;
 
-   public Order(int order_id, int payment_id, String email, Date order_date, Date delivery_date,
+   public Order(int order_id, int payment_id, String email, String order_date, String delivery_date,
                 int delivery_address_id, int return_address_id){
       this.order_id = order_id;
       this.payment_id = payment_id;
@@ -24,11 +24,11 @@ public class Order {
    /////////
    //GETTERS
 
-   public Date getOrder_date(){
+   public String getOrder_date(){
       return order_date;
    }
 
-   public Date getDelivery_date() {
+   public String getDelivery_date() {
       return delivery_date;
    }
 
