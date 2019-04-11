@@ -1,35 +1,35 @@
 package PackageDatabase;
 
-public class GiftCard extends PaymentMethod {
+public class GiftCard {
 
    private final int DEFAULT_BAL = 50;
 
-   private int giftcard_number;
-   private Date expiration_date;
+   private int payment_id;
+   private String giftcard_id;
+   private String expiration_date;
    private int balance;
 
 
-   public GiftCard(int payment_ID, String email,
-                   int giftcard_number, Date expiration_date) {
-      super(payment_ID, email);
+   public GiftCard(String giftcard_id,
+                   int payment_ID, String expiration_date) {
+      this.payment_id = payment_ID;
       this.expiration_date = expiration_date;
-      this.giftcard_number = giftcard_number;
+      this.giftcard_id = giftcard_id;
       this.balance = DEFAULT_BAL;
    }
 
    /**
     *
     * @param payment_ID
-    * @param email
-    * @param giftcard_number
+    * @param giftcard_id
     * @param expiration_date
     * @param balance
     */
-   public GiftCard(int payment_ID, String email,
-                   int giftcard_number, Date expiration_date, int balance) {
-      super(payment_ID, email);
+   public GiftCard(String giftcard_id, int payment_ID,
+                   String expiration_date, int balance) {
+      this.payment_id = payment_ID;
       this.expiration_date = expiration_date;
-      this.giftcard_number = giftcard_number;
+      this.giftcard_id = giftcard_id;
       this.balance = balance;
    }
 
@@ -37,16 +37,20 @@ public class GiftCard extends PaymentMethod {
     * GETTERS
     */
 
-   public Date getExpiration_date() {
+   public String getExpiration_date() {
       return expiration_date;
+   }
+
+   public int getPayment_id() {
+      return payment_id;
    }
 
    public boolean isExpired(String current_date){
       return true;
    }
 
-   public int getGiftcard_number() {
-      return giftcard_number;
+   public String getGiftcard_id() {
+      return giftcard_id;
    }
 
    public int getBalance() {
