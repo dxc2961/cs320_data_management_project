@@ -89,6 +89,7 @@ public class PackageMain {
          CreditCardTable.removeCreditCardTable(packageMain.getConnection());
          OrderTable.removeOrderTable(packageMain.getConnection());
          GiftCardTable.removeGiftCardTable(packageMain.getConnection());
+         PaymentMethodTable.removePaymentMethodTable(packageMain.getConnection());
 
          //create tables
          AddressTable.createAddressTable(packageMain.getConnection());
@@ -97,6 +98,7 @@ public class PackageMain {
          CreditCardTable.createCreditCardTable(packageMain.getConnection());
          OrderTable.createOrderTable(packageMain.getConnection());
          GiftCardTable.createGiftCardTable(packageMain.getConnection());
+         PaymentMethodTable.createPaymentMethodTable(packageMain.getConnection());
 
          //populate tables
          AddressTable.populateAddressTableCSV(packageMain.getConnection(), "data/delivery_address.csv");
@@ -105,6 +107,7 @@ public class PackageMain {
          CreditCardTable.populateCreditCardTableCSV(packageMain.getConnection(), "data/creditcard.csv");
          OrderTable.populateOrderTableCSV(packageMain.getConnection(), "data/order.csv");
          GiftCardTable.populateGiftCardTableCSV(packageMain.getConnection(), "data/giftcard.csv");
+         PaymentMethodTable.populatePaymentMethodTableCSV(packageMain.getConnection(), "data/payment.csv");
 
 
       }catch(SQLException e){
