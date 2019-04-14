@@ -35,7 +35,7 @@ public class PaymentMethodTable {
             while((line = reader.readLine()) != null) {
                 String[] split = line.split(",");
                 boolean active;
-                if(split[2] == "yes")
+                if(split[2].equals("yes"))
                     active = true;
                 else
                     active = false;

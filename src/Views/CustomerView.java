@@ -298,7 +298,7 @@ public class CustomerView extends View{
         try {
             ResultSet results = this.runQuery(
                     "SELECT " +
-                            "pay.payment_id" +
+                            "pay.payment_id, " +
                             "cred.card_number, cred.owner_name, " +
                             "cred.expiration_date, cred.security_code, " +
                             "checks.routing_num, checks.account_num, " +
@@ -310,7 +310,7 @@ public class CustomerView extends View{
                                 "LEFT OUTER JOIN checks ON pay.payment_id = checks.payment_id " +
                                 "LEFT OUTER JOIN gift_card gift ON pay.payment_id = gift.payment_id " +
 
-                            "WHERE pay.cust_email=\'" + this.email + "\';");
+                            "WHERE pay.cust_email=\'" + this.email + "\' AND pay.active=true");
             this.printPayments(results);
             System.out.println("Would you like to edit this information? (y/n)");
             char action = this.in.next().charAt(0);
@@ -381,6 +381,14 @@ public class CustomerView extends View{
         }
     }
 
+    private void createCreditCard(){
+
+    }
+
+    private void redeemGiftCard(){
+
+    }
+
     /**
      * Allows a user to edit their payment information by creating new ones or removing old ones
      */
@@ -398,9 +406,30 @@ public class CustomerView extends View{
                 case 'a':
                     System.out.println("Press c to add a new credit card");
                     System.out.println("Press g to redeem a new gift card");
+                    char action2 = in.next().charAt(0);
+                    in.nextLine();
+                    if(action2 == 'c')
+                        this.createCreditCard();
+                    else if(action2 == 'g')
+                        this.redeemGiftCard();
                     break;
                 case 'd':
                     System.out.println("Which payment method would you like to remove?");
+                    int payment = in.nextInt();
+                    in.nextLine();
+
+
+                    try {
+                        results.absolute(1);
+                        while (payment > 1) {
+                            results.next();
+                            payment--;
+                        }
+                        this.runUpdate("UPDATE payment_method SET active=false WHERE payment_id=\'" + results.getString(1) + "\'");
+                    } catch (SQLException s){
+                        System.err.println("Payment number out of range");
+                        s.printStackTrace();
+                    }
                     break;
                 case 'b':
                     isFinished = true;
@@ -410,10 +439,10 @@ public class CustomerView extends View{
         }
 
 
+        return;
 
 
-
-
+        /*
         System.out.println("Enter the payment number you would like to edit");
         int payment = in.nextInt();
         in.nextLine();
@@ -537,7 +566,7 @@ public class CustomerView extends View{
             default:
                 System.out.println("Invalid Choice");
                 break;
-        }
+        }*/
     }
 
 
