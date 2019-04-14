@@ -150,8 +150,6 @@ public class CustomerView extends View{
      * From here they can add a new address or delete/edit an old one
      */
     private void viewAddresses(){
-        //TODO query other relevant address information for this user
-
         try {
             ResultSet results = this.runQuery("SELECT * FROM address WHERE customer_email=\'" + this.email + "\';");
             this.printAddresses(results);
@@ -167,7 +165,6 @@ public class CustomerView extends View{
         } catch (SQLException s){
             s.printStackTrace();
         }
-
     }
 
     private void printAddresses(ResultSet results){
@@ -191,7 +188,7 @@ public class CustomerView extends View{
     }
 
     /**
-     * Allows a user to edit their profile information
+     * Allows a user to edit their address information
      */
     private void editAddresses(ResultSet results){
         System.out.println("Enter the address number you would like to edit");
@@ -299,11 +296,196 @@ public class CustomerView extends View{
      * From here they can add new payments or delete/edit old ones
      */
     private void viewPayments(){
-        //TODO query other relevant payment method information for this user
+        try {
+            ResultSet results = this.runQuery(
+                    "SELECT " +
+                            "cred.card_number, cred.owner_name, " +
+                            "cred.expiration_date, cred.security_code, " +
+                            "checks.routing_num, checks.account_num, " +
+                            "checks.check_num, " +
+                            "gift.gift_card_id, gift.expiration_date, " +
+                            "gift.balance " +
+                            "FROM payment_method pay " +
+                                "LEFT OUTER JOIN credit_card cred ON pay.payment_id = cred.payment_id " +
+                                "LEFT OUTER JOIN checks ON pay.payment_id = checks.payment_id " +
+                                "LEFT OUTER JOIN gift_card gift ON pay.payment_id = gift.payment_id " +
 
+                            "WHERE pay.cust_email=\'" + this.email + "\';");
+            this.printPayments(results);
+            System.out.println("Would you like to edit this information? (y/n)");
+            char action = this.in.next().charAt(0);
+            in.nextLine();
+
+            if(action == 'y')
+                this.editPayments(results);
+        } catch (SQLException s){
+            s.printStackTrace();
+        }
         System.out.println("querying payment method data!");
 
     }
+
+    private void printPayments(ResultSet results){
+        try {
+            int payment = 1;
+            while (results.next()) {
+                if(results.getString(1) != null)
+                    printCreditCards(results,payment);
+                if(results.getString(5) != null)
+                    printChecks(results,payment);
+                if(results.getString(8) != null)
+                    printGiftCards(results,payment);
+                payment++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void printCreditCards(ResultSet results, int payment){
+        try {
+            System.out.printf("Payment %d, Credit Card:\n\tCard Num:%s\n\tOwner Name:%s\n\tExpiration Date:%s\n\tSecurity Code:%s\n",
+                    payment,
+                    results.getString(1),
+                    results.getString(2),
+                    results.getString(3),
+                    results.getString(4));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void printChecks(ResultSet results, int payment){
+        try {
+            System.out.printf("Payment %d, Check:\n\tRouting Num:%s\n\tAccount Num:%s\n\tCheck Num:%s\n",
+                    payment,
+                    results.getString(5),
+                    results.getString(6),
+                    results.getString(7));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void printGiftCards(ResultSet results, int payment){
+        try {
+            System.out.printf("Payment %d, Gift Card:\n\tGift Card ID:%s\n\tExpiration Date:%s\n\tBalance:%s\n",
+                    payment,
+                    results.getString(8),
+                    results.getString(9),
+                    results.getString(10));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Allows a user to edit their profile information
+     */
+    private void editPayments(ResultSet results){
+        System.out.println("Enter the address number you would like to edit");
+        int address = in.nextInt();
+        in.nextLine();
+
+        System.out.println("Editing address " + address);
+
+        try {
+            results.absolute(1);
+            while (address > 1) {
+                results.next();
+                address--;
+            }
+        } catch (SQLException s){
+            System.err.println("Address number out of range");
+            s.printStackTrace();
+        }
+
+
+        System.out.println("Press 1 to edit your house number");
+        System.out.println("Press 2 to edit your street name");
+        System.out.println("Press 3 to edit your city");
+        System.out.println("Press 4 to edit your state");
+        System.out.println("Press 5 to edit your country code");
+        System.out.println("Press 6 to edit your zip code");
+        char action = in.next().charAt(0);
+        in.nextLine();
+        String input;
+
+
+        switch (action) {
+            case '1':
+                System.out.println("Please enter your new house number");
+                input = this.in.nextLine();
+                try{
+                    this.runUpdate("UPDATE address SET house_num=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your house_num has been updated to " + input);
+                } catch(SQLException s){
+                    s.printStackTrace();
+                }
+                break;
+            case '2':
+                System.out.println("Please enter your new street name");
+                input = this.in.nextLine();
+                try{
+                    this.runUpdate("UPDATE address SET street_name=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your street name has been updated to " + input);
+                } catch(SQLException s){
+                    System.err.println("Invalid street name");
+                }
+                break;
+            case '3':
+                System.out.println("Please enter your new city name");
+                input = this.in.nextLine();
+                try{
+                    this.runUpdate("UPDATE address SET city=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your city name has been updated to " + input);
+                } catch(SQLException s){
+                    System.err.println("Invalid city name");
+                }
+                break;
+            case '4':
+                System.out.println("Please enter your new state name");
+                input = this.in.nextLine();
+                try{
+                    this.runUpdate("UPDATE address SET state=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your state name has been updated to " + input);
+                } catch(SQLException s){
+                    System.err.println("Invalid state name.");
+                }
+                break;
+            case '5':
+                System.out.println("Please enter your new country code. Please use ISO alpha-3 country codes only (USA, GBR, CAN, etc.).");
+                input = this.in.nextLine();
+                try{
+                    this.runUpdate("UPDATE address SET country_code=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your country code has been updated to " + input);
+                } catch(SQLException s){
+                    System.err.println("Invalid ISO alpha-3 code. Please refer to an online source to check validity");
+                }
+                break;
+            case '6':
+                System.out.println("Please enter your new zip code.");
+                input = this.in.nextLine();
+                try{
+                    if(!isNumeric(input))
+                        System.err.println("Ensure zip code consists only of numbers");
+                    else {
+                        this.runUpdate("UPDATE address SET zip_code=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                        System.out.println("Your zip code has been updated to " + input);
+                    }
+                } catch(SQLException s){
+                    System.err.println("Invalid zip code. Ensure 5-digit code consisting only of numbers");
+                }
+                break;
+            default:
+                System.out.println("Invalid Choice");
+                break;
+        }
+    }
+
+
+
 
 
     private void printOrders(ResultSet results){
@@ -320,17 +502,6 @@ public class CustomerView extends View{
 
 
 
-
-    private void printPayments(ResultSet results){
-        try {
-            while (results.next()) {
-                System.out.println("payment details:");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @Override
     public void assist() {
