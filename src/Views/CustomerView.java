@@ -382,7 +382,7 @@ public class CustomerView extends View{
     }
 
     private void createCreditCard(){
-
+        String insertSQL = "INSERT INTO payment_method (cust_email";
     }
 
     private void redeemGiftCard(){
@@ -413,12 +413,11 @@ public class CustomerView extends View{
                     else if(action2 == 'g')
                         this.redeemGiftCard();
                     break;
+
                 case 'd':
                     System.out.println("Which payment method would you like to remove?");
                     int payment = in.nextInt();
                     in.nextLine();
-
-
                     try {
                         results.absolute(1);
                         while (payment > 1) {
@@ -428,145 +427,14 @@ public class CustomerView extends View{
                         this.runUpdate("UPDATE payment_method SET active=false WHERE payment_id=\'" + results.getString(1) + "\'");
                     } catch (SQLException s){
                         System.err.println("Payment number out of range");
-                        s.printStackTrace();
                     }
                     break;
+
                 case 'b':
                     isFinished = true;
                     break;
             }
-
         }
-
-
-        return;
-
-
-        /*
-        System.out.println("Enter the payment number you would like to edit");
-        int payment = in.nextInt();
-        in.nextLine();
-
-        System.out.println("Editing payment " + payment);
-
-        boolean isCreditCard = false, isCheck = false, isGiftCard = false;
-
-        try {
-            results.absolute(1);
-            while (payment > 1) {
-                results.next();
-                payment--;
-            }
-            isCreditCard = !(results.getString(2) == null);
-            isCheck = !(results.getString(6) == null);
-            isGiftCard = !(results.getString(9) == null);
-
-        } catch (SQLException s){
-            System.err.println("Payment number out of range");
-        }
-
-        if(isCreditCard){
-            System.out.println("Press 1 to edit your credit card number");
-            System.out.println("Press 2 to edit the card holder name");
-            System.out.println("Press 3 to edit the expiration date");
-            System.out.println("Press 4 to edit the security code");
-        }
-        else if(isCheck){
-            System.out.println("Cannot edit check information");
-            return;
-        }
-        else if(isGiftCard){
-            System.out.println("Cannot edit gift card information");
-            return;
-        }
-        else
-            return;
-        char action = in.next().charAt(0);
-        in.nextLine();
-        String input;
-
-
-        switch (action) {
-            case '1':
-                System.out.println("Please enter your revised credit card number");
-                input = this.in.nextLine();
-                try{
-                    if(!isNumeric(input))
-                        System.err.println("Ensure card number consists of exactly 16 numbers");
-                    else {
-                        this.runUpdate("UPDATE credit_card SET card_number=\'" + input + "\' WHERE payment_id=\'" + results.getString(1) + "\'");
-                        System.out.println("Your card number has been updated to " + input);
-                    }
-                } catch(SQLException s){
-                    System.err.println("Invalid Card number. Ensure card number is 16 characters long");
-                }
-                break;
-            case '2':
-                System.out.println("Please enter your revised card holder name");
-                input = this.in.nextLine();
-                try{
-                    if(!isNumeric(input))
-                        System.err.println("Ensure card number consists of exactly 16 numbers");
-                    else {
-                        this.runUpdate("UPDATE credit_card SET card_number=\'" + input + "\' WHERE payment_id=\'" + results.getString(1) + "\'");
-                        System.out.println("Your card number has been updated to " + input);
-                    }
-                } catch(SQLException s){
-                    System.err.println("Invalid Card number. Ensure card number is 16 characters long");
-                }
-                break;
-            case '3':
-                System.out.println("Please enter your revised credit card number");
-                input = this.in.nextLine();
-                try{
-                    if(!isNumeric(input))
-                        System.err.println("Ensure card number consists of exactly 16 numbers");
-                    else {
-                        this.runUpdate("UPDATE credit_card SET card_number=\'" + input + "\' WHERE payment_id=\'" + results.getString(1) + "\'");
-                        System.out.println("Your card number has been updated to " + input);
-                    }
-                } catch(SQLException s){
-                    System.err.println("Invalid Card number. Ensure card number is 16 characters long");
-                }
-                break;
-            case '4':
-                System.out.println("Please enter your new state name");
-                input = this.in.nextLine();
-                try{
-                    this.runUpdate("UPDATE address SET state=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
-                    System.out.println("Your state name has been updated to " + input);
-                } catch(SQLException s){
-                    System.err.println("Invalid state name.");
-                }
-                break;
-            case '5':
-                System.out.println("Please enter your new country code. Please use ISO alpha-3 country codes only (USA, GBR, CAN, etc.).");
-                input = this.in.nextLine();
-                try{
-                    this.runUpdate("UPDATE address SET country_code=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
-                    System.out.println("Your country code has been updated to " + input);
-                } catch(SQLException s){
-                    System.err.println("Invalid ISO alpha-3 code. Please refer to an online source to check validity");
-                }
-                break;
-            case '6':
-                System.out.println("Please enter your new zip code.");
-                input = this.in.nextLine();
-                try{
-                    if(!isNumeric(input))
-                        System.err.println("Ensure zip code consists only of numbers");
-                    else {
-                        this.runUpdate("UPDATE address SET zip_code=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
-                        System.out.println("Your zip code has been updated to " + input);
-                    }
-                } catch(SQLException s){
-                    System.err.println("Invalid zip code. Ensure 5-digit code consisting only of numbers");
-                }
-                break;
-            default:
-                System.out.println("Invalid Choice");
-                break;
-        }*/
     }
 
 

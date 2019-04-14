@@ -16,7 +16,7 @@ public class PaymentMethodTable {
 
     public static void createPaymentMethodTable(Connection conn){
         try {
-            String str = "CREATE TABLE IF NOT EXISTS payment_method(PAYMENT_ID INT PRIMARY KEY, CUST_EMAIL VARCHAR(50), ACTIVE BOOLEAN);";
+            String str = "CREATE TABLE IF NOT EXISTS payment_method(PAYMENT_ID INT PRIMARY KEY AUTO_INCREMENT, CUST_EMAIL VARCHAR(50), ACTIVE BOOLEAN DEFAULT TRUE);";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {

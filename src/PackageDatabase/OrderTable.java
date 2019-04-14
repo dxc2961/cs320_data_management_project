@@ -17,7 +17,7 @@ public class OrderTable {
 
     public static void createOrderTable(Connection conn){
         try {
-            String str = "CREATE TABLE IF NOT EXISTS orders(ORDER_ID INT PRIMARY KEY," +
+            String str = "CREATE TABLE IF NOT EXISTS orders(ORDER_ID INT PRIMARY KEY AUTO_INCREMENT," +
                     "PAYMENT_ID INT,EMAIL VARCHAR(50),ORDER_DATE DATE,DELIVERY_DATE DATE," +
                     "DELIVERY_ADDRESS_ID INT, RETURN_ADDRESS_ID INT);";
             Statement stmt = conn.createStatement();
