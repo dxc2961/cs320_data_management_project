@@ -55,16 +55,16 @@ public abstract class View {
     }
 
 
-    public ResultSet runQuery(String input){
-        try {
-            Statement statement = conn.createStatement();
-            return statement.executeQuery(input);
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return null;
+    public ResultSet runQuery(String input) throws SQLException{
+        Statement statement = conn.createStatement();
+        return statement.executeQuery(input);
     }
 
+
+    public void runUpdate(String input) throws SQLException{
+        Statement statement = conn.createStatement();
+        statement.executeUpdate(input);
+    }
 
     private boolean signIn(String username){
         this.username = username;

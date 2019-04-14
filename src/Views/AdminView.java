@@ -38,6 +38,7 @@ public class AdminView extends View{
         System.out.println("Press s to run a shipping department view");
         System.out.println("Press b to go back");
         char action = this.in.next().charAt(0);
+        in.nextLine();
 
         switch (action) {
             case 'c':
@@ -68,6 +69,7 @@ public class AdminView extends View{
             System.out.println("Press n to start a new application instance");
             System.out.println("Press q to quit");
             char action = this.in.next().charAt(0);
+            in.nextLine();
 
             switch (action) {
                 case 's':

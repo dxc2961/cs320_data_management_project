@@ -132,6 +132,7 @@ public class ServiceEmployeeView extends View {
             System.out.println("Press n to select a new customer");
             System.out.println("Press q to quit");
             char action = in.next().charAt(0);
+            in.nextLine();
 
             switch (action) {
                 case 'p':

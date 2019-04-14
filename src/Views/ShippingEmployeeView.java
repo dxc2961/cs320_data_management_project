@@ -101,6 +101,7 @@ public class ShippingEmployeeView extends View {
             System.out.println("Press a to search for an address");
             System.out.println("Press q to quit");
             char action = in.next().charAt(0);
+            in.nextLine();
 
             switch (action) {
                 case 'o':

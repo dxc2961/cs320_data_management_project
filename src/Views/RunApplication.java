@@ -24,6 +24,7 @@ public class RunApplication {
         System.out.println("Press a for database administrators");
         String[] appArray = {input.next()};
         appArray[0] = appArray[0].substring(0,1);
+        input.nextLine();
 
         switch (appArray[0]) {
             case "c":
