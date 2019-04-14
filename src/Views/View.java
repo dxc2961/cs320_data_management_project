@@ -74,7 +74,6 @@ public abstract class View {
             result.first();
             this.email = result.getString(1);
         } catch (SQLException e){
-            e.printStackTrace();
             return false;
         }
         return true;
@@ -91,9 +90,12 @@ public abstract class View {
 
         System.out.println("Hello! Thank you for using this application. Please log in using your username.");
 
+        /*********FOR TESTING PURPOSES ONLY, COMMENTING OUT INPUTS**********/
+        //while(!this.signIn(in.nextLine()))
+        //    System.out.println("Invalid username. Please try again.");
+        this.signIn("frederic");
+        /****/
 
-        while(!this.signIn(in.nextLine()))
-            System.out.println("Invalid username. Please try again.");
         System.out.println("Your email is " + this.email);
 
         this.assist();

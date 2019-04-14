@@ -22,21 +22,24 @@ public class RunApplication {
         System.out.println("Press e for customer service employees");
         System.out.println("Press s for shipping employees");
         System.out.println("Press a for database administrators");
-        String[] appArray = {input.next()};
-        appArray[0] = appArray[0].substring(0,1);
-        input.nextLine();
 
-        switch (appArray[0]) {
-            case "c":
+        /*********FOR TESTING PURPOSES ONLY, COMMENTING OUT INPUTS**********/
+        //char action = input.nextLine().charAt(0);
+        //input.nextLine();
+        char action = 'c';
+        /****/
+
+        switch (action) {
+            case 'c':
                 view = new CustomerView();
                 break;
-            case "e":
+            case 'e':
                 view = new ServiceEmployeeView();
                 break;
-            case "s":
+            case 's':
                 view = new ShippingEmployeeView();
                 break;
-            case "a":
+            case 'a':
                 view = new AdminView();
                 break;
             default:
