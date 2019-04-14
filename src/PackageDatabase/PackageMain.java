@@ -64,6 +64,29 @@ public class PackageMain {
    }
 
    /**
+    * Method used to create views used throughout the application
+    */
+   public void createViews(){
+      String paymentViewCreateSQL = "CREATE VIEW payment_details AS " +
+              "SELECT " +
+              "payment_method.payment_id, payment_method.cust_email, payment_method.active, " +
+              "credit_card.card_number, credit_card.owner_name, credit_card.expiration_date as credit_expiration_date, credit_card.security_code, " +
+              "checks.routing_num, checks.account_num, checks.check_num, " +
+              "gift_card.gift_card_id, gift_card.expiration_date as gift_expiration_date, gift_card.balance " +
+              "FROM payment_method " +
+              "LEFT OUTER JOIN credit_card ON payment_method.payment_id = credit_card.payment_id " +
+              "LEFT OUTER JOIN checks ON payment_method.payment_id = checks.payment_id " +
+              "LEFT OUTER JOIN gift_card ON payment_method.payment_id = gift_card.payment_id ";
+      try{
+         Statement stmt = this.getConnection().createStatement();
+         stmt.execute(paymentViewCreateSQL);
+      } catch (SQLException s){
+         System.err.println("Could not create payment view");
+         s.printStackTrace();
+      }
+   }
+
+   /**
     * Starts and runs the database
     *
     * @param args: not used but you can use them
@@ -109,6 +132,7 @@ public class PackageMain {
          GiftCardTable.populateGiftCardTableCSV(packageMain.getConnection(), "data/giftcard.csv");
          PaymentMethodTable.populatePaymentMethodTableCSV(packageMain.getConnection(), "data/payment.csv");
 
+         packageMain.createViews();
 
       }catch(SQLException e){
          e.printStackTrace();
