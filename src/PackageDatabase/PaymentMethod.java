@@ -4,10 +4,12 @@ public class PaymentMethod {
 
    private int payment_ID;
    private String email;
+   private boolean active;
 
-   public PaymentMethod(int payment_ID, String email){
+   public PaymentMethod(int payment_ID, String email, boolean active){
       this.payment_ID = payment_ID;
       this.email = email;
+      this.active = active;
    }
 
    public int getID(){
@@ -17,5 +19,7 @@ public class PaymentMethod {
    public String getEmail(){
       return email;
    }
+
+   public boolean isActive() { return active; }
 
 }

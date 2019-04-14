@@ -16,7 +16,7 @@ public class PaymentMethodTable {
 
     public static void createPaymentMethodTable(Connection conn){
         try {
-            String str = "CREATE TABLE IF NOT EXISTS payment_method(PAYMENT_ID INT PRIMARY KEY, CUST_EMAIL VARCHAR(50));";
+            String str = "CREATE TABLE IF NOT EXISTS payment_method(PAYMENT_ID INT PRIMARY KEY, CUST_EMAIL VARCHAR(50), ACTIVE BOOLEAN);";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {
@@ -34,7 +34,12 @@ public class PaymentMethodTable {
             reader.readLine(); //read first line of csv file with column names, don't need to do anything with this
             while((line = reader.readLine()) != null) {
                 String[] split = line.split(",");
-                payment_methodList.add(new PaymentMethod(Integer.parseInt(split[0]), split[1]));
+                boolean active;
+                if(split[2] == "yes")
+                    active = true;
+                else
+                    active = false;
+                payment_methodList.add(new PaymentMethod(Integer.parseInt(split[0]), split[1], active));
             }
 
             reader.close();
@@ -53,8 +58,8 @@ public class PaymentMethodTable {
 
         for(int i = 0; i < list.size(); ++i) {
             PaymentMethod method = (PaymentMethod) list.get(i);
-            builder.append(String.format("(%d,\'%s\')",
-                    new Object[]{method.getID(), method.getEmail()}));
+            builder.append(String.format("(%d,\'%s\',%b)",
+                    new Object[]{method.getID(), method.getEmail(), method.isActive()}));
             if(i != list.size() - 1) {
                 builder.append(",");
             } else {
