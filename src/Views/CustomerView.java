@@ -297,20 +297,9 @@ public class CustomerView extends View{
     private void viewPayments(){
         try {
             ResultSet results = this.runQuery(
-                    "SELECT " +
-                            "pay.payment_id, " +
-                            "cred.card_number, cred.owner_name, " +
-                            "cred.expiration_date, cred.security_code, " +
-                            "checks.routing_num, checks.account_num, " +
-                            "checks.check_num, " +
-                            "gift.gift_card_id, gift.expiration_date, " +
-                            "gift.balance " +
-                            "FROM payment_method pay " +
-                                "LEFT OUTER JOIN credit_card cred ON pay.payment_id = cred.payment_id " +
-                                "LEFT OUTER JOIN checks ON pay.payment_id = checks.payment_id " +
-                                "LEFT OUTER JOIN gift_card gift ON pay.payment_id = gift.payment_id " +
+                    "SELECT * FROM payment_details " +
 
-                            "WHERE pay.cust_email=\'" + this.email + "\' AND pay.active=true");
+                            "WHERE cust_email=\'" + this.email + "\' AND active=true");
             this.printPayments(results);
             System.out.println("Would you like to edit this information? (y/n)");
             char action = this.in.next().charAt(0);
@@ -330,11 +319,11 @@ public class CustomerView extends View{
         try {
             int payment = 1;
             while (results.next()) {
-                if(results.getString(2) != null)
+                if(results.getString(4) != null)
                     printCreditCards(results,payment);
-                if(results.getString(6) != null)
+                if(results.getString(8) != null)
                     printChecks(results,payment);
-                if(results.getString(9) != null)
+                if(results.getString(11) != null)
                     printGiftCards(results,payment);
                 payment++;
             }
@@ -348,10 +337,10 @@ public class CustomerView extends View{
         try {
             System.out.printf("Payment %d, Credit Card:\n\tCard Num:%s\n\tOwner Name:%s\n\tExpiration Date:%s\n\tSecurity Code:%s\n",
                     payment,
-                    results.getString(2),
-                    results.getString(3),
                     results.getString(4),
-                    results.getString(5));
+                    results.getString(5),
+                    results.getString(6),
+                    results.getString(7));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -361,9 +350,9 @@ public class CustomerView extends View{
         try {
             System.out.printf("Payment %d, Check:\n\tRouting Num:%s\n\tAccount Num:%s\n\tCheck Num:%s\n",
                     payment,
-                    results.getString(6),
-                    results.getString(7),
-                    results.getString(8));
+                    results.getString(8),
+                    results.getString(9),
+                    results.getString(10));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -373,9 +362,9 @@ public class CustomerView extends View{
         try {
             System.out.printf("Payment %d, Gift Card:\n\tGift Card ID:%s\n\tExpiration Date:%s\n\tBalance:%s\n",
                     payment,
-                    results.getString(9),
-                    results.getString(10),
-                    results.getString(11));
+                    results.getString(11),
+                    results.getString(12),
+                    results.getString(13));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -409,14 +398,9 @@ public class CustomerView extends View{
         }
 
         try {
-            ResultSet payment_id = this.runQuery("SELECT " +
-                    "pay.payment_id, cred.card_number, checks.routing_num, gift.gift_card_id " +
-                    "FROM payment_method pay " +
-                    "LEFT OUTER JOIN credit_card cred ON pay.payment_id = cred.payment_id " +
-                    "LEFT OUTER JOIN checks ON pay.payment_id = checks.payment_id " +
-                    "LEFT OUTER JOIN gift_card gift ON pay.payment_id = gift.payment_id " +
-                    "WHERE pay.cust_email=\'" + this.email + "\' AND pay.active=true " +
-                    "AND cred.card_number IS NULL AND checks.routing_num IS NULL AND gift.gift_card_id IS NULL");
+            ResultSet payment_id = this.runQuery("SELECT * FROM payment_details " +
+                    "WHERE cust_email=\'" + this.email + "\' AND active=true " +
+                    "AND card_number IS NULL AND routing_num IS NULL AND gift_card_id IS NULL");
             payment_id.next();
             System.out.println(payment_id.getString(1));
             creditCardInsertSQL += payment_id.getString(1) + ", \'";
@@ -476,16 +460,11 @@ public class CustomerView extends View{
                 this.runUpdate("DELETE FROM " +
                         "payment_method " +
                         "WHERE payment_id IN (SELECT payment_id FROM " +
-                        "(SELECT " +
-                        "pay.payment_id, cred.card_number, checks.routing_num, gift.gift_card_id " +
-                        "FROM payment_method pay " +
-                        "  LEFT OUTER JOIN credit_card cred ON pay.payment_id = cred.payment_id " +
-                        "  LEFT OUTER JOIN checks ON pay.payment_id = checks.payment_id " +
-                        "  LEFT OUTER JOIN gift_card gift ON pay.payment_id = gift.payment_id " +
-                        "WHERE pay.cust_email='sean@gmail.com' AND pay.active=true " +
-                        "  AND cred.card_number IS NULL " +
-                        "  AND checks.routing_num IS NULL " +
-                        "  AND gift.gift_card_id IS NULL) withnulls)");
+                        "SELECT * FROM payment_details " +
+                        "WHERE cust_email=\'" + this.email + "\' AND active=true " +
+                        "  AND card_number IS NULL " +
+                        "  AND routing_num IS NULL " +
+                        "  AND gift_card_id IS NULL))");
             } catch (SQLException e){
                 System.err.println("Could not remove old null entry. Contact your system administrator");
             }

@@ -11,17 +11,17 @@ public class Package {
 
    private int order_id;
    private int package_id;
-   private Package_type package_type;
-   private int weight; // in ounces (oz)
-   private Delivery_speed delivery_speed;
-   private Delivery_status delivery_status;
+   private String package_type;
+   private double weight; // in ounces (oz)
+   private String delivery_speed;
+   private String delivery_status;
    private boolean sign_required;
    private boolean insurance_status;
    private boolean hazard_status;
    private boolean fragile_status;
    private boolean perishable_status;
    private String item_description;
-   private int provided_value;
+   private double provided_value;
 
    /**
     * Constructor for an international package.
@@ -39,9 +39,9 @@ public class Package {
     * @param item_description
     * @param provided_value
     */
-   public Package(int order_id, int package_id, Package_type package_type, int weight, Delivery_speed delivery_speed,
-                  Delivery_status delivery_status, boolean sign_required,boolean insurance_status,boolean hazard_status,
-                  boolean fragile_status, boolean perishable_status, String item_description, int provided_value) {
+   public Package(int order_id, int package_id, String package_type, double weight, String delivery_speed,
+                  String delivery_status, boolean sign_required, boolean insurance_status, boolean hazard_status,
+                  boolean fragile_status, boolean perishable_status, String item_description, double provided_value) {
       this.order_id = order_id;
       this.package_id = package_id;
       this.package_type = package_type;
@@ -71,8 +71,8 @@ public class Package {
     * @param fragile_status
     * @param perishable_status
     */
-   public Package(int order_id, int package_id, Package_type package_type, int weight, Delivery_speed delivery_speed,
-                  Delivery_status delivery_status, boolean sign_required, boolean insurance_status,
+   public Package(int order_id, int package_id, String package_type, int weight, String delivery_speed,
+                  String delivery_status, boolean sign_required, boolean insurance_status,
                   boolean hazard_status, boolean fragile_status, boolean perishable_status) {
       this.order_id = order_id;
       this.package_id = package_id;
@@ -95,10 +95,6 @@ public class Package {
       double cost = 5; // baseline cost of a delivery
 
       cost += weight * PRICE_PER_OZ; // 15 cents per oz
-
-      cost *= package_type.getMult();
-
-      cost *= delivery_speed.getMult();
 
       return cost;
    }
@@ -127,31 +123,15 @@ public class Package {
       return item_description;
    }
 
-   public Delivery_status getDelivery_status() {
+   public String getDelivery_status() {
       return delivery_status;
    }
 
-   public int getProvided_value() {
+   public double getProvided_value() {
       return provided_value;
    }
 
    /////////
    //SETTERS
-
-   public void progressDelivery(){
-      switch (delivery_status){
-         case ORDER_PROCESSING:
-            delivery_status = Delivery_status.IN_TRANSIENT;
-            break;
-         case IN_TRANSIENT:
-            delivery_status = Delivery_status.OUT_FOR_DELIVERY;
-            break;
-         case OUT_FOR_DELIVERY:
-            delivery_status = Delivery_status.DELIVERED;
-            break;
-         case DELIVERED:
-            break;
-      }
-   }
 
 }
