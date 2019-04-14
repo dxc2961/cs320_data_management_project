@@ -383,6 +383,13 @@ public class CustomerView extends View{
 
     private void createCreditCard(){
         String paymentMethodInsertSQL = "INSERT INTO payment_method (cust_email) VALUES (\'" + this.email + "\')";
+        try{
+            this.runUpdate(paymentMethodInsertSQL);
+        } catch (SQLException s){
+            System.err.println("Problem creating payment_method entry");
+            return;
+        }
+
         String creditCardInsertSQL = "INSERT INTO credit_card VALUES (\'";
 
         boolean canContinue = false;
@@ -401,9 +408,24 @@ public class CustomerView extends View{
             }
         }
 
-        creditCardInsertSQL += "999, \'";
+        try {
+            ResultSet payment_id = this.runQuery("SELECT " +
+                    "pay.payment_id, cred.card_number, checks.routing_num, gift.gift_card_id " +
+                    "FROM payment_method pay " +
+                    "LEFT OUTER JOIN credit_card cred ON pay.payment_id = cred.payment_id " +
+                    "LEFT OUTER JOIN checks ON pay.payment_id = checks.payment_id " +
+                    "LEFT OUTER JOIN gift_card gift ON pay.payment_id = gift.payment_id " +
+                    "WHERE pay.cust_email=\'" + this.email + "\' AND pay.active=true " +
+                    "AND cred.card_number IS NULL AND checks.routing_num IS NULL AND gift.gift_card_id IS NULL");
+            payment_id.next();
+            System.out.println(payment_id.getString(1));
+            creditCardInsertSQL += payment_id.getString(1) + ", \'";
+        } catch (SQLException s){
+            System.err.println("Problem getting new payment_id");
+            s.printStackTrace();
+            return;
+        }
 
-        //creditCardInsertSQL += "\'";
         canContinue = false;
         while(!canContinue) {
             System.out.println("Please enter the new credit card's card holder name, or q to quit");
@@ -447,9 +469,31 @@ public class CustomerView extends View{
         }
         creditCardInsertSQL += ")";
         try {
-            this.runUpdate(paymentMethodInsertSQL);
             this.runUpdate(creditCardInsertSQL);
         } catch (SQLException s){
+            System.err.println("Could not create credit card entry");
+
+            try {
+
+                this.runUpdate("DELETE FROM " +
+                        "payment_method " +
+                        "WHERE payment_id IN (SELECT payment_id FROM " +
+                        "(SELECT " +
+                        "pay.payment_id, cred.card_number, checks.routing_num, gift.gift_card_id " +
+                        "FROM payment_method pay " +
+                        "  LEFT OUTER JOIN credit_card cred ON pay.payment_id = cred.payment_id " +
+                        "  LEFT OUTER JOIN checks ON pay.payment_id = checks.payment_id " +
+                        "  LEFT OUTER JOIN gift_card gift ON pay.payment_id = gift.payment_id " +
+                        "WHERE pay.cust_email='sean@gmail.com' AND pay.active=true " +
+                        "  AND cred.card_number IS NULL " +
+                        "  AND checks.routing_num IS NULL " +
+                        "  AND gift.gift_card_id IS NULL) withnulls)");
+
+
+
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
             s.printStackTrace();
         }
     }
