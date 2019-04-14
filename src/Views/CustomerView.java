@@ -472,9 +472,7 @@ public class CustomerView extends View{
             this.runUpdate(creditCardInsertSQL);
         } catch (SQLException s){
             System.err.println("Could not create credit card entry");
-
             try {
-
                 this.runUpdate("DELETE FROM " +
                         "payment_method " +
                         "WHERE payment_id IN (SELECT payment_id FROM " +
@@ -488,11 +486,8 @@ public class CustomerView extends View{
                         "  AND cred.card_number IS NULL " +
                         "  AND checks.routing_num IS NULL " +
                         "  AND gift.gift_card_id IS NULL) withnulls)");
-
-
-
             } catch (SQLException e){
-                e.printStackTrace();
+                System.err.println("Could not remove old null entry. Contact your system administrator");
             }
             s.printStackTrace();
         }
