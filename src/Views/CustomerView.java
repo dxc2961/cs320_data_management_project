@@ -16,7 +16,10 @@ public class CustomerView extends View{
         super();
     }
 
-
+    /**
+     * Gets the relevant profile information for a user and prints it out
+     * From here they can edit the information however they'd like
+     */
     private void viewProfile(){
         //TODO query other relevant profile information for this user
 
@@ -26,15 +29,23 @@ public class CustomerView extends View{
 
     }
 
-
+    /**
+     * Gets the order information for the customer that is logged in.
+     * From here they can track an order or cancel an order.
+     */
     private void viewOrders(){
         //TODO query other relevant order information for this user
 
+        ResultSet results = this.runQuery("SELECT * FROM customer WHERE email=\'" + this.email + "\';");
+        this.printProfile(results);
         System.out.println("querying order data!");
 
     }
 
-
+    /**
+     * Gets the signed in customer's delivery address information we have on file for them
+     * From here they can add a new address or delete/edit an old one
+     */
     private void viewAddresses(){
         //TODO query other relevant address information for this user
 
@@ -44,7 +55,10 @@ public class CustomerView extends View{
 
     }
 
-
+    /**
+     * Gets the payment information attributed to the signed in user
+     * From here they can add new payments or delete/edit old ones
+     */
     private void viewPayments(){
         //TODO query other relevant payment method information for this user
 

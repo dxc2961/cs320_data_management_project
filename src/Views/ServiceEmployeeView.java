@@ -19,7 +19,9 @@ public class ServiceEmployeeView extends View {
         super();
     }
 
-
+    /**
+     * Gets the profile information for the customer this CSR is helping
+     */
     private void findProfile(){
         //TODO query other relevant profile information for the customer
 
@@ -27,7 +29,9 @@ public class ServiceEmployeeView extends View {
 
     }
 
-
+    /**
+     * Gets the order information for the customer this CSR is helping
+     */
     private void findOrders(){
         //TODO query other relevant order information for this user
 
@@ -35,7 +39,9 @@ public class ServiceEmployeeView extends View {
 
     }
 
-
+    /**
+     * Gets the address information for the customer this CSR is helping
+     */
     private void findAddresses(){
         //TODO query other relevant profile information for this user
 
@@ -43,7 +49,9 @@ public class ServiceEmployeeView extends View {
 
     }
 
-
+    /**
+     * Gets the payment information for the customer this CSR is helping
+     */
     private void findPayments(){
         //TODO query other relevant profile information for this user
 

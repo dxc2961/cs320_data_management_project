@@ -17,7 +17,11 @@ public class ShippingEmployeeView extends View {
         super();
     }
 
-
+    /**
+     * Search for the order and package information based off an order number
+     * They need to be able to update the status of an order,
+     * the delivery date of an order, and the current status of an order
+     */
     private void searchOrder(){
         //TODO query for the provided order number
 
@@ -25,7 +29,11 @@ public class ShippingEmployeeView extends View {
 
     }
 
-
+    /**
+     * Search for the order and package information based off a package number
+     * They need to be able to update the status of an order,
+     * the delivery date of an order, and the current status of an order
+     */
     private void searchPackage(){
         //TODO query for the provided package number
 
@@ -33,7 +41,11 @@ public class ShippingEmployeeView extends View {
 
     }
 
-
+    /**
+     * Search for the order and package information based off an order number
+     * They need to be able to update the status of an order,
+     * the delivery date of an order, and the current status of an order
+     */
     private void searchAddress(){
         //TODO query for the provided address deliveries
 
