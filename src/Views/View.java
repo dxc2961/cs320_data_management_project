@@ -114,7 +114,8 @@ public abstract class View {
 
     public static boolean isNumeric(String in){
         try {
-            Integer.parseInt(in);
+            for(int i = 0; i < in.length(); i++)
+                Integer.parseInt(in.substring(i,i+1));
             return true;
         } catch(NumberFormatException e){
             return false;

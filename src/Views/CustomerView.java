@@ -382,7 +382,76 @@ public class CustomerView extends View{
     }
 
     private void createCreditCard(){
-        String insertSQL = "INSERT INTO payment_method (cust_email";
+        String paymentMethodInsertSQL = "INSERT INTO payment_method (cust_email) VALUES (\'" + this.email + "\')";
+        String creditCardInsertSQL = "INSERT INTO credit_card VALUES (\'";
+
+        boolean canContinue = false;
+        while(!canContinue) {
+            System.out.println("Please enter the new credit card's number, or q to quit");
+            String cardNum = in.nextLine();
+            if(cardNum.equals("q"))
+                return;
+            if (isNumeric(cardNum) && cardNum.length() == 16) {
+                creditCardInsertSQL += cardNum + "\', ";
+                canContinue = true;
+            }
+            else{
+                System.err.println("Please ensure your input is 16 numeric digits");
+                System.out.println(cardNum.length());
+            }
+        }
+
+        creditCardInsertSQL += "999, \'";
+
+        //creditCardInsertSQL += "\'";
+        canContinue = false;
+        while(!canContinue) {
+            System.out.println("Please enter the new credit card's card holder name, or q to quit");
+            String holdername = in.nextLine();
+            if(holdername.equals("q"))
+                return;
+            if (holdername.length() > 25)
+                System.err.println("Please ensure your input is less than 26 digits long");
+            else{
+                creditCardInsertSQL += holdername + "\', \'";
+                canContinue = true;
+            }
+        }
+
+        canContinue = false;
+        while(!canContinue) {
+            System.out.println("Please enter the new credit card's expiration date, or q to quit");
+            String expDate = in.nextLine();
+            if(expDate.equals("q"))
+                return;
+            if (expDate.length() != 5 || !isNumeric(expDate.substring(0,2)) || !isNumeric(expDate.substring(3)) || !expDate.substring(2,3).equals("/"))
+                System.err.println("Please ensure your input is 5 digits long of the form '00/00'");
+            else{
+                creditCardInsertSQL += expDate + "\', \'";
+                canContinue = true;
+            }
+        }
+
+        canContinue = false;
+        while(!canContinue) {
+            System.out.println("Please enter the new credit card's security code, or q to quit");
+            String secCode = in.nextLine();
+            if(secCode.equals("q"))
+                return;
+            if (!isNumeric(secCode) || secCode.length() != 3)
+                System.err.println("Please ensure your input is 3 numeric digits");
+            else{
+                creditCardInsertSQL += secCode + "\'";
+                canContinue = true;
+            }
+        }
+        creditCardInsertSQL += ")";
+        try {
+            this.runUpdate(paymentMethodInsertSQL);
+            this.runUpdate(creditCardInsertSQL);
+        } catch (SQLException s){
+            s.printStackTrace();
+        }
     }
 
     private void redeemGiftCard(){
