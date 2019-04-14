@@ -112,6 +112,15 @@ public abstract class View {
     }
 
 
+    public static boolean isNumeric(String in){
+        try {
+            Integer.parseInt(in);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
     public static String printPhoneNumber(String pnum){
         return pnum.substring(0,3) + "-" + pnum.substring(3,6) + "-" + pnum.substring(6);
     }

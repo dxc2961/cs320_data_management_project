@@ -228,7 +228,6 @@ public class CustomerView extends View{
                 System.out.println("Please enter your new house number");
                 input = this.in.nextLine();
                 try{
-                    System.out.println("house id3: " + results.getString(1));
                     this.runUpdate("UPDATE address SET house_num=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
                     System.out.println("Your house_num has been updated to " + input);
                 } catch(SQLException s){
@@ -236,45 +235,57 @@ public class CustomerView extends View{
                 }
                 break;
             case '2':
-                System.out.println("Please enter your new username");
+                System.out.println("Please enter your new street name");
                 input = this.in.nextLine();
                 try{
-                    this.runUpdate("UPDATE customer SET display_name=\'" + input + "\' WHERE email=\'" + this.email + "\'");
-                    this.username = input;
-                    System.out.println("Your username has been updated to " + input);
+                    this.runUpdate("UPDATE address SET street_name=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your street name has been updated to " + input);
                 } catch(SQLException s){
-                    s.printStackTrace();
+                    System.err.println("Invalid street name");
                 }
                 break;
             case '3':
-                System.out.println("Please enter your current password");
+                System.out.println("Please enter your new city name");
                 input = this.in.nextLine();
-                boolean correctPass = false;
                 try{
-                    if(input.equals(results.getString(3))){
-                        System.out.println("Please enter new password");
-                        input = this.in.nextLine();
-                        correctPass = true;
-                        this.runUpdate("UPDATE customer SET password = \'" + input + "\' WHERE email=\'" + this.email + "\'");
-                        System.out.println("Your password has been updated");
-                    }
-
-                } catch (SQLException s){
-                    if(correctPass)
-                        System.out.println("Invalid new password");
-                    else
-                        System.out.println("Incorrect password. Exiting");
+                    this.runUpdate("UPDATE address SET city=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your city name has been updated to " + input);
+                } catch(SQLException s){
+                    System.err.println("Invalid city name");
                 }
-
                 break;
             case '4':
-                System.out.println("Please enter your new phone number, do not use any non-numeric characters");
+                System.out.println("Please enter your new state name");
                 input = this.in.nextLine();
                 try{
-                    this.runUpdate("UPDATE customer SET phone_num=\'" + input + "\' WHERE email=\'" + this.email + "\'");
-                    System.out.println("Your phone number has been updated to " + printPhoneNumber(input));
+                    this.runUpdate("UPDATE address SET state=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your state name has been updated to " + input);
                 } catch(SQLException s){
-                    s.printStackTrace();
+                    System.err.println("Invalid state name.");
+                }
+                break;
+            case '5':
+                System.out.println("Please enter your new country code. Please use ISO alpha-3 country codes only (USA, GBR, CAN, etc.).");
+                input = this.in.nextLine();
+                try{
+                    this.runUpdate("UPDATE address SET country_code=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your country code has been updated to " + input);
+                } catch(SQLException s){
+                    System.err.println("Invalid ISO alpha-3 code. Please refer to an online source to check validity");
+                }
+                break;
+            case '6':
+                System.out.println("Please enter your new zip code.");
+                input = this.in.nextLine();
+                try{
+                    if(!isNumeric(input))
+                        System.err.println("Ensure zip code consists only of numbers");
+                    else {
+                        this.runUpdate("UPDATE address SET zip_code=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                        System.out.println("Your zip code has been updated to " + input);
+                    }
+                } catch(SQLException s){
+                    System.err.println("Invalid zip code. Ensure 5-digit code consisting only of numbers");
                 }
                 break;
             default:
