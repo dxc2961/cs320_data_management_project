@@ -56,7 +56,7 @@ public abstract class View {
 
 
     public ResultSet runQuery(String input) throws SQLException{
-        Statement statement = conn.createStatement();
+        Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         return statement.executeQuery(input);
     }
 

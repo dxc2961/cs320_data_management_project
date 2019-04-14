@@ -23,29 +23,37 @@ public class CustomerView extends View{
      * From here they can edit the information however they'd like
      */
     private void viewProfile(){
-        //TODO query other relevant profile information for this user
-
         try {
             ResultSet results = this.runQuery("SELECT * FROM customer WHERE email=\'" + this.email + "\';");
-            //System.out.println("YOUR EMAIL IS: " + this.email + "AND USERNAME IS: " + this.username); + "VS " + results.getString(2));
             this.printProfile(results);
             System.out.println("Would you like to edit this information? (y/n)");
             char action = this.in.next().charAt(0);
             in.nextLine();
+            if(action == 'y')
+                this.editProfile(results);
 
-            switch (action) {
-                case 'y':
-                    this.editProfile(results);
-                    break;
-            }
         } catch (SQLException s){
             s.printStackTrace();
         }
-        System.out.println("querying profile data!");
+    }
+
+
+    private void printProfile(ResultSet results){
+        try {
+            results.next();
+            System.out.println(results.getString(2) + "'s Profile:");
+            System.out.printf("Email: %s\nUsername: %s\nPhone Number: %s", results.getString(1), results.getString(2), printPhoneNumber(results.getString(4)));
+            System.out.println();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    private void editProfile(ResultSet profInfo){
+    /**
+     * Allows a user to edit their profile information
+     */
+    private void editProfile(ResultSet results){
         System.out.println("Press 1 to edit your email");
         System.out.println("Press 2 to edit your username");
         System.out.println("Press 3 to change your password");
@@ -82,7 +90,7 @@ public class CustomerView extends View{
                 input = this.in.nextLine();
                 boolean correctPass = false;
                 try{
-                    if(input.equals(profInfo.getString(3))){
+                    if(input.equals(results.getString(3))){
                         System.out.println("Please enter new password");
                         input = this.in.nextLine();
                         correctPass = true;
@@ -122,8 +130,14 @@ public class CustomerView extends View{
     private void viewOrders(){
         //TODO query other relevant order information for this user
         try{
-            ResultSet results = this.runQuery("SELECT * FROM customer WHERE email=\'" + this.email + "\';");
+            ResultSet results = this.runQuery("SELECT * FROM order WHERE email=\'" + this.email + "\';");
             this.printProfile(results);
+            System.out.println("Would you like to edit this information? (y/n)");
+            char action = this.in.next().charAt(0);
+            in.nextLine();
+            if(action == 'y')
+                this.editProfile(results);
+
         } catch (SQLException s){
             s.printStackTrace();
         }
@@ -141,49 +155,20 @@ public class CustomerView extends View{
         try {
             ResultSet results = this.runQuery("SELECT * FROM address WHERE customer_email=\'" + this.email + "\';");
             this.printAddresses(results);
+            System.out.println("Would you like to edit this information? (y/n)");
+            char action = this.in.next().charAt(0);
+            in.nextLine();
+
+            switch (action) {
+                case 'y':
+                    this.editAddresses(results);
+                    break;
+            }
         } catch (SQLException s){
             s.printStackTrace();
         }
-        System.out.println("querying address data!");
 
     }
-
-    /**
-     * Gets the payment information attributed to the signed in user
-     * From here they can add new payments or delete/edit old ones
-     */
-    private void viewPayments(){
-        //TODO query other relevant payment method information for this user
-
-        System.out.println("querying payment method data!");
-
-    }
-
-
-    private void printProfile(ResultSet results){
-        try {
-            results.next();
-            System.out.println(results.getString(2) + "'s Profile:");
-            System.out.printf("Email: %s\nUsername: %s\nPhone Number: %s", results.getString(1), results.getString(2), printPhoneNumber(results.getString(4)));
-            System.out.println();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    private void printOrders(ResultSet results){
-        try {
-            while (results.next()) {
-                System.out.println("order details:");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
 
     private void printAddresses(ResultSet results){
         try {
@@ -204,6 +189,125 @@ public class CustomerView extends View{
         }
 
     }
+
+    /**
+     * Allows a user to edit their profile information
+     */
+    private void editAddresses(ResultSet results){
+        System.out.println("Enter the address number you would like to edit");
+        int address = in.nextInt();
+        in.nextLine();
+
+        System.out.println("Editing address " + address);
+
+        try {
+            results.absolute(1);
+            while (address > 1) {
+                results.next();
+                address--;
+            }
+        } catch (SQLException s){
+            System.err.println("Address number out of range");
+            s.printStackTrace();
+        }
+
+
+        System.out.println("Press 1 to edit your house number");
+        System.out.println("Press 2 to edit your street name");
+        System.out.println("Press 3 to edit your city");
+        System.out.println("Press 4 to edit your state");
+        System.out.println("Press 5 to edit your country code");
+        System.out.println("Press 6 to edit your zip code");
+        char action = in.next().charAt(0);
+        in.nextLine();
+        String input;
+
+
+        switch (action) {
+            case '1':
+                System.out.println("Please enter your new house number");
+                input = this.in.nextLine();
+                try{
+                    System.out.println("house id3: " + results.getString(1));
+                    this.runUpdate("UPDATE address SET house_num=\'" + input + "\' WHERE customer_email=\'" + this.email + "\' AND address_id=\'" + results.getString(1) + "\'");
+                    System.out.println("Your house_num has been updated to " + input);
+                } catch(SQLException s){
+                    s.printStackTrace();
+                }
+                break;
+            case '2':
+                System.out.println("Please enter your new username");
+                input = this.in.nextLine();
+                try{
+                    this.runUpdate("UPDATE customer SET display_name=\'" + input + "\' WHERE email=\'" + this.email + "\'");
+                    this.username = input;
+                    System.out.println("Your username has been updated to " + input);
+                } catch(SQLException s){
+                    s.printStackTrace();
+                }
+                break;
+            case '3':
+                System.out.println("Please enter your current password");
+                input = this.in.nextLine();
+                boolean correctPass = false;
+                try{
+                    if(input.equals(results.getString(3))){
+                        System.out.println("Please enter new password");
+                        input = this.in.nextLine();
+                        correctPass = true;
+                        this.runUpdate("UPDATE customer SET password = \'" + input + "\' WHERE email=\'" + this.email + "\'");
+                        System.out.println("Your password has been updated");
+                    }
+
+                } catch (SQLException s){
+                    if(correctPass)
+                        System.out.println("Invalid new password");
+                    else
+                        System.out.println("Incorrect password. Exiting");
+                }
+
+                break;
+            case '4':
+                System.out.println("Please enter your new phone number, do not use any non-numeric characters");
+                input = this.in.nextLine();
+                try{
+                    this.runUpdate("UPDATE customer SET phone_num=\'" + input + "\' WHERE email=\'" + this.email + "\'");
+                    System.out.println("Your phone number has been updated to " + printPhoneNumber(input));
+                } catch(SQLException s){
+                    s.printStackTrace();
+                }
+                break;
+            default:
+                System.out.println("Invalid Choice");
+                break;
+        }
+    }
+
+    /**
+     * Gets the payment information attributed to the signed in user
+     * From here they can add new payments or delete/edit old ones
+     */
+    private void viewPayments(){
+        //TODO query other relevant payment method information for this user
+
+        System.out.println("querying payment method data!");
+
+    }
+
+
+    private void printOrders(ResultSet results){
+        try {
+            while (results.next()) {
+                System.out.println("order details:");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 
 
     private void printPayments(ResultSet results){
