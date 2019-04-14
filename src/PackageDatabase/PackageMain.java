@@ -86,6 +86,17 @@ public class PackageMain {
       }
    }
 
+   public void dropViews(){
+      String paymentViewDropSQL = "DROP VIEW payment_details;";
+      try{
+         Statement stmt = this.getConnection().createStatement();
+         stmt.execute(paymentViewDropSQL);
+      } catch (SQLException s){
+         System.err.println("Could not create payment view");
+         s.printStackTrace();
+      }
+   }
+
    /**
     * Starts and runs the database
     *
@@ -106,6 +117,7 @@ public class PackageMain {
       try{
 
          //remove existing tables
+         packageMain.dropViews();
          AddressTable.removeAddressTable(packageMain.getConnection());
          CheckTable.removeCheckTable(packageMain.getConnection());
          CustomerTable.removeCustomerTable(packageMain.getConnection());

@@ -60,21 +60,17 @@ public class PackageTable {
 
         for (int i = 0; i < list.size(); ++i) {
             Package pack = (Package) list.get(i);
-
-
-
-            /*
-            String order_date = order.getPackage_date();
-            String delivery_date = order.getDelivery_date();
-            builder.append(String.format("(%d,%d,\'%s\',DATE \'%s\',DATE \'%s\'," +
+            builder.append(String.format("(%d,%d,\'%s\',%.4d,\'%s\',\'%s\',%b,%b,%b,%b,%b,\'%s\',%.2d" +
                             "%d,%d)",
-                    new Object[]{order.getPackage_id(), order.getPayment_id(), order.getEmail(), order_date, delivery_date,
-                            order.getDelivery_address_id(), order.getReturn_address_id()}));
+                    new Object[]{pack.getOrder_id(), pack.getPackage_id(), pack.getPackage_type(), pack.getWeight(), pack.getDelivery_speed(),
+                            pack.getDelivery_status(), pack.isSign_required(), pack.isInsurance_status(), pack.isHazard_status(), pack.isFragile_status(),
+                            pack.isPerishable_status(),pack.getItem_description(), pack.getProvided_value()}));
+                    
             if (i != list.size() - 1) {
                 builder.append(",");
             } else {
                 builder.append(";");
-            }*/
+            }
         }
 
         return builder.toString();

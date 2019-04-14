@@ -91,12 +91,29 @@ public class Package {
    //GETTERS
    //
 
-   public double getCost(){
-      double cost = 5; // baseline cost of a delivery
 
-      cost += weight * PRICE_PER_OZ; // 15 cents per oz
+   public int getOrder_id() {
+      return order_id;
+   }
 
-      return cost;
+   public int getPackage_id() {
+      return package_id;
+   }
+
+   public String getPackage_type() {
+      return package_type;
+   }
+
+   public double getWeight() {
+      return weight;
+   }
+
+   public String getDelivery_speed() {
+      return delivery_speed;
+   }
+
+   public String getDelivery_status() {
+      return delivery_status;
    }
 
    public boolean isFragile_status() {
@@ -121,10 +138,6 @@ public class Package {
 
    public String getItem_description() {
       return item_description;
-   }
-
-   public String getDelivery_status() {
-      return delivery_status;
    }
 
    public double getProvided_value() {
