@@ -5,7 +5,6 @@ package Views;
  * account information, payment method information, and address information.
  */
 
-import com.sun.org.apache.regexp.internal.RESyntaxException;
 
 import java.sql.*;
 
@@ -507,7 +506,7 @@ public class CustomerView extends View{
                         "WHERE cust_email=\'" + this.email + "\' AND active=true " +
                         "  AND card_number IS NULL " +
                         "  AND routing_num IS NULL " +
-                        "  AND gift_card_id IS NULL))");
+                        "  AND gift_card_id IS NULL)");
             } catch (SQLException e){
                 System.err.println("Could not remove old null entry. Contact your system administrator");
             }
