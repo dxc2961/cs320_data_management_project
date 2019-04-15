@@ -10,6 +10,17 @@ public class AnalystView extends View {
    private final String delivery_speeds_total =
       "SELECT DELIVERY_SPEED, SUM(DELIVERY_SPEED) FROM package GROUPBY DELIVERY_SPEED";
 
+   // orders queries
+   // ??? not sure yet
+
+   // address queries
+   // by location counts
+
+
+   // payments queries
+
+
+
 
    public AnalystView(){super();}
 
@@ -119,6 +130,42 @@ public class AnalystView extends View {
    }
 
    public void viewAddressesFunc(){
+      boolean go_back = false;
+      char response;
+
+      while(!go_back){
+         System.out.println();
+         System.out.println("Press c to view counts of addresses by country code.");
+         System.out.println("Press s to view counts of addresses by US state.");
+         System.out.println("Press z to view counts of addresses by zip code.");
+         System.out.println("Press y to view counts of addresses by city name.");
+         response = in.next().charAt(0);
+         in.nextLine();
+
+         switch (response){
+            case 'c':
+               //sumPackTypes();
+               break;
+            case 's':
+               //sumSpeedTypes();
+               break;
+            case 'z':
+               break;
+            case 'y':
+               break;
+            default:
+               System.out.println("Not valid command, try again!");
+               break;
+         }
+
+         System.out.println("Go back?(y/n)");
+         response = in.next().charAt(0);
+         in.nextLine();
+
+         if (response == 'y'){
+            go_back = true;
+         }
+      }
 
    }
 
