@@ -298,7 +298,6 @@ public class CustomerView extends View{
         try {
             ResultSet results = this.runQuery(
                     "SELECT * FROM payment_details " +
-
                             "WHERE cust_email=\'" + this.email + "\' AND active=true");
             this.printPayments(results);
             System.out.println("Would you like to edit this information? (y/n)");
@@ -322,6 +321,7 @@ public class CustomerView extends View{
     private void printPayments(ResultSet results){
         //TODO add censors for important information
         try {
+            this.printGiftCardTotal();
             int payment = 1;
             while (results.next()) {
                 if(results.getString(4) != null)
@@ -335,6 +335,20 @@ public class CustomerView extends View{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void printGiftCardTotal(){
+        String balanceSQL = "SELECT SUM(balance) FROM payment_details WHERE cust_email=\'" + this.email + "\' AND active=TRUE";
+
+        try {
+            ResultSet results = this.runQuery(balanceSQL);
+            results.next();
+            System.out.println("You have " + results.getInt(1) + "$ in gift card balance");
+        } catch (SQLException s){
+            System.err.println("Unable to calculate gift card balance");
+        }
+
 
     }
 
