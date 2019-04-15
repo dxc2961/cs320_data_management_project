@@ -18,7 +18,9 @@ public class PackageTable {
             String str = "CREATE TABLE IF NOT EXISTS package(ORDER_ID INT, PACKAGE_ID INT PRIMARY KEY AUTO_INCREMENT, " +
                     "PACKAGE_TYPE VARCHAR(10), WEIGHT DECIMAL(12, 4), DELIVERY_SPEED VARCHAR(10), " +
                     "CURRENT_STATUS VARCHAR(16), SIGN_REQUIRED_STATUS BOOLEAN, INSURANCE_STATUS BOOLEAN, HAZARD_STATUS BOOLEAN, " +
-                    "FRAGILE_STATUS BOOLEAN, PERISHABLE_STATUS BOOLEAN, ITEM_DESCRIPTION VARCHAR(100), PROVIDED_VALUE DECIMAL(20,2));";
+                    "FRAGILE_STATUS BOOLEAN, PERISHABLE_STATUS BOOLEAN, ITEM_DESCRIPTION VARCHAR(100), PROVIDED_VALUE DECIMAL(20,2)," +
+                    "CHECK(PACKAGE_TYPE IN ('box','envelope','tube','bag')), CHECK (DELIVERY_SPEED IN ('express','standard','no_rush','overnight'))," +
+                    "CHECK(CURRENT_STATUS IN ('delivered','in_transit','in_warehouse','out_for_delivery')));";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {

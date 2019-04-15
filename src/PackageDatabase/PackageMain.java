@@ -87,7 +87,7 @@ public class PackageMain {
    }
 
    public void dropViews(){
-      String paymentViewDropSQL = "DROP VIEW payment_details;";
+      String paymentViewDropSQL = "DROP VIEW IF EXISTS payment_details;";
       try{
          Statement stmt = this.getConnection().createStatement();
          stmt.execute(paymentViewDropSQL);
