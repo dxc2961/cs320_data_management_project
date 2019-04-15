@@ -22,8 +22,8 @@ public class AddressTable {
     public static void createAddressTable(Connection conn){
         try {
             String str = "CREATE TABLE IF NOT EXISTS address(ADDRESS_ID INT PRIMARY KEY AUTO_INCREMENT," +
-                    "HOUSE_NUM VARCHAR(10),STREET_NAME VARCHAR(30),CITY VARCHAR(20)," +
-                    "STATE VARCHAR(30),COUNTRY_CODE CHAR(3),ZIP_CODE CHAR(5),CUSTOMER_EMAIL VARCHAR(50));";
+                    "HOUSE_NUM VARCHAR(10) NOT NULL,STREET_NAME VARCHAR(30) NOT NULL,CITY VARCHAR(20) NOT NULL," +
+                    "STATE VARCHAR(30) NOT NULL,COUNTRY_CODE CHAR(3) NOT NULL,ZIP_CODE CHAR(5) NOT NULL,CUSTOMER_EMAIL VARCHAR(50));";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {

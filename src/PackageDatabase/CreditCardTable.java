@@ -17,7 +17,7 @@ public class CreditCardTable {
     public static void createCreditCardTable(Connection conn){
         try {
             String str = "CREATE TABLE IF NOT EXISTS credit_card(CARD_NUMBER CHAR(16) PRIMARY KEY," +
-                    "PAYMENT_ID INT,OWNER_NAME VARCHAR(25),EXPIRATION_DATE VARCHAR(5),SECURITY_CODE INT);";
+                    "PAYMENT_ID INT,OWNER_NAME VARCHAR(25) NOT NULL,EXPIRATION_DATE VARCHAR(5) NOT NULL,SECURITY_CODE INT NOT NULL);";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {

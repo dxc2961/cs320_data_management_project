@@ -16,7 +16,7 @@ public class CustomerTable {
    public static void createCustomerTable(Connection conn){
       try {
          String str = "CREATE TABLE IF NOT EXISTS customer(EMAIL VARCHAR(50) PRIMARY KEY," +
-         "DISPLAY_NAME VARCHAR(20),PASSWORD VARCHAR(30),PHONE_NUM CHAR(10));";
+         "DISPLAY_NAME VARCHAR(20) NOT NULL,PASSWORD VARCHAR(30) NOT NULL,PHONE_NUM CHAR(10) NOT NULL);";
          Statement stmt = conn.createStatement();
          stmt.execute(str);
       } catch (SQLException e) {

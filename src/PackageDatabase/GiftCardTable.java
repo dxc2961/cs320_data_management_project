@@ -17,7 +17,7 @@ public class GiftCardTable {
     public static void createGiftCardTable(Connection conn){
         try {
             String str = "CREATE TABLE IF NOT EXISTS gift_card(GIFT_CARD_ID CHAR(15) PRIMARY KEY," +
-                    "PAYMENT_ID INT,EXPIRATION_DATE DATE,BALANCE INT);";
+                    "PAYMENT_ID INT,EXPIRATION_DATE DATE NOT NULL,BALANCE INT NOT NULL);";
             Statement stmt = conn.createStatement();
             stmt.execute(str);
         } catch (SQLException e) {
