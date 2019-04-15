@@ -314,6 +314,11 @@ public class CustomerView extends View{
 
     }
 
+    /**
+     * Prints out all the payment methods that are active and attributed to the customer
+     *
+     * @param results the results from the query looking for payment methods
+     */
     private void printPayments(ResultSet results){
         //TODO add censors for important information
         try {
@@ -370,6 +375,9 @@ public class CustomerView extends View{
         }
     }
 
+    /**
+     * Allows a customer to add new Credit Cards to their account's payment methods
+     */
     private void createCreditCard(){
         String paymentMethodInsertSQL = "INSERT INTO payment_method (cust_email) VALUES (\'" + this.email + "\')";
         try{
@@ -473,7 +481,62 @@ public class CustomerView extends View{
     }
 
     private void redeemGiftCard(){
+        boolean bad = true;
+        while(bad) {
+            System.out.println("Please enter the unique 15-character ID on the back of the card, q to quit");
 
+            String id = in.nextLine();
+            if(id.equals("q"))
+                break;
+            if (id.length() != 15)
+                System.out.println("Invalid redemption ID");
+            else {
+                String testGiftCardIDSQL = "SELECT * FROM gift_card " +
+                        "LEFT OUTER JOIN payment_method ON gift_card.payment_id=payment_method.payment_id " +
+                        "WHERE gift_card_id=\'" + id + "\' AND expiration_date>SYSDATE";
+                try {
+                    ResultSet results = this.runQuery(testGiftCardIDSQL);
+                    results.next();
+
+                    if (results.getInt(2) == 0) { //it was a correct gift card id
+
+                        String giftCardRedeemSQL = "UPDATE gift_card SET payment_id=\'";
+
+                        String paymentMethodInsertSQL = "INSERT INTO payment_method (cust_email) VALUES (\'" + this.email + "\')";
+                        try {
+                            this.runUpdate(paymentMethodInsertSQL);
+                        } catch (SQLException s) {
+                            System.err.println("Problem creating payment_method entry");
+                            return;
+                        }
+
+                        try {
+                            ResultSet payment_id = this.runQuery("SELECT * FROM payment_details " +
+                                    "WHERE cust_email=\'" + this.email + "\' AND active=true " +
+                                    "AND card_number IS NULL AND routing_num IS NULL AND gift_card_id IS NULL");
+                            payment_id.next();
+                            System.out.println(payment_id.getString(1));
+                            giftCardRedeemSQL += payment_id.getString(1) + "\' WHERE gift_card_id=\'" + id + "\'";
+                        } catch (SQLException s) {
+                            System.err.println("Problem getting new payment_id");
+                        }
+                        try{
+                            this.runUpdate(giftCardRedeemSQL);
+                        } catch (SQLException s){
+                            System.out.println("Unable to redeem card");
+                            s.printStackTrace();
+                        }
+                    }
+                    else {
+                        System.out.println("Gift card already used");
+                    }
+
+                    System.out.println(results.getString(1));
+                } catch (SQLException s){
+                    System.out.println("Invalid gift card");
+                }
+            }
+        }
     }
 
     /**
@@ -525,9 +588,6 @@ public class CustomerView extends View{
     }
 
 
-
-
-
     private void printOrders(ResultSet results){
         try {
             while (results.next()) {
@@ -538,10 +598,6 @@ public class CustomerView extends View{
         }
 
     }
-
-
-
-
 
     @Override
     public void assist() {
@@ -580,7 +636,5 @@ public class CustomerView extends View{
             }
         }
     }
-
-
 
 }
