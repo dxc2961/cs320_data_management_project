@@ -131,7 +131,7 @@ public class CustomerView extends View{
         //TODO query other relevant order information for this user
         try{
             ResultSet results = this.runQuery("SELECT * FROM order WHERE email=\'" + this.email + "\';");
-            this.printProfile(results);
+            this.printOrders(results);
             System.out.println("Would you like to edit this information? (y/n)");
             char action = this.in.next().charAt(0);
             in.nextLine();
@@ -145,6 +145,28 @@ public class CustomerView extends View{
 
     }
 
+    private void printOrders(ResultSet results){
+        try {
+            int order = 1;
+            while (results.next()) {
+                System.out.printf("\tAddress %d: %s %s %s %s %s %s\n",
+                        order,
+                        results.getString(2),
+                        results.getString(3),
+                        results.getString(4),
+                        results.getString(5),
+                        results.getString(6),
+                        results.getString(7));
+                order++;
+            }
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+
+
+
     /**
      * Gets the signed in customer's delivery address information we have on file for them
      * From here they can add a new address or delete/edit an old one
@@ -157,11 +179,8 @@ public class CustomerView extends View{
             char action = this.in.next().charAt(0);
             in.nextLine();
 
-            switch (action) {
-                case 'y':
-                    this.editAddresses(results);
-                    break;
-            }
+            if(action == 'y')
+                this.editAddresses(results);
         } catch (SQLException s){
             s.printStackTrace();
         }
@@ -181,10 +200,9 @@ public class CustomerView extends View{
                         results.getString(7));
                 address++;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException s) {
+            s.printStackTrace();
         }
-
     }
 
     /**
@@ -289,6 +307,9 @@ public class CustomerView extends View{
                 break;
         }
     }
+
+
+
 
     /**
      * Gets the payment information attributed to the signed in user
@@ -602,16 +623,6 @@ public class CustomerView extends View{
     }
 
 
-    private void printOrders(ResultSet results){
-        try {
-            while (results.next()) {
-                System.out.println("order details:");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @Override
     public void assist() {

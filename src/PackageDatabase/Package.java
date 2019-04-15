@@ -71,9 +71,9 @@ public class Package {
     * @param fragile_status
     * @param perishable_status
     */
-   public Package(int order_id, int package_id, String package_type, int weight, String delivery_speed,
-                  String delivery_status, boolean sign_required, boolean insurance_status,
-                  boolean hazard_status, boolean fragile_status, boolean perishable_status) {
+   public Package(int order_id, int package_id, String package_type, double weight, String delivery_speed,
+                  String delivery_status, boolean sign_required, boolean insurance_status, boolean hazard_status,
+                  boolean fragile_status, boolean perishable_status) {
       this.order_id = order_id;
       this.package_id = package_id;
       this.package_type = package_type;
@@ -85,6 +85,8 @@ public class Package {
       this.hazard_status = hazard_status;
       this.fragile_status = fragile_status;
       this.perishable_status = perishable_status;
+      this.item_description = null;
+      this.provided_value = -1;
    }
 
    /////////
@@ -143,6 +145,8 @@ public class Package {
    public double getProvided_value() {
       return provided_value;
    }
+
+   public boolean isDomestic(){return this.item_description == null;}
 
    /////////
    //SETTERS

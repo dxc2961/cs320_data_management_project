@@ -125,6 +125,7 @@ public class PackageMain {
          OrderTable.removeOrderTable(packageMain.getConnection());
          GiftCardTable.removeGiftCardTable(packageMain.getConnection());
          PaymentMethodTable.removePaymentMethodTable(packageMain.getConnection());
+         PackageTable.removePackageTable(packageMain.getConnection());
 
          //create tables
          AddressTable.createAddressTable(packageMain.getConnection());
@@ -134,6 +135,7 @@ public class PackageMain {
          OrderTable.createOrderTable(packageMain.getConnection());
          GiftCardTable.createGiftCardTable(packageMain.getConnection());
          PaymentMethodTable.createPaymentMethodTable(packageMain.getConnection());
+         PackageTable.createPackageTable(packageMain.getConnection());
 
          //populate tables
          AddressTable.populateAddressTableCSV(packageMain.getConnection(), "data/delivery_address.csv");
@@ -143,6 +145,7 @@ public class PackageMain {
          OrderTable.populateOrderTableCSV(packageMain.getConnection(), "data/order.csv");
          GiftCardTable.populateGiftCardTableCSV(packageMain.getConnection(), "data/giftcard.csv");
          PaymentMethodTable.populatePaymentMethodTableCSV(packageMain.getConnection(), "data/payment.csv");
+         PackageTable.populatePackageTableCSV(packageMain.getConnection(), "data/package.csv");
 
          packageMain.createViews();
 
