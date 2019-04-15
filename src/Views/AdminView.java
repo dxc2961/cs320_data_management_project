@@ -9,10 +9,12 @@ package Views;
  */
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class AdminView extends View{
 
+    ArrayList<String> previousScripts;
 
     public AdminView(){
         super();
@@ -22,8 +24,55 @@ public class AdminView extends View{
     private void sqlEditor(){
         //TODO allow user to write their own custom sql queries
 
-        System.out.println("opening sql editor!");
+        boolean done = false;
+        String input;
+        while(true) {
+            System.out.println("Enter the script you would like to run (b to go back)");
+            input = in.nextLine();
+            if(input.equals("b"))
+                break;
+            String[] split = input.split(" ");
 
+            try {
+                if (split[0].equalsIgnoreCase("select")) {
+                    ResultSet results = this.runQuery(input);
+                    ResultSetMetaData metadata = results.getMetaData();
+
+                    System.out.println("Results from query:");
+
+                    int ccount = metadata.getColumnCount();
+
+                    String[] columnHeaders = new String[ccount];
+
+                    for(String s : columnHeaders){
+                    }
+
+                    for(int i = 1; i <= metadata.getColumnCount(); i++){
+
+
+                    }
+
+                    while(results.next()){
+
+                        for(int i = 1; i <= metadata.getColumnCount(); i++){
+
+
+                        }
+
+                    }
+
+
+                }
+                else {
+                    this.runUpdate(input);
+                    System.out.println(split[0] + " completed successfully");
+                }
+
+
+            } catch (SQLException s){
+                System.out.println(s.getMessage());
+            }
+        }
     }
 
 

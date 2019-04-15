@@ -17,17 +17,13 @@ public class RunApplication {
         Scanner input = new Scanner(System.in);
         View view;
 
-        System.out.println("Hi there! What application will you use?");
+        System.out.println("Hello! What application will you use?");
         System.out.println("Press c for customer");
         System.out.println("Press e for customer service employees");
         System.out.println("Press s for shipping employees");
         System.out.println("Press a for database administrators");
 
-        /*********FOR TESTING PURPOSES ONLY, COMMENTING OUT INPUTS**********/
-        //char action = input.nextLine().charAt(0);
-        //input.nextLine();
-        char action = 'c';
-        /****/
+        char action = input.nextLine().charAt(0);
 
         switch (action) {
             case 'c':
