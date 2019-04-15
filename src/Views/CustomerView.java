@@ -136,7 +136,6 @@ public class CustomerView extends View{
             in.nextLine();
             if(action == 'y')
                 this.editProfile(results);
-
         } catch (SQLException s){
             s.printStackTrace();
         }
