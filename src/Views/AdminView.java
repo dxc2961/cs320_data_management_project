@@ -8,6 +8,8 @@ package Views;
  * service employee, or shipping employee. This would allow us to troubleshoot problems with the application.
  */
 
+import sun.nio.cs.US_ASCII;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -42,26 +44,48 @@ public class AdminView extends View{
 
                     int ccount = metadata.getColumnCount();
 
-                    String[] columnHeaders = new String[ccount];
+                    int[] colWidths = new int[ccount+1]; //widths of each of the column headers overall
 
-                    for(String s : columnHeaders){
+                    int totalWidth = 0; //the total width of this table
+
+                    for(int i = 1; i <= ccount; i++){
+                        String colName = metadata.getColumnName(i);
+                        System.out.print("|");
+                        totalWidth++;
+                        System.out.print(colName);
+                        colWidths[i] = Math.max(metadata.getColumnDisplaySize(i), colName.length());
+                        totalWidth += colWidths[i];
+                        for(int j = 0; j < colWidths[i]-colName.length(); j++) {
+                            System.out.print(" ");
+                        }
+                        System.out.print("\t");
+                        totalWidth+=4;
                     }
-
-                    for(int i = 1; i <= metadata.getColumnCount(); i++){
-
-
-                    }
+                    System.out.print("\n");
+                    for(int i = 0; i < totalWidth; i++)
+                        System.out.print(Character.toString('─'));
+                    System.out.print("\n");
 
                     while(results.next()){
-
                         for(int i = 1; i <= metadata.getColumnCount(); i++){
+                            //print a cell
+                            System.out.print("|");
 
+                            Object obj = results.getObject(i);
+                            int len;
+                            if(obj != null) {
+                                System.out.print(obj.toString());
+                                len = obj.toString().length();
+                            }
+                            else
+                                len = 0;
 
+                            for (int spaces = 0; spaces < colWidths[i] - len; spaces++)
+                                System.out.print(" ");
+                            System.out.print("\t");
                         }
-
+                        System.out.print("\n");
                     }
-
-
                 }
                 else {
                     this.runUpdate(input);
@@ -70,7 +94,8 @@ public class AdminView extends View{
 
 
             } catch (SQLException s){
-                System.out.println(s.getMessage());
+                System.err.println(s.getMessage());
+                System.out.print("\n");
             }
         }
     }
