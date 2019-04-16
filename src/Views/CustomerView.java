@@ -131,13 +131,19 @@ public class CustomerView extends View{
         try{
             String orderQuery = "SELECT " +
                     "orders.order_id, orders.email, orders.order_date, orders.delivery_date, package.package_count, payment.payment_type, " +
+                    "CASE " +
+                      "WHEN payment.payment_type='credit' THEN payment.card_number " +
+                      "WHEN payment.payment_type='check' THEN payment.check_num " +
+                      "WHEN payment.payment_type='gift card' THEN payment.gift_card_id " +
+                      "ELSE payment.payment_type " +
+                    "END AS payment_identifier, " +
                     "delivery.house_num, delivery.street_name, delivery.city, delivery.state, delivery.country_code, delivery.zip_code, " +
                     "return.house_num, return.street_name, return.city, return.state, return.country_code, return.zip_code " +
                     "FROM orders " +
                     "LEFT OUTER JOIN " +
                       "(SELECT " +
-                      "PAYMENT_ID, " +
-                      "payment_type " +
+                      "PAYMENT_ID, payment_type, " +
+                      "card_number, check_num, gift_card_id " +
                       "FROM payment_details) AS payment " +
                     "ON payment.payment_id=orders.payment_id " +
                     "LEFT OUTER JOIN " +
@@ -152,7 +158,6 @@ public class CustomerView extends View{
                     "WHERE orders.email=\'" + this.email + "\'";
             if(openOnly)
                 orderQuery = orderQuery.concat(" AND orders.delivery_date >= SYSDATE");
-            System.out.println(orderQuery);
             ResultSet results = this.runQuery(orderQuery);
             this.printOrders(results);
             /*System.out.println("Would you like to edit this information? (y/n)");
@@ -164,30 +169,35 @@ public class CustomerView extends View{
             s.printStackTrace();
         }
     }
-
+//SELECT orders.order_id, orders.email, orders.order_date, orders.delivery_date, package.package_count, payment.payment_type, delivery.house_num, delivery.street_name, delivery.city, delivery.state, delivery.country_code, delivery.zip_code, return.house_num, return.street_name, return.city, return.state, return.country_code, return.zip_code FROM orders LEFT OUTER JOIN (SELECT PAYMENT_ID, payment_type FROM payment_details) AS payment ON payment.payment_id=orders.payment_id LEFT OUTER JOIN address AS return ON return.address_id=orders.return_address_id LEFT OUTER JOIN address AS delivery ON delivery.address_id=orders.delivery_address_id LEFT OUTER JOIN (SELECT order_id, COUNT(package_id) AS package_count FROM package GROUP BY order_id) package ON orders.order_id=package.order_id WHERE orders.email='frederic@yahoo.com'
     private void printOrders(ResultSet results){
         try {
             int order = 1;
             while (results.next()) {
-                System.out.printf("\tOrder %d: %s %s %s %s %s %s\n",
+                System.out.printf("\tOrder %d: \n\t\tOrder Date: %s \n\t\tDelivery Date: %s \n\t\tPackage Count: %s \n\t\tPayment Type Used: %s\t%s\n",
                         order,
-                        results.getString(2),
+                        //results.getString(2),
                         results.getString(3),
                         results.getString(4),
                         results.getString(5),
                         results.getString(6),
                         results.getString(7));
 
+                System.out.printf("\t\tDelivery Address: %s %s %s %s %s %s\n",
+                        results.getString(8),
+                        results.getString(9),
+                        results.getString(10),
+                        results.getString(11),
+                        results.getString(12),
+                        results.getString(13));
 
-
-                System.out.printf("\tAddress %d: %s %s %s %s %s %s\n",
-                        order,
-                        results.getString(2),
-                        results.getString(3),
-                        results.getString(4),
-                        results.getString(5),
-                        results.getString(6),
-                        results.getString(7));
+                System.out.printf("\t\tReturn Address: %s %s %s %s %s %s\n",
+                        results.getString(14),
+                        results.getString(15),
+                        results.getString(16),
+                        results.getString(17),
+                        results.getString(18),
+                        results.getString(19));
                 order++;
             }
         } catch (SQLException s) {
