@@ -8,7 +8,6 @@ package Views;
  * service employee, or shipping employee. This would allow us to troubleshoot problems with the application.
  */
 
-import sun.nio.cs.US_ASCII;
 
 import java.sql.*;
 import java.util.ArrayList;
