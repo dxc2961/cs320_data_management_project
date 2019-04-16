@@ -23,7 +23,6 @@ public class ShippingEmployeeView extends View {
      * the delivery date of an order, and the current status of an order
      */
     private void searchOrder(){
-        //TODO query for the provided order number
 
         System.out.println("Please enter the order number: ");
         int order_id = Integer.parseInt(in.next());
@@ -34,7 +33,13 @@ public class ShippingEmployeeView extends View {
                 "WHERE orders.ORDER_ID = %d", order_id);
         try{
             ResultSet results = runQuery(query3);
-            printOrderName(results);
+            if(!results.next()){
+                System.out.println("Order not found!");
+                return;
+            }else {
+                results.previous();
+                printOrderName(results);
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -66,6 +71,19 @@ public class ShippingEmployeeView extends View {
         }catch (SQLException e){
             e.printStackTrace();
         }
+
+        System.out.println("Update delivery date for this order? (y/n)");
+        char option = in.next().charAt(0);
+        switch(option){
+            case 'y':
+                updateDeliveryDate(order_id);
+                break;
+            case'n':
+                break;
+            default:
+                System.out.println("Invalid command");
+                break;
+        }
     }
 
     /**
@@ -74,7 +92,6 @@ public class ShippingEmployeeView extends View {
      * the delivery date of an order, and the current status of an order
      */
     private void searchPackage(){
-        //TODO query for the provided package number
         System.out.println("Would you like to search by package id or order id? (p/o)");
         String search = in.next();
         String query;
@@ -86,10 +103,27 @@ public class ShippingEmployeeView extends View {
                 System.out.println("querying for package!");
                 try{
                     ResultSet results = runQuery(query);
-                    printPackage(results);
+                    if(!results.next()){
+                        System.out.println("Package not found!");
+                        return;
+                    }else {
+                        results.previous();
+                        printPackage(results);
+                    }
                 }catch (SQLException e){
                     e.printStackTrace();
                 }
+
+                System.out.println("Update current status? (y/n)");
+                char option = in.next().charAt(0);
+                switch (option){
+                    case 'y':
+                        updateCurrStatus(p_id);
+                        break;
+                    case 'n':
+                        break;
+                }
+
                 break;
             case "o":
                 System.out.println("Enter order id:");
@@ -99,10 +133,17 @@ public class ShippingEmployeeView extends View {
                 System.out.println("querying for package!");
                 try{
                     ResultSet results = runQuery(query);
-                    printPackage(results);
+                    if(!results.next()){
+                        System.out.println("Order not found!");
+                        return;
+                    }else {
+                        results.previous();
+                        printPackage(results);
+                    }
                 }catch (SQLException e){
                     e.printStackTrace();
                 }
+                System.out.println("To update current status of a package in this order, search using its package id found above.\n");
                 break;
             default:
                 System.out.println("Invalid Command");
@@ -134,19 +175,19 @@ public class ShippingEmployeeView extends View {
     private void printOrder(ResultSet results){
         try {
             while (results.next()) {
-                System.out.printf("customer email: %s \n\torder date: %s \n\t" +
-                                "delivery date: %s \n\tdelivery address: %s %s %s, %s %s %s\n\t",
-                        results.getString(3),
-                        results.getDate(4),
-                        results.getDate(5),
-                        results.getString(9),
-                        results.getString(10),
-                        results.getString(11),
-                        results.getString(12),
-                        results.getString(13),
-                        results.getString(14));
+                    System.out.printf("customer email: %s \n\torder date: %s \n\t" +
+                                    "delivery date: %s \n\tdelivery address: %s %s %s, %s %s %s\n\t",
+                            results.getString(3),
+                            results.getDate(4),
+                            results.getDate(5),
+                            results.getString(9),
+                            results.getString(10),
+                            results.getString(11),
+                            results.getString(12),
+                            results.getString(13),
+                            results.getString(14));
             }
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -183,6 +224,18 @@ public class ShippingEmployeeView extends View {
         }
     }
 
+    private void updateDeliveryDate(int id){
+        System.out.println("Please enter delivery date (yyyy-mm-dd)");
+        String date = in.next();
+        String update = String.format("UPDATE orders SET DELIVERY_DATE = DATE \'%s\' WHERE ORDER_ID = %d",date,id);
+        try{
+            runUpdate(update);
+            System.out.printf("Delivery date has been updated for order #%d!\n", id);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
     private void printPackage(ResultSet results){
         try {
@@ -209,6 +262,48 @@ public class ShippingEmployeeView extends View {
             e.printStackTrace();
         }
 
+    }
+
+    private void updateCurrStatus(int p_id){
+        System.out.println("Press t to change status to 'in_transit'");
+        System.out.println("Press w to change status to 'in_warehouse'");
+        System.out.println("Press o to change status to 'out_for_delivery'");
+        System.out.println("Press d to change status to 'delivered'");
+
+        char option = in.next().charAt(0);
+        String choice;
+        switch(option){
+            case 't':
+                choice = "in_transit";
+                setStatus(choice,p_id);
+                break;
+            case 'w':
+                choice = "in_warehouse";
+                setStatus(choice,p_id);
+                break;
+            case 'o':
+                choice = "out_for_delivery";
+                setStatus(choice,p_id);
+                break;
+            case 'd':
+                choice = "delivered";
+                setStatus(choice,p_id);
+                break;
+            default:
+                System.out.println("Invalid command");
+                break;
+        }
+
+    }
+
+    private void setStatus(String choice, int p_id){
+        String update = String.format("UPDATE package SET CURRENT_STATUS = \'%s\' WHERE PACKAGE_ID = %d",choice,p_id);
+        try{
+            runUpdate(update);
+            System.out.printf("Current status has been updated for package #%d\n", p_id);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
 
