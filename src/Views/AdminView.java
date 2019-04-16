@@ -24,10 +24,8 @@ public class AdminView extends View{
 
 
     private void sqlEditor(){
-        //TODO allow user to write their own custom sql queries
-
-        boolean done = false;
         String input;
+
         while(true) {
             System.out.println("Enter the script you would like to run (b to go back)");
             input = in.nextLine();

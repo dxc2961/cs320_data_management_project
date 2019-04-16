@@ -6,6 +6,8 @@ package Views;
  */
 
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.sql.*;
 
 
@@ -173,12 +175,15 @@ public class CustomerView extends View{
         try {
             ResultSet results = this.runQuery("SELECT * FROM address WHERE customer_email=\'" + this.email + "\';");
             this.printAddresses(results);
-            System.out.println("Would you like to edit this information? (y/n)");
+            System.out.println("Press e to edit an existing address");
+            System.out.println("Press a to add a new address");
             char action = this.in.next().charAt(0);
             in.nextLine();
 
-            if(action == 'y')
+            if(action == 'e')
                 this.editAddresses(results);
+            else if(action == 'a')
+                this.createAddress(results);
         } catch (SQLException s){
             s.printStackTrace();
         }
@@ -200,6 +205,83 @@ public class CustomerView extends View{
             }
         } catch (SQLException s) {
             s.printStackTrace();
+        }
+    }
+
+    private void createAddress(ResultSet results){
+        String housenum = "", street = "", city = "", state = "", country = "", zip = "";
+        boolean canContinue = false;
+
+        while(!canContinue) {
+            System.out.println("What is the house number of the new address?");
+            housenum = in.nextLine();
+            if(housenum.length() <= 10){
+                canContinue = true;
+            }
+            else
+                System.out.println("House number must be of length 10 or less");
+        }
+        canContinue = false;
+        while(!canContinue) {
+            System.out.println("What is the street name of the new address?");
+            street = in.nextLine();
+            if(street.length() <= 30){
+                canContinue = true;
+            }
+            else
+                System.out.println("Street name must be of length 30 or less");
+        }
+        canContinue = false;
+        while(!canContinue) {
+            System.out.println("What city is the new address in?");
+            city = in.nextLine();
+            if(city.length() <= 20){
+                canContinue = true;
+            }
+            else
+                System.out.println("City name must be of length 20 or less");
+        }
+        canContinue = false;
+        while(!canContinue) {
+            System.out.println("What state is the new address in?");
+            state = in.nextLine();
+            if(state.length() <= 30){
+                canContinue = true;
+            }
+            else
+                System.out.println("State name must be of length 30 or less");
+        }
+        canContinue = false;
+        while(!canContinue) {
+            System.out.println("What is ISO alpha-3 country code of the new address?");
+            country = in.nextLine();
+            if(country.length() == 3){
+                canContinue = true;
+            }
+            else
+                System.out.println("Country code must be of length 3");
+        }
+        canContinue = false;
+        while(!canContinue) {
+            System.out.println("What is the zip code of the new address?");
+            zip = in.nextLine();
+            if(zip.length() == 5 && isNumeric(zip)){
+                canContinue = true;
+            }
+            else
+                System.out.println("Zip code must be of length 5 and consist only of numbers");
+        }
+
+        String insertSQL = "INSERT INTO address (house_num, street_name, city, " +
+                "state, country_code, zip_code, customer_email) VALUES (\'" +
+                housenum + "\', \'" + street + "\', \'" + city + "\', \'" +
+                state + "\', \'" + country + "\', \'" + zip + "\', \'" + this.email + "\')";
+
+        try {
+            this.runUpdate(insertSQL);
+        } catch (SQLException s){
+            s.printStackTrace();
+            System.err.println("Unable to add new address");
         }
     }
 
