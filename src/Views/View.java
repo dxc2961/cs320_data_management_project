@@ -66,15 +66,24 @@ public abstract class View {
         statement.executeUpdate(input);
     }
 
-    private boolean signIn(String username){
-        this.username = username;
+    private boolean signIn(String email, String pass){
+        this.email = email;
         ResultSet result;
         try {
-            result = this.runQuery("SELECT email FROM customer WHERE display_name=\'" + username + "\'");
+            result = this.runQuery("SELECT display_name, password FROM customer WHERE email=\'" + this.email + "\'");
             result.first();
-            this.email = result.getString(1);
+            this.username = result.getString(1);
+
+            if (!pass.equals(result.getString(2))) {
+                System.out.println("Incorrect password");
+                return false;
+            }
+
         } catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("Incorrect Email");
             return false;
+
         }
         return true;
     }
@@ -88,23 +97,24 @@ public abstract class View {
         in = new Scanner(System.in);
 
 
-        System.out.println("Hello! Thank you for using this application. Please log in using your username.");
+        System.out.println("Hello! Thank you for using this application. Please log in using your email.");
+        String email = in.nextLine();
 
-        /*********FOR TESTING PURPOSES ONLY, COMMENTING OUT INPUTS**********/
-        //while(!this.signIn(in.nextLine()))
-        //    System.out.println("Invalid username. Please try again.");
-        this.signIn("frederic");
-        /****/
+        System.out.println("Please enter your password");
+        String password = in.nextLine();
 
-        System.out.println("Your email is " + this.email);
+        while(!this.signIn(email, password)) {
+            System.out.println("Please enter your email");
+            email = in.nextLine();
+            System.out.println("Please enter your password");
+            password = in.nextLine();
+        }
 
         this.assist();
 
         this.closeConnection();
 
-        System.out.println("");
         System.out.println("Have a nice day!");
-        System.out.println("");
     }
 
     public void quit() {

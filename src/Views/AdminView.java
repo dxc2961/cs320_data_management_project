@@ -8,11 +8,15 @@ package Views;
  * service employee, or shipping employee. This would allow us to troubleshoot problems with the application.
  */
 
+import sun.nio.cs.US_ASCII;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class AdminView extends View{
 
+    ArrayList<String> previousScripts;
 
     public AdminView(){
         super();
@@ -22,8 +26,78 @@ public class AdminView extends View{
     private void sqlEditor(){
         //TODO allow user to write their own custom sql queries
 
-        System.out.println("opening sql editor!");
+        boolean done = false;
+        String input;
+        while(true) {
+            System.out.println("Enter the script you would like to run (b to go back)");
+            input = in.nextLine();
+            if(input.equals("b"))
+                break;
+            String[] split = input.split(" ");
 
+            try {
+                if (split[0].equalsIgnoreCase("select")) {
+                    ResultSet results = this.runQuery(input);
+                    ResultSetMetaData metadata = results.getMetaData();
+
+                    System.out.println("Results from query:");
+
+                    int ccount = metadata.getColumnCount();
+
+                    int[] colWidths = new int[ccount+1]; //widths of each of the column headers overall
+
+                    int totalWidth = 0; //the total width of this table
+
+                    for(int i = 1; i <= ccount; i++){
+                        String colName = metadata.getColumnName(i);
+                        System.out.print("|");
+                        totalWidth++;
+                        System.out.print(colName);
+                        colWidths[i] = Math.max(metadata.getColumnDisplaySize(i), colName.length());
+                        totalWidth += colWidths[i];
+                        for(int j = 0; j < colWidths[i]-colName.length(); j++) {
+                            System.out.print(" ");
+                        }
+                        System.out.print("\t");
+                        totalWidth+=4;
+                    }
+                    System.out.print("\n");
+                    for(int i = 0; i < totalWidth; i++)
+                        System.out.print(Character.toString('─'));
+                    System.out.print("\n");
+
+                    while(results.next()){
+                        for(int i = 1; i <= metadata.getColumnCount(); i++){
+                            //print a cell
+                            System.out.print("|");
+
+                            Object obj = results.getObject(i);
+                            int len;
+                            if(obj != null) {
+                                System.out.print(obj.toString());
+                                len = obj.toString().length();
+                            }
+                            else
+                                len = 0;
+
+                            for (int spaces = 0; spaces < colWidths[i] - len; spaces++)
+                                System.out.print(" ");
+                            System.out.print("\t");
+                        }
+                        System.out.print("\n");
+                    }
+                }
+                else {
+                    this.runUpdate(input);
+                    System.out.println(split[0] + " completed successfully");
+                }
+
+
+            } catch (SQLException s){
+                System.err.println(s.getMessage());
+                System.out.print("\n");
+            }
+        }
     }
 
 

@@ -23,9 +23,14 @@ public class ShippingEmployeeView extends View {
      * the delivery date of an order, and the current status of an order
      */
     private void searchOrder(){
-        //TODO query for the provided order number
+        //TODO query for the provided order information
 
-        System.out.println("querying for order!");
+        //prompt for an order number
+
+        //include the information of the delivery address by joining on the address table
+
+        //include the total amount of packages attributed to that order.
+        //this would also include a join on the packages table, group by order number
 
     }
 
@@ -35,21 +40,12 @@ public class ShippingEmployeeView extends View {
      * the delivery date of an order, and the current status of an order
      */
     private void searchPackage(){
-        //TODO query for the provided package number
+        //TODO query for the provided package number or order number
 
-        System.out.println("querying for package!");
+        //needs to prompt to search off order number or package number, then search the package table accordingly
 
-    }
+        //include all information from the package table, and some key delivery information from the order table
 
-    /**
-     * Search for the order and package information based off an order number
-     * They need to be able to update the status of an order,
-     * the delivery date of an order, and the current status of an order
-     */
-    private void searchAddress(){
-        //TODO query for the provided address deliveries
-
-        System.out.println("querying for delivery address!");
 
     }
 
@@ -78,17 +74,6 @@ public class ShippingEmployeeView extends View {
     }
 
 
-    private void printAddress(ResultSet results){
-        try {
-            while (results.next()) {
-                System.out.println("delivery address details:");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     @Override
     public void assist() {
         System.out.println("Hello " + this.username + "! What are you searching for?");
@@ -110,9 +95,9 @@ public class ShippingEmployeeView extends View {
                 case 'p':
                     this.searchPackage();
                     break;
-                case 'a':
+                /*case 'a':
                     this.searchAddress();
-                    break;
+                    break;*/
                 case 'q':
                     this.quit();
                     break;
