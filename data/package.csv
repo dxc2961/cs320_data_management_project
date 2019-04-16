@@ -19,3 +19,4 @@ order_id,package_id,package_type,weight,delivery_speed,current_status,sign_requi
 18,142,bag,40,standard,delivered,no,no,yes,no,no,,
 19,143,tube,46,no_rush,in_transit,yes,no,no,no,yes,,
 20,144,box,11,no_rush,delivered,no,no,no,no,no,,
+21,145,envelope,36,express,delivered,no,no,yes,yes,no,texbook,199

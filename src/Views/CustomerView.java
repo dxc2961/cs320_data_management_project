@@ -6,7 +6,6 @@ package Views;
  */
 
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.sql.*;
 
@@ -128,46 +127,59 @@ public class CustomerView extends View{
      * Gets the order information for the customer that is logged in.
      * From here they can track an order or cancel an order.
      */
-    private void viewOrders(){
+    private void viewOrders(boolean openOnly){
         try{
             String orderQuery = "SELECT " +
                     "orders.order_id, orders.email, orders.order_date, orders.delivery_date, package.package_count, payment.payment_type, " +
                     "delivery.house_num, delivery.street_name, delivery.city, delivery.state, delivery.country_code, delivery.zip_code, " +
                     "return.house_num, return.street_name, return.city, return.state, return.country_code, return.zip_code " +
                     "FROM orders " +
-                    "INNER JOIN " +
+                    "LEFT OUTER JOIN " +
                       "(SELECT " +
                       "PAYMENT_ID, " +
                       "payment_type " +
                       "FROM payment_details) AS payment " +
                     "ON payment.payment_id=orders.payment_id " +
-                    "INNER JOIN " +
+                    "LEFT OUTER JOIN " +
                       "address AS return " +
                     "ON return.address_id=orders.return_address_id " +
-                    "INNER JOIN " +
+                    "LEFT OUTER JOIN " +
                       "address AS delivery " +
                     "ON delivery.address_id=orders.delivery_address_id " +
-                    "INNER JOIN " +
+                    "LEFT OUTER JOIN " +
                       "(SELECT order_id, COUNT(package_id) AS package_count FROM package GROUP BY order_id) package " +
-                    "ON orders.order_id=package.order_id";
+                    "ON orders.order_id=package.order_id " +
+                    "WHERE orders.email=\'" + this.email + "\'";
+            if(openOnly)
+                orderQuery = orderQuery.concat(" AND orders.delivery_date >= SYSDATE");
+            System.out.println(orderQuery);
             ResultSet results = this.runQuery(orderQuery);
             this.printOrders(results);
-            System.out.println("Would you like to edit this information? (y/n)");
+            /*System.out.println("Would you like to edit this information? (y/n)");
             char action = this.in.next().charAt(0);
             in.nextLine();
             if(action == 'y')
-                this.editProfile(results);
+                this.editProfile(results);*/
         } catch (SQLException s){
             s.printStackTrace();
         }
-        System.out.println("querying order data!");
-
     }
 
     private void printOrders(ResultSet results){
         try {
             int order = 1;
             while (results.next()) {
+                System.out.printf("\tOrder %d: %s %s %s %s %s %s\n",
+                        order,
+                        results.getString(2),
+                        results.getString(3),
+                        results.getString(4),
+                        results.getString(5),
+                        results.getString(6),
+                        results.getString(7));
+
+
+
                 System.out.printf("\tAddress %d: %s %s %s %s %s %s\n",
                         order,
                         results.getString(2),
@@ -742,7 +754,9 @@ public class CustomerView extends View{
                     this.viewProfile();
                     break;
                 case 'o':
-                    this.viewOrders();
+                    System.out.println("Would you like to only view open orders? (y/n)");
+                    char action2 = in.nextLine().charAt(0);
+                    this.viewOrders(action2 == 'y');
                     break;
                 case 'a':
                     this.viewAddresses();
