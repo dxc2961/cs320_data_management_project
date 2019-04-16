@@ -72,7 +72,13 @@ public class PackageMain {
               "payment_method.payment_id, payment_method.cust_email, payment_method.active, " +
               "credit_card.card_number, credit_card.owner_name, credit_card.expiration_date as credit_expiration_date, credit_card.security_code, " +
               "checks.routing_num, checks.account_num, checks.check_num, " +
-              "gift_card.gift_card_id, gift_card.expiration_date as gift_expiration_date, gift_card.balance " +
+              "gift_card.gift_card_id, gift_card.expiration_date as gift_expiration_date, gift_card.balance, " +
+              "CASE " +
+                "WHEN card_number IS NOT NULL THEN \'credit\' " +
+                "WHEN routing_num IS NOT NULL THEN \'check\' " +
+                "WHEN gift_card_id IS NOT NULL THEN \'gift card\' " +
+                "ELSE \'none\' " +
+              "END payment_type " +
               "FROM payment_method " +
               "LEFT OUTER JOIN credit_card ON payment_method.payment_id = credit_card.payment_id " +
               "LEFT OUTER JOIN checks ON payment_method.payment_id = checks.payment_id " +
@@ -91,6 +97,15 @@ public class PackageMain {
       try{
          Statement stmt = this.getConnection().createStatement();
          stmt.execute(paymentViewDropSQL);
+      } catch (SQLException s){
+         System.err.println("Could not create payment view");
+         s.printStackTrace();
+      }
+
+      String customerOrderViewDropSQL = "DROP VIEW IF EXISTS customer_orders;";
+      try{
+         Statement stmt = this.getConnection().createStatement();
+         stmt.execute(customerOrderViewDropSQL);
       } catch (SQLException s){
          System.err.println("Could not create payment view");
          s.printStackTrace();
