@@ -22,6 +22,7 @@ public class RunApplication {
         System.out.println("Press e for customer service employees");
         System.out.println("Press s for shipping employees");
         System.out.println("Press a for database administrators");
+        System.out.println("Press y for analysts");
 
         char action = input.nextLine().charAt(0);
 
@@ -40,6 +41,7 @@ public class RunApplication {
                 break;
             case 'y':
                 view = new AnalystView();
+                break;
             default:
                 view = new CustomerView();
                 break;
