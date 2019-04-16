@@ -129,9 +129,28 @@ public class CustomerView extends View{
      * From here they can track an order or cancel an order.
      */
     private void viewOrders(){
-        //TODO query other relevant order information for this user
         try{
-            ResultSet results = this.runQuery("SELECT * FROM order WHERE email=\'" + this.email + "\';");
+            String orderQuery = "SELECT " +
+                    "orders.order_id, orders.email, orders.order_date, orders.delivery_date, package.package_count, payment.payment_type, " +
+                    "delivery.house_num, delivery.street_name, delivery.city, delivery.state, delivery.country_code, delivery.zip_code, " +
+                    "return.house_num, return.street_name, return.city, return.state, return.country_code, return.zip_code " +
+                    "FROM orders " +
+                    "INNER JOIN " +
+                      "(SELECT " +
+                      "PAYMENT_ID, " +
+                      "payment_type " +
+                      "FROM payment_details) AS payment " +
+                    "ON payment.payment_id=orders.payment_id " +
+                    "INNER JOIN " +
+                      "address AS return " +
+                    "ON return.address_id=orders.return_address_id " +
+                    "INNER JOIN " +
+                      "address AS delivery " +
+                    "ON delivery.address_id=orders.delivery_address_id " +
+                    "INNER JOIN " +
+                      "(SELECT order_id, COUNT(package_id) AS package_count FROM package GROUP BY order_id) package " +
+                    "ON orders.order_id=package.order_id";
+            ResultSet results = this.runQuery(orderQuery);
             this.printOrders(results);
             System.out.println("Would you like to edit this information? (y/n)");
             char action = this.in.next().charAt(0);
@@ -399,7 +418,7 @@ public class CustomerView extends View{
         try {
             ResultSet results = this.runQuery(
                     "SELECT * FROM payment_details " +
-                            "WHERE cust_email=\'" + this.email + "\' AND active=true");
+                            "WHERE cust_email=\'" + this.email + "\' AND active=true AND payment_type<>\'none\'");
             this.printPayments(results);
             System.out.println("Would you like to edit this information? (y/n)");
             char action = this.in.next().charAt(0);
@@ -420,16 +439,15 @@ public class CustomerView extends View{
      * @param results the results from the query looking for payment methods
      */
     private void printPayments(ResultSet results){
-        //TODO add censors for important information
         try {
             this.printGiftCardTotal();
             int payment = 1;
             while (results.next()) {
-                if(results.getString(4) != null)
+                if(results.getString(14).equals("credit"))
                     printCreditCards(results,payment);
-                if(results.getString(8) != null)
+                if(results.getString(14).equals("check"))
                     printChecks(results,payment);
-                if(results.getString(11) != null)
+                if(results.getString(14).equals("gift card"))
                     printGiftCards(results,payment);
                 payment++;
             }
