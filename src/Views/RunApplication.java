@@ -38,6 +38,8 @@ public class RunApplication {
             case 'a':
                 view = new AdminView();
                 break;
+            case 'y':
+                view = new AnalystView();
             default:
                 view = new CustomerView();
                 break;
