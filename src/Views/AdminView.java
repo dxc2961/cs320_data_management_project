@@ -16,13 +16,14 @@ import java.util.ArrayList;
 
 public class AdminView extends View{
 
-    ArrayList<String> previousScripts;
 
     public AdminView(){
-        super();
+        super();;
     }
 
-
+    /**
+     * Runs an SQL editor in which the admin can type in SQL queries and have the results printed out
+     */
     private void sqlEditor(){
         String input;
 
