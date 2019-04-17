@@ -19,7 +19,6 @@ public class RunApplication {
 
         System.out.println("Hello! What application will you use?");
         System.out.println("Press c for customer");
-        System.out.println("Press e for customer service employees");
         System.out.println("Press s for shipping employees");
         System.out.println("Press a for database administrators");
         System.out.println("Press y for analysts");
@@ -29,9 +28,6 @@ public class RunApplication {
         switch (action) {
             case 'c':
                 view = new CustomerView();
-                break;
-            case 'e':
-                view = new ServiceEmployeeView();
                 break;
             case 's':
                 view = new ShippingEmployeeView();
@@ -48,7 +44,6 @@ public class RunApplication {
         }
 
         view.run();
-        //Display.run(appArray, view);
 
     }
 }
