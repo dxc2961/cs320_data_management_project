@@ -1,15 +1,12 @@
 OPERATING THE APPLICATION
 
 After starting the application, you will be prompted to chose one of the five user
-interfaces to log into. The five interfaces are customer (c), customer service employee (e),
-shipping employee (s), database administrator (a), and analysts (y). Each interface is described below.
-Once you select the interface you wish to use, you will be prompted to enter your user email, and then
-your password.
+interfaces to log into. The five interfaces are customer (c), shipping employee (s), database administrator (a),
+and analysts (y). Each interface is described below. Once you select the interface you wish to use,
+you will be prompted to enter your user email, and then your password.
 
     Customer: This interface is intended for customers to view and edit their information. This includes profile
         information, order information, address information, and payment method information.
-
-    Customer Service Employee:
 
     Shipping Employee: This interface is for shipping employees to view and edit certain information regarding
         orders and packages. The employee can search for orders using an order id to get order information and
