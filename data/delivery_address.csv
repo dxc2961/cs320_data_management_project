@@ -19,3 +19,6 @@ address_id,house_num,street_name,city,state,country_code,zip_code,cust_email
 18,345,Jefferson Road,Rochester,Idaho,USA,32164,multiplx@me.com
 19,90,Park Avenue,Greece,Texas,USA,32476,birddog@att.net
 20,65,John Street,Rochester,Georgia,USA,32476,aukjan@outlook.com
+21,212,Appalachian Trail Place,Syracuse,New York,USA,09843,frederic@yahoo.com
+22,531,Boardwalk Drive,Columbus,Alabama,USA,74323,frederic@yahoo.com
+23,83,Park Street,Chicago,Connecticut,USA,09832,frederic@yahoo.com
