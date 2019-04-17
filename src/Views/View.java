@@ -103,8 +103,7 @@ public abstract class View {
         System.out.println("Please enter your password");
         String password = in.nextLine();
 
-        //while(!this.signIn(email, password)) {
-        while(!this.signIn("aukjan@outlook.com","password123")){
+        while(!this.signIn(email, password)) {
             System.out.println("Please enter your email");
             email = in.nextLine();
             System.out.println("Please enter your password");
