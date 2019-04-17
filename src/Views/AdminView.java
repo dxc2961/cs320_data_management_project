@@ -106,7 +106,7 @@ public class AdminView extends View{
         View newView = null;
 
         System.out.println("Press c to run a customer view");
-        System.out.println("Press e to run a customer service view");
+        System.out.println("Press e to run a analyst view");
         System.out.println("Press s to run a shipping department view");
         System.out.println("Press b to go back");
         char action = this.in.next().charAt(0);
