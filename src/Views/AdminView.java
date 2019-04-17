@@ -116,8 +116,8 @@ public class AdminView extends View{
             case 'c':
                 newView = new CustomerView();
                 break;
-            case 'e':
-                newView = new ServiceEmployeeView();
+            case 'y':
+                newView = new AnalystView();
                 break;
             case 's':
                 newView = new ShippingEmployeeView();
