@@ -3,7 +3,8 @@ OPERATING THE APPLICATION
 After starting the application, you will be prompted to choose one of the five user
 interfaces to log into. The five interfaces are customer (c), shipping employee (s), database administrator (a),
 and analysts (y). Each interface is described below. Once you select the interface you wish to use,
-you will be prompted to enter your user email, and then your password.
+you will be prompted to enter your user email, and then your password. A good login to use is 'frederic@yahoo.com' with
+password 'password123' (for our own convenience we made all the passwords 'password123').
 
     Customer: This interface is intended for customers to view and edit their information. This includes profile
         information, order information, address information, and payment method information.

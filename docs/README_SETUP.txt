@@ -14,7 +14,7 @@ For first time users:
 
     3)  Once the database is populated, run 'RunApplication' in the 'Views' directory.
         This will launch the command line interface to interact with the database (for information regarding
-        each of the user interfaces, see 'README2.txt' in the 'docs' folder).
+        each of the user interfaces, see 'README_SETUP.txt' in the 'docs' folder).
 
 
 For returning users:
