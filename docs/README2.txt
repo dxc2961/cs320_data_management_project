@@ -20,5 +20,6 @@ you will be prompted to enter your user email, and then your password.
 
     Analyst: This interface is intended for analysts who wish to get statistics about the data in the database.
         The analyst can find statistics about packages, like how many of each package type is in the database and how
-        many packages of each delivery speed there are.  The analyst can also find statistics about orders, addresses,
-        and payment methods.
+        many packages of each delivery speed there are.  The analyst can also find statistics about addresses like how
+        many are in each country code, state, zip code, and city. Lastly, the analyst can find statistics about payment
+        methods like which states the payment methods are from and how frequently each payment method is used.
