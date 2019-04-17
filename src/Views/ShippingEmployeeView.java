@@ -26,6 +26,7 @@ public class ShippingEmployeeView extends View {
 
         System.out.println("Please enter the order number: ");
         int order_id = Integer.parseInt(in.next());
+        in.nextLine();
 
         System.out.println("querying for order!");
         //query to get customer name for printing order details
@@ -74,6 +75,7 @@ public class ShippingEmployeeView extends View {
 
         System.out.println("Update delivery date for this order? (y/n)");
         char option = in.next().charAt(0);
+        in.nextLine();
         switch(option){
             case 'y':
                 updateDeliveryDate(order_id);
@@ -94,6 +96,7 @@ public class ShippingEmployeeView extends View {
     private void searchPackage(){
         System.out.println("Would you like to search by package id or order id? (p/o)");
         String search = in.next();
+        in.nextLine();
         String query;
         switch (search){
             case "p":
@@ -116,6 +119,7 @@ public class ShippingEmployeeView extends View {
 
                 System.out.println("Update current status? (y/n)");
                 char option = in.next().charAt(0);
+                in.nextLine();
                 switch (option){
                     case 'y':
                         updateCurrStatus(p_id);
@@ -128,6 +132,7 @@ public class ShippingEmployeeView extends View {
             case "o":
                 System.out.println("Enter order id:");
                 int o_id = Integer.parseInt(in.next());
+                in.nextLine();
                 query = String.format("SELECT * FROM package LEFT OUTER JOIN orders ON package.ORDER_ID = orders.ORDER_ID " +
                         "WHERE package.ORDER_ID = %d;", o_id);
                 System.out.println("querying for package!");
@@ -160,8 +165,10 @@ public class ShippingEmployeeView extends View {
     private void printOrderName(ResultSet results){
         try{
             while (results.next()){
-                System.out.printf("order details: \n\tcustomer name: %s \n\t",
-                        results.getString(2));
+                System.out.printf("order details: \n\torder id: %s \n\tcustomer display name: %s \n\tcustomer phone #: %s\n\t",
+                        results.getString(5),
+                        results.getString(2),
+                        results.getString(4));
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -227,6 +234,7 @@ public class ShippingEmployeeView extends View {
     private void updateDeliveryDate(int id){
         System.out.println("Please enter delivery date (yyyy-mm-dd)");
         String date = in.next();
+        in.nextLine();
         String update = String.format("UPDATE orders SET DELIVERY_DATE = DATE \'%s\' WHERE ORDER_ID = %d",date,id);
         try{
             runUpdate(update);
@@ -271,6 +279,7 @@ public class ShippingEmployeeView extends View {
         System.out.println("Press d to change status to 'delivered'");
 
         char option = in.next().charAt(0);
+        in.nextLine();
         String choice;
         switch(option){
             case 't':
