@@ -7,6 +7,7 @@ package Views;
 
 
 
+import javax.xml.transform.Result;
 import java.sql.*;
 
 
@@ -169,7 +170,7 @@ public class CustomerView extends View{
             s.printStackTrace();
         }
     }
-//SELECT orders.order_id, orders.email, orders.order_date, orders.delivery_date, package.package_count, payment.payment_type, delivery.house_num, delivery.street_name, delivery.city, delivery.state, delivery.country_code, delivery.zip_code, return.house_num, return.street_name, return.city, return.state, return.country_code, return.zip_code FROM orders LEFT OUTER JOIN (SELECT PAYMENT_ID, payment_type FROM payment_details) AS payment ON payment.payment_id=orders.payment_id LEFT OUTER JOIN address AS return ON return.address_id=orders.return_address_id LEFT OUTER JOIN address AS delivery ON delivery.address_id=orders.delivery_address_id LEFT OUTER JOIN (SELECT order_id, COUNT(package_id) AS package_count FROM package GROUP BY order_id) package ON orders.order_id=package.order_id WHERE orders.email='frederic@yahoo.com'
+
     private void printOrders(ResultSet results){
         try {
             int order = 1;
@@ -200,8 +201,128 @@ public class CustomerView extends View{
                         results.getString(19));
                 order++;
             }
+            System.out.println("Would you like to edit any of these orders? (y/n)");
+            if(in.next().charAt(0) == 'y'){
+                in.nextLine();
+                editOrders(results);
+            }
+            else
+                in.nextLine();
         } catch (SQLException s) {
             s.printStackTrace();
+        }
+    }
+
+    /**
+     * Allows a user to edit their order information
+     */
+    private void editOrders(ResultSet results){
+        System.out.println("Enter the order number you would like to edit");
+        int order = in.nextInt();
+        in.nextLine();
+
+        System.out.println("Editing order " + order);
+
+        int orderId;
+
+        try {
+            results.absolute(1);
+            while (order > 1) {
+                results.next();
+                order--;
+            }
+            orderId = results.getInt(1);
+        } catch (SQLException s){
+            System.err.println("Order number out of range");
+            return;
+        }
+
+        String checkStatus =
+                "SELECT order_id, " +
+                "sum(CASE " +
+                      "WHEN current_status='in_warehouse' THEN 1 " +
+                      "ELSE 0 " +
+                    "END) AS in_warehouse_count, " +
+                "count(*) AS total_count " +
+                "FROM " +
+                  "(SELECT " +
+                  "orders.order_id, package.package_id, " +
+                  "orders.email, package.current_status " +
+                  "FROM orders NATURAL JOIN package " +
+                  "WHERE email=\'" + this.email + "\' " +
+                    "AND orders.order_id=" + orderId + ") " +
+                "GROUP BY order_id";
+        try{
+            ResultSet validator = this.runQuery(checkStatus);
+            validator.next();
+            if(!validator.getString(2).equals(validator.getString(3))) {
+                System.err.println("This order has packages that have left the warehouse, therefore you cannot edit the addresses for that order");
+                return;
+            }
+        } catch (SQLException s){
+            System.err.println("Unable to analyze order");
+            return;
+        }
+
+        System.out.println("Press r to edit the order's return address");
+        System.out.println("Press d to edit the order's delivery address");
+        System.out.println("Press b to go back");
+        char action = in.next().charAt(0);
+        in.nextLine();
+        int newAddressNum;
+
+        ResultSet addresses = null;
+        if(action!='b'){
+            System.out.println("Here are your current addresses:");
+            addresses = this.viewAddresses(false);
+        }
+
+        switch (action) {
+            case 'b':
+                return;
+            case 'r':
+                System.out.println("Please enter the number of the new return address");
+                newAddressNum = this.in.nextInt();
+                in.nextLine();
+                try {
+                    addresses.absolute(newAddressNum);
+                }
+                catch(SQLException s){
+                    System.err.println("Address number out of bounds");
+                    return;
+                }
+
+                try{
+                    //validate they can update this information
+                    this.runUpdate("UPDATE orders SET return_address_id=" + addresses.getInt(1) + " WHERE order_id=" + orderId);
+                    System.out.println("Your return address has been updated");
+                } catch(SQLException s){
+                    System.err.println("Invalid street name");
+                }
+                break;
+            case 'd':
+                System.out.println("Please enter the number of the new delivery address");
+                newAddressNum = this.in.nextInt();
+                in.nextLine();
+                try {
+                    addresses.absolute(newAddressNum);
+                }
+                catch(SQLException s){
+                    System.err.println("Address number out of bounds");
+                    return;
+                }
+
+                try{
+                    //validate they can update this information
+                    this.runUpdate("UPDATE orders SET delivery_address_id=" + addresses.getInt(1) + " WHERE order_id=" + orderId);
+                    System.out.println("Your delivery address has been updated");
+                } catch(SQLException s){
+                    System.err.println("Invalid city name");
+                }
+                break;
+            default:
+                System.out.println("Invalid Choice");
+                break;
         }
     }
 
@@ -212,22 +333,27 @@ public class CustomerView extends View{
      * Gets the signed in customer's delivery address information we have on file for them
      * From here they can add a new address or delete/edit an old one
      */
-    private void viewAddresses(){
+    private ResultSet viewAddresses(boolean shouldPrompt){
+        ResultSet results = null;
         try {
-            ResultSet results = this.runQuery("SELECT * FROM address WHERE customer_email=\'" + this.email + "\';");
+            results = this.runQuery("SELECT * FROM address WHERE customer_email=\'" + this.email + "\';");
             this.printAddresses(results);
-            System.out.println("Press e to edit an existing address");
-            System.out.println("Press a to add a new address");
-            char action = this.in.next().charAt(0);
-            in.nextLine();
 
-            if(action == 'e')
-                this.editAddresses(results);
-            else if(action == 'a')
-                this.createAddress(results);
+            if(shouldPrompt) {
+                System.out.println("Press e to edit an existing address");
+                System.out.println("Press a to add a new address");
+                System.out.println("Press b to go back");
+                char action = this.in.next().charAt(0);
+                in.nextLine();
+                if (action == 'e')
+                    this.editAddresses(results);
+                else if (action == 'a')
+                    this.createAddress(results);
+            }
         } catch (SQLException s){
             s.printStackTrace();
         }
+        return results;
     }
 
     private void printAddresses(ResultSet results){
@@ -769,7 +895,7 @@ public class CustomerView extends View{
                     this.viewOrders(action2 == 'y');
                     break;
                 case 'a':
-                    this.viewAddresses();
+                    this.viewAddresses(true);
                     break;
                 case 'y':
                     this.viewPayments();
