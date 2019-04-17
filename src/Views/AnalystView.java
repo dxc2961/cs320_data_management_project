@@ -4,23 +4,6 @@ import java.sql.*;
 
 public class AnalystView extends View {
 
-   // package queries
-   private final String package_types_total =
-      "SELECT PACKAGE_TYPE, COUNT(PACKAGE_TYPE) FROM package GROUP BY PACKAGE_TYPE;";
-   private final String delivery_speeds_total =
-      "SELECT DELIVERY_SPEED, COUNT(DELIVERY_SPEED) FROM package GROUP BY DELIVERY_SPEED";
-
-   // orders queries
-   // ??? not sure yet
-
-   // address queries
-   // by location counts
-
-
-   // payments queries
-
-
-
 
    public AnalystView(){super();}
 
@@ -32,7 +15,7 @@ public class AnalystView extends View {
          System.out.println("\nAnalyst Functions");
          System.out.println("-----------------");
          System.out.println("Press p to view package functions.");
-         System.out.println("Press o to view orders functions.");
+         //System.out.println("Press o to view orders functions.");
          System.out.println("Press a to view address functions.");
          System.out.println("Press y to view payment method functions.");
          System.out.println("Press q to quit");
@@ -44,7 +27,7 @@ public class AnalystView extends View {
                this.viewPackFunc();
                break;
             case 'o':
-               this.viewOrdersFunc();
+               //this.viewOrdersFunc();
                break;
             case 'a':
                this.viewAddressesFunc();
@@ -89,9 +72,10 @@ public class AnalystView extends View {
                break;
             case 'q':
                go_back = true;
-               default:
-                  System.out.println("Not valid command, try again!");
-                  break;
+               break;
+            default:
+               System.out.println("Not valid command, try again!");
+               break;
          }
       }
    }
@@ -111,6 +95,8 @@ public class AnalystView extends View {
 
    private void sumPackTypes(){
       try {
+         // package queries
+         String package_types_total = "SELECT PACKAGE_TYPE, COUNT(PACKAGE_TYPE) FROM package GROUP BY PACKAGE_TYPE;";
          ResultSet results = this.runQuery(package_types_total);
          this.printType("Package Type", "Type Count", results);
       } catch (SQLException s){
@@ -120,6 +106,7 @@ public class AnalystView extends View {
 
    private void sumSpeedTypes(){
       try{
+         String delivery_speeds_total = "SELECT DELIVERY_SPEED, COUNT(DELIVERY_SPEED) FROM package GROUP BY DELIVERY_SPEED";
          ResultSet results = this.runQuery(delivery_speeds_total);
          this.printType("Delivery Speed", "Speed Count", results);
       }catch(SQLException s){
@@ -180,7 +167,8 @@ public class AnalystView extends View {
             return;
 
       }
-      String query = "SELECT "+location+", COUNT("+location+") FROM address GROUP BY "+location;
+      String query = "SELECT * FROM( SELECT "+location+", COUNT("+location+") as loc_count FROM address GROUP BY "+location+")"+
+         "ORDER BY loc_count DESC";
       try {
          ResultSet results = this.runQuery(query);
          printAddressCount(location, results);
@@ -214,8 +202,6 @@ public class AnalystView extends View {
          System.out.println("-----------------");
          System.out.println("Enter p to view payment methods by state.");
          System.out.println("Enter o to view payments method by frequency of use.");
-         System.out.println("Enter d to view payment methods by delivery speed.");
-         System.out.println("Enter s to view payment methods by package type.");
          System.out.println("Enter q to go back to Analyst functions.");
          response = in.next().charAt(0);
          in.nextLine();
@@ -229,34 +215,44 @@ public class AnalystView extends View {
    }
 
    private void paymentCount(char response){
-      String query = "";
-      String methods[] = {"credit_card", "gift_card", "checks"};
+      String[] methods = {"credit_card", "gift_card", "checks"};
       switch (response){
-         case 'p':
+         case 'p': // by state
+            paymentByState();
             break;
-         case 'o':
-            paymentByState(methods);
+         case 'o': // by use
+            paymentByMethod(methods);
             break;
-         case 'd':
-            break;
-         case 's':
-            break;
-         default:
+         default:  // otherwise
+            System.out.println("Invalid command.");
             break;
       }
-      /*
-      try {
-         ResultSet results = this.runQuery(query);
-         printPaymentCount(results);
+   }
+
+   // WIP NOT CURRENTLY WORKING
+   private void paymentByState(){
+       String q = "select state, payment_type, count(order_id) from orders inner join payment_details on " +
+       "orders.payment_id=payment_details.payment_id inner join address on " +
+       "orders.return_address_id=address.address_id group by state, payment_type order by state, payment_type";
+      try{
+         ResultSet r = this.runQuery(q);
+         System.out.printf("%s: %s: %s\n", "order_id","payment_id","address_id");
+         while (r.next()){
+            System.out.printf("%s: %s: %s\n",
+            r.getString(1),
+            r.getString(2),
+            r.getString(3));
+         }
       }catch(SQLException e){
          e.printStackTrace();
-      }*/
+      }
 
    }
+
    ////
    // SORT IN ASC/DEC ORDER
    ////
-   private void paymentByState(String methods[]){
+   private void paymentByMethod(String[] methods){
       StringBuilder sb = new StringBuilder();
       for(int m = 0; m < methods.length; m++){
          sb.append("(");
@@ -282,7 +278,7 @@ public class AnalystView extends View {
 
    }
 
-   private void printPaymentCount(ResultSet results, String methods[]){
+   private void printPaymentCount(ResultSet results, String[] methods){
       try{
          int m = 0;
          System.out.printf("%s: %s\n", "Payment method","Payment order count");
