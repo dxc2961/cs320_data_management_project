@@ -80,7 +80,6 @@ public abstract class View {
             }
 
         } catch (SQLException e){
-            e.printStackTrace();
             System.out.println("Incorrect Email");
             return false;
 

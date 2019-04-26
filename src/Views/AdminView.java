@@ -17,7 +17,7 @@ public class AdminView extends View{
 
 
     public AdminView(){
-        super();;
+        super();
     }
 
     /**
@@ -100,8 +100,6 @@ public class AdminView extends View{
 
 
     private void newInstance(){
-
-        System.out.println("creating new view!");
 
         View newView = null;
 

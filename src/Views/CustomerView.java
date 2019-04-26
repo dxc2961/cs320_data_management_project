@@ -577,7 +577,6 @@ public class CustomerView extends View{
         } catch (SQLException s){
             s.printStackTrace();
         }
-        System.out.println("querying payment method data!");
 
     }
 
@@ -691,7 +690,6 @@ public class CustomerView extends View{
                     "WHERE cust_email=\'" + this.email + "\' AND active=true " +
                     "AND card_number IS NULL AND routing_num IS NULL AND gift_card_id IS NULL");
             payment_id.next();
-            System.out.println(payment_id.getString(1));
             creditCardInsertSQL += payment_id.getString(1) + ", \'";
         } catch (SQLException s){
             System.err.println("Problem getting new payment_id");
